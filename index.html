@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de DVDs</title>
+    <style>
+        :root {
+            --verde-ifmg: #009a44;
+            --verde-escuro: #007236;
+            --cinza-escuro: #333333;
+            --cinza-medio: #666666;
+            --cinza-claro: #f2f2f2;
+            --branco: #ffffff;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--cinza-claro);
+            color: var(--cinza-escuro);
+        }
+        
+        header {
+            background-color: var(--verde-ifmg);
+            color: var(--branco);
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .film-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .film-card {
+            background-color: var(--branco);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .film-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .film-poster {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            border-bottom: 3px solid var(--verde-ifmg);
+        }
+        
+        .film-info {
+            padding: 15px;
+        }
+        
+        .film-title {
+            font-weight: bold;
+            margin: 0 0 5px 0;
+            color: var(--verde-escuro);
+        }
+        
+        .film-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9em;
+            color: var(--cinza-medio);
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            overflow: auto;
+        }
+        
+        .modal-content {
+            background-color: var(--branco);
+            margin: 5% auto;
+            padding: 30px;
+            width: 70%;
+            max-width: 800px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            position: relative;
+        }
+        
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 25px;
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--cinza-medio);
+            cursor: pointer;
+        }
+        
+        .close:hover {
+            color: var(--verde-escuro);
+        }
+        
+        .modal-poster {
+            float: left;
+            width: 200px;
+            height: 280px;
+            object-fit: cover;
+            margin-right: 20px;
+            margin-bottom: 20px;
+            border: 3px solid var(--verde-ifmg);
+        }
+        
+        .modal-title {
+            color: var(--verde-escuro);
+            margin-top: 0;
+            border-bottom: 2px solid var(--cinza-claro);
+            padding-bottom: 10px;
+        }
+        
+        .modal-details {
+            margin-bottom: 20px;
+        }
+        
+        .modal-details p {
+            margin: 5px 0;
+        }
+        
+        .modal-synopsis {
+            clear: both;
+            line-height: 1.6;
+        }
+        
+        .classification {
+            display: inline-block;
+            background-color: var(--verde-ifmg);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            margin-right: 10px;
+        }
+        
+        footer {
+            background-color: var(--verde-escuro);
+            color: var(--branco);
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Nosso catálogo de DVDs</h1>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="film-grid" id="filmGrid">
+            <!-- Os filmes serão inseridos aqui pelo JavaScript -->
+        </div>
+    </div>
+    
+    <div id="filmModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>UM TREM DE CINEMA 2017-2021</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Dados dos 6 primeiros filmes
+        const films = [
+            {
+                title: "O Canto do Mar",
+                director: "Alberto Cavalcanti",
+                cast: "Ingra Liberato",
+                duration: 87,
+                genre: "Ficção",
+                year: 1953,
+                imdb: "6,9/85",
+                state: "SP",
+                synopsis: "Documentário sobre um tema difícil, cercado de tabus e pactos de silêncio: a violência sexual contra meninas. Depoimentos de vítimas que relatam detalhes dos abusos sofridos intercalam-se a comentários de especialistas, desenhos feitos por crianças abusadas, filmes de ficção e enquetes nas quais ficam evidentes os mitos e preconceitos envolvendo o assunto, tudo pontuado pelo poema Canção para a menina maltratada, feito especialmente para o documentário pelo escritor e psiquiatra infantil Celso Gutfreind e interpretado pela atriz Ingra Liberato.",
+                dvd: "O Canto do Mar",
+                classification: 10,
+                cover: "capas/o_canto_do_mar.png"
+            },
+            {
+                title: "Assim era a Atlantida",
+                director: "Carlos Manga",
+                cast: "Oscarito, Sonia Mamede, Zezé Macedo e outros",
+                duration: 105,
+                genre: "Documentário",
+                year: 1975,
+                imdb: "7,5/52",
+                state: "RJ",
+                synopsis: "A Atlântida ficou mesmo conhecida com as famosas chanchadas ou comédias populares, que foram o principal produto de um cinema que pretendia firmar-se como indústria. E assim foi feito. O público lotava os cinemas, reverenciava seus ídolos, numa época (anos 50) em que o musical americano dominava o mundo.",
+                dvd: "Assim era a Atlantida",
+                classification: 10,
+                cover: "capas/assim_era_a_atlantida.png"
+            },
+            {
+                title: "Brasa adormecida",
+                director: "Djalma Limongi Batista",
+                cast: "Maitê Proença, Edson Celulari, Paulo César Grande",
+                duration: 105,
+                genre: "Ficção",
+                year: 1986,
+                imdb: "5,6/34",
+                state: "SP",
+                synopsis: "Comédia-romântica ambientada em 1962, revival da ingenuidade dos anos dourados e, também, homenagem ao cineasta brasileiro pioneiro do cinema-mudo, Humberto Mauro (Braza dormida, 1928).",
+                dvd: "Brasa adormecida",
+                classification: 10,
+                cover: "capas/brasa_adormecida.png"
+            },
+            {
+                title: "A lasanha assassina",
+                director: "Alê Machado",
+                cast: "NÃO HÁ",
+                duration: 8,
+                genre: "Animação",
+                year: 2002,
+                imdb: "6,2/33",
+                state: "SP",
+                synopsis: "Em suas ruas estreitas e tortuosas, persistem as igrejas, os velhos e ricos sobrados em ruínas e o casario da gente pobre a lembrar o passado faustoso da cidade de Laranjeiras, em Sergipe.",
+                dvd: "Os Xeretas e A lasanha assassina",
+                classification: 10,
+                cover: "capas/a_lasanha_assassina.png"
+            },
+            {
+                title: "Os Xeretas",
+                director: "Michael Ruman",
+                cast: "-",
+                duration: 90,
+                genre: "Ficção",
+                year: 2001,
+                imdb: "6,3/21",
+                state: "SP",
+                synopsis: "Debate sobre a qualidade de vida no mundo corporativo entremeado com entrevistas gravadas em NY e SP.",
+                dvd: "Os Xeretas e A lasanha assassina",
+                classification: 10,
+                cover: "capas/os_xeretas.png"
+            },
+            {
+                title: "Informística",
+                director: "César Coelho",
+                cast: "Vozes: César Coelho",
+                duration: 7,
+                genre: "Animação",
+                year: 1986,
+                imdb: "",
+                state: "RJ",
+                synopsis: "Um líder espiritual é encarregado de enfrentar e domesticar a máquina através de enigmas e palavras mágicas. Subitamente a máquina sai do seu controle e o destrói, mas uma criança, por curiosidade, arranca o fio da máquina desligando-a. Estabelece-se o caos.",
+                dvd: "Núcleo de animação do CTAv",
+                classification: 10,
+                cover: "capas/informistica.png"
+            }
+        ];
+
+        // Função para renderizar os filmes
+        function renderFilms() {
+            const filmGrid = document.getElementById('filmGrid');
+            filmGrid.innerHTML = '';
+            
+            films.forEach(film => {
+                const filmCard = document.createElement('div');
+                filmCard.className = 'film-card';
+                
+                const posterImg = document.createElement('img');
+                posterImg.className = 'film-poster';
+                posterImg.alt = film.title;
+                posterImg.onerror = function() {
+                    this.src = 'capas/progbrasil.png';
+                };
+                posterImg.src = film.cover;
+                
+                const filmInfo = document.createElement('div');
+                filmInfo.className = 'film-info';
+                
+                const title = document.createElement('h3');
+                title.className = 'film-title';
+                title.textContent = film.title;
+                
+                const meta = document.createElement('div');
+                meta.className = 'film-meta';
+                
+                const duration = document.createElement('span');
+                duration.textContent = `${film.duration} min`;
+                
+                const imdb = document.createElement('span');
+                imdb.textContent = film.imdb ? `IMDb: ${film.imdb}` : '';
+                
+                meta.appendChild(duration);
+                meta.appendChild(imdb);
+                
+                filmInfo.appendChild(title);
+                filmInfo.appendChild(meta);
+                
+                filmCard.appendChild(posterImg);
+                filmCard.appendChild(filmInfo);
+                
+                filmCard.addEventListener('click', () => openModal(film));
+                
+                filmGrid.appendChild(filmCard);
+            });
+        }
+
+        // Função para abrir o modal
+        function openModal(film) {
+            const modal = document.getElementById('filmModal');
+            const modalContent = document.getElementById('modalContent');
+            
+            let castContent = film.cast ? `<p><strong>Elenco:</strong> ${film.cast}</p>` : '';
+            let imdbContent = film.imdb ? `<p><strong>Nota IMDb:</strong> ${film.imdb}</p>` : '';
+            
+            modalContent.innerHTML = `
+                <img src="${film.cover}" alt="${film.title}" class="modal-poster" onerror="this.src='capas/progbrasil.png'">
+                <h2 class="modal-title"><span class="classification">${film.classification}</span>${film.title}</h2>
+                <div class="modal-details">
+                    <p><strong>Direção:</strong> ${film.director}</p>
+                    ${castContent}
+                    <p><strong>Duração:</strong> ${film.duration} min</p>
+                    <p><strong>Gênero:</strong> ${film.genre}</p>
+                    <p><strong>Ano:</strong> ${film.year}</p>
+                    ${imdbContent}
+                    <p><strong>DVD:</strong> ${film.dvd}</p>
+                </div>
+                <div class="modal-synopsis">
+                    <h3>Sinopse</h3>
+                    <p>${film.synopsis}</p>
+                </div>
+            `;
+            
+            modal.style.display = 'block';
+            
+            // Fechar modal
+            document.querySelector('.close').onclick = function() {
+                modal.style.display = 'none';
+            };
+            
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = 'none';
+                }
+            };
+        }
+
+        // Inicializar quando a página carregar
+        window.onload = function() {
+            renderFilms();
+        };
+    </script>
+</body>
+</html>
