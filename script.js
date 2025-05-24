@@ -5,7 +5,7 @@ let allFilms = [];           // ARMAZENA TODOS OS FILMES DO CATÁLOGO
 let currentFilms = [];       // ARMAZENA OS FILMES FILTRADOS ATUALMENTE
 let currentPage = 1;         // PÁGINA ATUAL DA PAGINAÇÃO
 let allGenres = [];          // LISTA DE TODOS OS GÊNEROS ÚNICOS
-let selectedGenre = ";      // GÊNERO SELECIONADO ATUALMENTE
+let selectedGenre = '';      // GÊNERO SELECIONADO ATUALMENTE
 let debounceTimer;          // TIMER PARA DEBOUNCE DA BUSCA
 const itemsPerPage = 20;     // QUANTIDADE DE FILMES POR PÁGINA
 
@@ -15,8 +15,9 @@ const itemsPerPage = 20;     // QUANTIDADE DE FILMES POR PÁGINA
 
 // LIMPA E FORMATA CAMPOS DE TEXTO
 function cleanField(value) {
-    if (!value) return ";
-    return String(value).replace(/^\"|\"$/g, ").trim();
+    if (!value) return '';
+    // Remove aspas extras no início/fim e espaços em branco
+    return String(value).replace(/^"|"$/g, '').trim(); 
 }
 
 // OBTÉM A CLASSE CSS PARA CLASSIFICAÇÃO INDICATIVA
@@ -37,13 +38,11 @@ function getClassificationClass(age) {
 
 // GERENCIA O CARREGAMENTO DE CAPAS DOS FILMES
 function getDvdCover(filmData) {
-    // console.log("Buscando capa para:", filmData.imageName);
     const DEFAULT_COVER = 'capas/progbrasil.png';
     
     if (filmData.imageName) {
-        const baseName = filmData.imageName.replace(/\.(jpg|jpeg|png|gif)$/i, ");
+        const baseName = filmData.imageName.replace(/\.(jpg|jpeg|png|gif)$/i, '');
         const imagePath = `capas/${baseName}.jpg`;
-        // console.log("Tentando carregar:", imagePath);
         return imagePath;
     }
     
@@ -56,13 +55,11 @@ function getDvdCover(filmData) {
 
 // TRANSFORMA DADOS DO JSON PARA O FORMATO DESEJADO
 function transformFilmData(originalFilm) {
-    // console.log("Original imageName:", originalFilm["imageName"]);
-    
     // TRATAMENTO ESPECIAL PARA NOTA IMDB
-    let imdbData = { votantes: " };
+    let imdbData = { votantes: '' };
     if (originalFilm["nota imdb/votantes"]) {
         const [nota, votantes] = String(originalFilm["nota imdb/votantes"]).split('/');
-        imdbData = { votantes: `${nota}/${votantes || "}`.trim() };
+        imdbData = { votantes: `${nota}/${votantes || ''}`.trim() };
     }
     
     return {
@@ -78,12 +75,12 @@ function transformFilmData(originalFilm) {
         city: cleanField(originalFilm["cidade"]),
         audiodescricao: cleanField(originalFilm["Audiodescrição"]),
         closedCaption: cleanField(originalFilm["Closed Caption"]),
-        trailer: cleanField(originalFilm["trailer"] || "),
+        trailer: cleanField(originalFilm["trailer"] || ''),
         synopsis: cleanField(originalFilm["Sinopse"]),
         tema: cleanField(originalFilm["tema (Programadora Brasil)"]),
         tags: cleanField(originalFilm["tags"]),
         website: cleanField(originalFilm["website"]),
-        assistirOnline: cleanField(originalFilm["Assistir Online"] || "),
+        assistirOnline: cleanField(originalFilm["Assistir Online"] || ''), // Campo renomeado
         festivais: cleanField(originalFilm["festivais"]),
         premios: cleanField(originalFilm["premios"]),
         legendasOutras: cleanField(originalFilm["legendas_outras"]),
@@ -91,14 +88,8 @@ function transformFilmData(originalFilm) {
             const material = originalFilm["material_outros"];
             if (!material) return [];
             if (typeof material === 'string') {
-                // Converte string em um objeto no formato esperado
-                return [{
-                    tipo: material,
-                    titulo: material,
-                    url: '#'
-                }];
+                return [{ tipo: material, titulo: material, url: '#' }];
             }
-            // Se já for array, retorna como está
             return Array.isArray(material) ? material : [];
         })(),
         duracaoFormato: cleanField(originalFilm["duracao FORMATO"]),
@@ -154,7 +145,6 @@ function filterAndRenderFilms() {
         const selectedGenre = document.getElementById('genreSelect').value;
         const selectedAccessibility = document.getElementById('accessibilitySelect').value;
         
-        // APLICA TODOS OS FILTROS
         currentFilms = allFilms.filter(film => {
             const matchesSearch = 
                 film.title.toLowerCase().includes(searchTerm) ||
@@ -175,22 +165,20 @@ function filterAndRenderFilms() {
                 (selectedAccessibility === 'planos_de_aula' && film.planos_de_aula && film.planos_de_aula.length > 0) ||
                 (selectedAccessibility === 'audiodescricao' && film.audiodescricao) ||
                 (selectedAccessibility === 'closed_caption' && film.closedCaption) ||
-                (selectedAccessibility === 'trailer' && film.trailer && film.trailer.trim() !== ") ||
+                (selectedAccessibility === 'trailer' && film.trailer && film.trailer.trim() !== '') ||
                 (selectedAccessibility === 'material_outros' && film.materialOutros && film.materialOutros.length > 0) ||
-                (selectedAccessibility === 'assistir_online' && film.assistirOnline && film.assistirOnline.trim() !== ") // Nova condição
+                (selectedAccessibility === 'assistir_online' && film.assistirOnline && film.assistirOnline.trim() !== '') // Filtro Assistir Online
             );
             
             return matchesSearch && matchesGenre && matchesClassification && matchesAccessibility;
         });
 
-        // ATUALIZA CONTADOR E APLICA ORDENAÇÃO
         updateFilmsCounter();
         currentFilms = sortFilms(currentFilms, sortOption);
         
-        // RESETA PAGINAÇÃO E RENDERIZA
-        currentPage = 1;        // Reseta para a primeira página
-        renderPagination();     // Atualiza a paginação
-        renderFilms();         // Renderiza os filmes
+        currentPage = 1;
+        renderPagination();
+        renderFilms();
     }, 300);
 }
 
@@ -221,7 +209,6 @@ function updateFilmsCounter() {
 
 // INICIALIZA OS SELECTS DE FILTRO
 function initializeFilters() {
-    // PREENCHE O SELECT DE GÊNEROS
     const genreSelect = document.getElementById('genreSelect');
     genreSelect.innerHTML = '<option value="">Todos os Gêneros</option>';
     allGenres.forEach(genre => {
@@ -230,14 +217,7 @@ function initializeFilters() {
         option.textContent = genre;
         genreSelect.appendChild(option);
     });
-
-    // PREENCHE O SELECT DE CLASSIFICAÇÃO (JÁ ESTÁ NO HTML)
-    // PREENCHE O SELECT DE ACESSIBILIDADE (JÁ ESTÁ NO HTML)
-}
-
-// CRIA CONTROLES DE NAVEGAÇÃO PARA IMAGENS (NÃO USADO ATUALMENTE)
-function createImageControls(container, image) {
-    // ... (código omitido para brevidade, pois não está em uso)
+    // Os outros selects (classification, accessibility) são estáticos no HTML
 }
 
 // CRIA LISTA DE TEMAS
@@ -250,41 +230,39 @@ function createThemesList(film) {
 }
 
 // ==========================================
-// FUNÇÃO DE RENDERIZAÇÃO DOS PLANOS DE AULA (COMPLETO - USADO EM filme.js)
+// FUNÇÕES DE RENDERIZAÇÃO PARA PÁGINA DO FILME (filme.js)
 // ==========================================
-function renderTeachingPlans(film) {
+// Estas funções são definidas aqui para referência, mas usadas principalmente em filme.js
+function renderTeachingPlans(film) { // Versão completa
     if (!film.planos_de_aula || film.planos_de_aula.length === 0) {
         return '<p><i class="fas fa-info-circle"></i> Nenhum plano de aula disponível.</p>';
     }
     return film.planos_de_aula.map(plano => `
         <div class="teaching-plan-card">
-            <p><strong><i class="fas fa-graduation-cap"></i> Nível de Ensino:</strong> ${plano.nivel_ensino || "}</p>
-            <p><strong><i class="fas fa-book"></i> Área de Conhecimento:</strong> ${plano.area_conhecimento || "}</p>
+            <p><strong><i class="fas fa-graduation-cap"></i> Nível de Ensino:</strong> ${plano.nivel_ensino || ''}</p>
+            <p><strong><i class="fas fa-book"></i> Área de Conhecimento:</strong> ${plano.area_conhecimento || ''}</p>
             <p><strong><i class="fas fa-globe"></i> Site:</strong> <a href="${plano.url}" target="_blank">${plano.site}</a></p>
-            <p><strong><i class="fas fa-info-circle"></i> Descrição:</strong> ${plano.descricao || "}</p>
+            <p><strong><i class="fas fa-info-circle"></i> Descrição:</strong> ${plano.descricao || ''}</p>
         </div>
-    `).join(");
+    `).join('');
 }
 
-// ==========================================
-// FUNÇÃO DE RENDERIZAÇÃO DE OUTROS MATERIAIS (COMPLETO - USADO EM filme.js)
-// ==========================================
-function renderOtherMaterials(film) {
+function renderOtherMaterials(film) { // Versão completa
     if (!film.materialOutros || film.materialOutros.length === 0) {
         return '<p><i class="fas fa-info-circle"></i> Nenhum material adicional disponível.</p>';
     }
     return film.materialOutros.map(material => `
         <div class="other-material-card">
-            <p><strong><i class="fas fa-bookmark"></i> Tipo:</strong> ${material.tipo || "}</p>
+            <p><strong><i class="fas fa-bookmark"></i> Tipo:</strong> ${material.tipo || ''}</p>
             <p><strong><i class="fas fa-file-alt"></i> Título:</strong> <a href="${material.url}" target="_blank">${material.titulo}</a></p>
         </div>
-    `).join(");
+    `).join('');
 }
 
 // ==========================================
-// FUNÇÃO DE RENDERIZAÇÃO DOS PLANOS DE AULA (MODAL - LIMITADO A 1 + BOTÃO)
+// FUNÇÕES DE RENDERIZAÇÃO PARA O MODAL (script.js)
 // ==========================================
-function renderTeachingPlansModal(film, encodedTitle) {
+function renderTeachingPlansModal(film, encodedTitle) { // Versão limitada para o modal
     if (!film.planos_de_aula || film.planos_de_aula.length === 0) {
         return '<p><i class="fas fa-info-circle"></i> Nenhum plano de aula disponível.</p>';
     }
@@ -292,10 +270,10 @@ function renderTeachingPlansModal(film, encodedTitle) {
     const firstPlan = film.planos_de_aula[0];
     let html = `
         <div class="teaching-plan-card">
-            <p><strong><i class="fas fa-graduation-cap"></i> Nível de Ensino:</strong> ${firstPlan.nivel_ensino || "}</p>
-            <p><strong><i class="fas fa-book"></i> Área de Conhecimento:</strong> ${firstPlan.area_conhecimento || "}</p>
+            <p><strong><i class="fas fa-graduation-cap"></i> Nível de Ensino:</strong> ${firstPlan.nivel_ensino || ''}</p>
+            <p><strong><i class="fas fa-book"></i> Área de Conhecimento:</strong> ${firstPlan.area_conhecimento || ''}</p>
             <p><strong><i class="fas fa-globe"></i> Site:</strong> <a href="${firstPlan.url}" target="_blank">${firstPlan.site}</a></p>
-            <p><strong><i class="fas fa-info-circle"></i> Descrição:</strong> ${firstPlan.descricao || "}</p>
+            <p><strong><i class="fas fa-info-circle"></i> Descrição:</strong> ${firstPlan.descricao || ''}</p>
         </div>
     `;
 
@@ -311,10 +289,7 @@ function renderTeachingPlansModal(film, encodedTitle) {
     return html;
 }
 
-// ==========================================
-// FUNÇÃO DE RENDERIZAÇÃO DE OUTROS MATERIAIS (MODAL - LIMITADO A 1 + BOTÃO)
-// ==========================================
-function renderOtherMaterialsModal(film, encodedTitle) {
+function renderOtherMaterialsModal(film, encodedTitle) { // Versão limitada para o modal
     if (!film.materialOutros || film.materialOutros.length === 0) {
         return '<p><i class="fas fa-info-circle"></i> Nenhum material adicional disponível.</p>';
     }
@@ -322,7 +297,7 @@ function renderOtherMaterialsModal(film, encodedTitle) {
     const firstMaterial = film.materialOutros[0];
     let html = `
         <div class="other-material-card">
-            <p><strong><i class="fas fa-bookmark"></i> Tipo:</strong> ${firstMaterial.tipo || "}</p>
+            <p><strong><i class="fas fa-bookmark"></i> Tipo:</strong> ${firstMaterial.tipo || ''}</p>
             <p><strong><i class="fas fa-file-alt"></i> Título:</strong> <a href="${firstMaterial.url}" target="_blank">${firstMaterial.titulo}</a></p>
         </div>
     `;
@@ -349,7 +324,7 @@ function renderFilms() {
     const loadingMessage = document.getElementById('loadingMessage');
     
     loadingMessage.style.display = 'none';
-    filmGrid.innerHTML = ";
+    filmGrid.innerHTML = ''; // Limpa a grade
     
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
@@ -396,92 +371,61 @@ function renderFilms() {
 // RENDERIZA A PAGINAÇÃO
 function renderPagination() {
     const paginationContainer = document.getElementById('pagination');
-    paginationContainer.innerHTML = ";
+    paginationContainer.innerHTML = ''; // Limpa a paginação
     
     const totalPages = Math.ceil(currentFilms.length / itemsPerPage);
     
-    if (totalPages <= 1) return;
+    if (totalPages <= 1) return; // Não mostra paginação se houver apenas 1 página
     
-    const maxVisiblePages = 5; // NÚMERO MÁXIMO DE BOTÕES DE PÁGINA VISÍVEIS
+    const maxVisiblePages = 5; 
     let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
     let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
     
-    // AJUSTA O INÍCIO SE O FIM ESTIVER NO LIMITE
     if (endPage === totalPages) {
         startPage = Math.max(1, totalPages - maxVisiblePages + 1);
     }
     
-    // BOTÃO "PRIMEIRA PÁGINA"
+    // Botão Primeira Página
     if (currentPage > 1) {
-        const firstButton = document.createElement('button');
-        firstButton.innerHTML = '<i class="fas fa-angle-double-left"></i>';
-        firstButton.title = "Primeira Página";
-        firstButton.addEventListener('click', () => {
-            currentPage = 1;
-            renderFilms();
-            renderPagination();
-            window.scrollTo(0, 0);
-        });
-        paginationContainer.appendChild(firstButton);
+        paginationContainer.appendChild(createPageButton('<i class="fas fa-angle-double-left"></i>', 1, 'Primeira Página'));
     }
     
-    // BOTÃO "ANTERIOR"
+    // Botão Anterior
     if (currentPage > 1) {
-        const prevButton = document.createElement('button');
-        prevButton.innerHTML = '<i class="fas fa-angle-left"></i>';
-        prevButton.title = "Página Anterior";
-        prevButton.addEventListener('click', () => {
-            currentPage--;
-            renderFilms();
-            renderPagination();
-            window.scrollTo(0, 0);
-        });
-        paginationContainer.appendChild(prevButton);
+        paginationContainer.appendChild(createPageButton('<i class="fas fa-angle-left"></i>', currentPage - 1, 'Página Anterior'));
     }
     
-    // BOTÕES NUMÉRICOS
+    // Botões Numéricos
     for (let i = startPage; i <= endPage; i++) {
-        const pageButton = document.createElement('button');
-        pageButton.textContent = i;
-        if (i === currentPage) {
-            pageButton.classList.add('active');
-        }
-        pageButton.addEventListener('click', () => {
-            currentPage = i;
-            renderFilms();
-            renderPagination();
-            window.scrollTo(0, 0);
-        });
-        paginationContainer.appendChild(pageButton);
+        paginationContainer.appendChild(createPageButton(i, i));
     }
     
-    // BOTÃO "PRÓXIMA"
+    // Botão Próxima
     if (currentPage < totalPages) {
-        const nextButton = document.createElement('button');
-        nextButton.innerHTML = '<i class="fas fa-angle-right"></i>';
-        nextButton.title = "Próxima Página";
-        nextButton.addEventListener('click', () => {
-            currentPage++;
-            renderFilms();
-            renderPagination();
-            window.scrollTo(0, 0);
-        });
-        paginationContainer.appendChild(nextButton);
+        paginationContainer.appendChild(createPageButton('<i class="fas fa-angle-right"></i>', currentPage + 1, 'Próxima Página'));
     }
     
-    // BOTÃO "ÚLTIMA PÁGINA"
+    // Botão Última Página
     if (currentPage < totalPages) {
-        const lastButton = document.createElement('button');
-        lastButton.innerHTML = '<i class="fas fa-angle-double-right"></i>';
-        lastButton.title = "Última Página";
-        lastButton.addEventListener('click', () => {
-            currentPage = totalPages;
-            renderFilms();
-            renderPagination();
-            window.scrollTo(0, 0);
-        });
-        paginationContainer.appendChild(lastButton);
+        paginationContainer.appendChild(createPageButton('<i class="fas fa-angle-double-right"></i>', totalPages, 'Última Página'));
     }
+}
+
+// Função auxiliar para criar botões de paginação
+function createPageButton(content, pageNumber, title = '') {
+    const button = document.createElement('button');
+    button.innerHTML = content;
+    if (title) button.title = title;
+    if (pageNumber === currentPage && typeof content === 'number') {
+        button.classList.add('active');
+    }
+    button.addEventListener('click', () => {
+        currentPage = pageNumber;
+        renderFilms();
+        renderPagination();
+        window.scrollTo(0, 0); // Rola para o topo
+    });
+    return button;
 }
 
 /* ==========================================
@@ -498,11 +442,10 @@ function openModal(film) {
     const coverPath = getDvdCover(film);
     const encodedTitle = encodeURIComponent(film.title);
     
-    // VERIFICA SE HÁ TEMAS
     const themes = createThemesList(film);
     const hasThemes = themes.length > 0;
     
-    // VERIFICA SE HÁ INFORMAÇÕES ADICIONAIS (EXCLUINDO PLANOS E MATERIAIS QUE TÊM SEÇÕES PRÓPRIAS)
+    // Verifica informações adicionais (EXCLUINDO Assistir Online, Planos e Materiais)
     const hasAdditionalInfo = film.audiodescricao || film.closedCaption || film.website || 
                             film.festivais || film.premios || film.legendasOutras;
 
@@ -518,57 +461,55 @@ function openModal(film) {
                 <span class="classification ${classificationClass}">${classificationText}</span>
             </div>
         </div>
-        <h2 class="modal-title">
-            ${film.title}
-        </h2>
+        <h2 class="modal-title">${film.title}</h2>
         <div class="modal-details">
-            ${film.director ? `<p><strong><i class="fas fa-user"></i> Direção:</strong> ${film.director}</p>` : "}
-            ${film.cast ? `<p><strong><i class="fas fa-users"></i> Elenco:</strong> ${film.cast}</p>` : "}
-            ${film.duration ? `<p><strong><i class="fas fa-clock"></i> Duração:</strong> ${film.duration} min</p>` : "}
-            ${film.genre ? `<p><strong><i class="fas fa-tag"></i> Gênero:</strong> ${film.genre}</p>` : "}
-            ${film.year ? `<p><strong><i class="fas fa-calendar-alt"></i> Ano:</strong> ${film.year}</p>` : "}
-            ${film.imdb.votantes ? `<p><strong><i class="fab fa-imdb"></i> IMDb:</strong> ${film.imdb.votantes}</p>` : "}
-            ${film.country ? `<p><strong><i class="fas fa-globe-americas"></i> País:</strong> ${film.country}</p>` : "}
-            ${film.state ? `<p><strong><i class="fas fa-map-marker-alt"></i> UF:</strong> ${film.state}</p>` : "}
-            ${film.dvd ? `<p><strong><i class="fas fa-compact-disc"></i> DVD:</strong> ${film.dvd}</p>` : "}
+            ${film.director ? `<p><strong><i class="fas fa-user"></i> Direção:</strong> ${film.director}</p>` : ''}
+            ${film.cast ? `<p><strong><i class="fas fa-users"></i> Elenco:</strong> ${film.cast}</p>` : ''}
+            ${film.duration ? `<p><strong><i class="fas fa-clock"></i> Duração:</strong> ${film.duration} min</p>` : ''}
+            ${film.genre ? `<p><strong><i class="fas fa-tag"></i> Gênero:</strong> ${film.genre}</p>` : ''}
+            ${film.year ? `<p><strong><i class="fas fa-calendar-alt"></i> Ano:</strong> ${film.year}</p>` : ''}
+            ${film.imdb.votantes ? `<p><strong><i class="fab fa-imdb"></i> IMDb:</strong> ${film.imdb.votantes}</p>` : ''}
+            ${film.country ? `<p><strong><i class="fas fa-globe-americas"></i> País:</strong> ${film.country}</p>` : ''}
+            ${film.state ? `<p><strong><i class="fas fa-map-marker-alt"></i> UF:</strong> ${film.state}</p>` : ''}
+            ${film.dvd ? `<p><strong><i class="fas fa-compact-disc"></i> DVD:</strong> ${film.dvd}</p>` : ''}
         </div>
         
         ${hasThemes ? `
         <div class="modal-themes">
             <h3><i class="fas fa-tags"></i> Temas</h3>
-            ${themes.map(theme => `<span class="theme-tag">${theme}</span>`).join(")}
+            ${themes.map(theme => `<span class="theme-tag">${theme}</span>`).join('')}
         </div>
-        ` : "}
+        ` : ''}
         
         ${film.synopsis ? `
         <div class="modal-synopsis">
             <h3><i class="fas fa-align-left"></i> Sinopse</h3>
             <p>${film.synopsis}</p>
         </div>
-        ` : "}
+        ` : ''}
         
         ${hasAdditionalInfo ? `
         <div class="modal-additional">
             <h3><i class="fas fa-info-circle"></i> Informações Adicionais</h3>
-            ${film.audiodescricao ? `<p><strong><i class="fas fa-assistive-listening-systems"></i> Audiodescrição:</strong> ${film.audiodescricao}</p>` : "}
-            ${film.closedCaption ? `<p><strong><i class="fas fa-closed-captioning"></i> Closed Caption:</strong> ${film.closedCaption}</p>` : "}
-            ${film.website ? `<p><strong><i class="fas fa-globe"></i> Website:</strong> <a href="${film.website.startsWith('http') ? film.website : 'https://' + film.website}" target="_blank">${film.website}</a></p>` : "}
-            ${film.festivais ? `<p><strong><i class="fas fa-trophy"></i> Festivais:</strong> ${film.festivais}</p>` : "}
-            ${film.premios ? `<p><strong><i class="fas fa-award"></i> Prêmios:</strong> ${film.premios}</p>` : "}
-            ${film.legendasOutras ? `<p><strong><i class="fas fa-language"></i> Outras Legendas:</strong> ${film.legendasOutras}</p>` : "}
+            ${film.audiodescricao ? `<p><strong><i class="fas fa-assistive-listening-systems"></i> Audiodescrição:</strong> ${film.audiodescricao}</p>` : ''}
+            ${film.closedCaption ? `<p><strong><i class="fas fa-closed-captioning"></i> Closed Caption:</strong> ${film.closedCaption}</p>` : ''}
+            ${film.website ? `<p><strong><i class="fas fa-globe"></i> Website:</strong> <a href="${film.website.startsWith('http') ? film.website : 'https://' + film.website}" target="_blank">${film.website}</a></p>` : ''}
+            ${film.festivais ? `<p><strong><i class="fas fa-trophy"></i> Festivais:</strong> ${film.festivais}</p>` : ''}
+            ${film.premios ? `<p><strong><i class="fas fa-award"></i> Prêmios:</strong> ${film.premios}</p>` : ''}
+            ${film.legendasOutras ? `<p><strong><i class="fas fa-language"></i> Outras Legendas:</strong> ${film.legendasOutras}</p>` : ''}
         </div>
-        ` : "}
+        ` : ''}
 
         <!-- Bloco dos Outros Materiais (Modal) -->
         <div class="modal-other-materials">
             <h3><i class="fas fa-box-open"></i> Outros Materiais</h3>
-            ${renderOtherMaterialsModal(film, encodedTitle)} 
+            ${renderOtherMaterialsModal(film, encodedTitle)} <!-- Chama a função correta -->
         </div>
 
         <!-- Bloco dos Planos de Aula (Modal) -->
         <div class="modal-teaching-plans">
             <h3><i class="fas fa-chalkboard-teacher"></i> Planos de Aula</h3>
-            ${renderTeachingPlansModal(film, encodedTitle)}
+            ${renderTeachingPlansModal(film, encodedTitle)} <!-- Chama a função correta -->
             <a href="https://docs.google.com/forms/d/e/1FAIpQLSdxQz8onMOFjxIqEPpo5v2I4CJdLQ9cN50I7zUhmnBwgUeGIQ/viewform?usp=sharing&ouid=101786859238464224020" target="_blank" class="btn-enviar-plano" style="display:inline-block; margin-top:15px; background:#009a44; color:#fff; padding:10px 18px; border-radius:6px; text-decoration:none; font-weight:500;">
                 <i class="fas fa-plus"></i> Envie um plano de aula
             </a>
@@ -585,7 +526,6 @@ function openModal(film) {
         </div>
     `;
     
-    // Adiciona evento para fechar o modal
     const closeButton = modalContent.parentNode.querySelector('.close');
     if (closeButton) {
         closeButton.onclick = closeModal;
@@ -596,10 +536,8 @@ function openModal(film) {
         modal.classList.add('show');
     }, 10);
     
-    // Adiciona listener para fechar com ESC
     document.addEventListener('keydown', handleKeyDown);
     
-    // Adiciona listener para fechar clicando fora
     window.onclick = function(event) {
         if (event.target == modal) {
             closeModal();
@@ -616,7 +554,6 @@ function closeModal() {
         modal.style.display = 'none';
     }, 300);
     
-    // Remove listeners ao fechar
     document.removeEventListener('keydown', handleKeyDown);
     window.onclick = null; 
 }
@@ -635,7 +572,7 @@ function handleKeyDown(e) {
 // CARREGA O CATÁLOGO E INICIALIZA A APLICAÇÃO
 async function initializeApp() {
     const loadingMessage = document.getElementById('loadingMessage');
-    loadingMessage.style.display = 'flex'; // MOSTRA LOADING
+    loadingMessage.style.display = 'flex';
     
     try {
         const response = await fetch('catalogo.json');
@@ -644,18 +581,18 @@ async function initializeApp() {
         }
         const data = await response.json();
         
-        // TRANSFORMA OS DADOS E EXTRAI GÊNEROS
         allFilms = data.map(transformFilmData);
         allGenres = [...new Set(allFilms.map(film => film.genre).filter(genre => genre))].sort();
         
-        // INICIALIZA FILTROS E RENDERIZAÇÃO INICIAL
         initializeFilters();
-        filterAndRenderFilms(); // Chama a função que já atualiza contador, ordena e renderiza
+        filterAndRenderFilms(); // Chama a função que atualiza contador, ordena e renderiza
         
     } catch (error) {
         console.error("Erro ao inicializar:", error);
         const filmGrid = document.getElementById('filmGrid');
-        filmGrid.innerHTML = `<p class="error-message">Falha ao carregar o catálogo de filmes. Tente recarregar a página.</p>`;
+        if (filmGrid) { // Verifica se o elemento existe
+             filmGrid.innerHTML = `<p class="error-message">Falha ao carregar o catálogo de filmes. Tente recarregar a página.</p>`;
+        }
         loadingMessage.style.display = 'none';
     }
 }
@@ -665,10 +602,8 @@ async function initializeApp() {
    ========================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
-    // INICIALIZA A APLICAÇÃO
     initializeApp();
     
-    // ADICIONA LISTENERS AOS CONTROLES DE FILTRO E BUSCA
     document.getElementById('searchInput').addEventListener('input', filterAndRenderFilms);
     document.getElementById('sortSelect').addEventListener('change', filterAndRenderFilms);
     document.getElementById('classificationSelect').addEventListener('change', filterAndRenderFilms);
@@ -691,13 +626,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     window.onclick = (event) => {
+        // Fecha modal Fale Conosco se clicar fora
         if (event.target == modalFaleConosco) {
             modalFaleConosco.classList.remove('show');
             setTimeout(() => modalFaleConosco.style.display = 'none', 300);
         }
-        // Mantém a lógica para fechar o modal do filme se estiver aberto
+        // Fecha modal do Filme se clicar fora (se estiver aberto)
         const filmModal = document.getElementById('filmModal');
-        if (event.target == filmModal) {
+        if (filmModal && event.target == filmModal) {
             closeModal();
         }
     }
