@@ -1,0 +1,421 @@
+/* ==========================================
+   ESTILOS ESPECÍFICOS PARA PÁGINA DE FILME
+   ========================================== */
+
+:root {
+    --verde-ifmg: #009a44;
+    --verde-escuro: #007236;
+    --cinza-escuro: #333333;
+    --cinza-medio: #666666;
+    --cinza-claro: #f2f2f2;
+    --branco: #ffffff;
+}
+
+.filme-container {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: var(--branco);
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Banner Horizontal com Carrossel */
+.banner-carrossel {
+    width: 100%;
+    height: 60vh; /* Aumentado em 50% (de 40vh para 60vh) */
+    min-height: 375px; /* Aumentado em 50% (de 250px para 375px) */
+    max-height: 600px; /* Aumentado em 50% (de 400px para 600px) */
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    background-color: #000;
+}
+
+/* Aumentando a altura do carrossel em 50% para desktop */
+@media (min-width: 768px) {
+    .banner-carrossel {
+        height: 72vh; /* Aumentado em 50% (de 48vh para 72vh) */
+        max-height: 720px; /* Aumentado em 50% (de 480px para 720px) */
+    }
+}
+
+.banner-slides {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s ease;
+}
+
+.banner-slide {
+    flex: 0 0 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.banner-slide img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.banner-slide iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.banner-controls {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.banner-control {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    pointer-events: auto;
+    margin: 0 15px;
+    transition: all 0.3s ease;
+    z-index: 2;
+}
+
+.banner-control:hover {
+    background-color: rgba(0, 154, 68, 0.8);
+    transform: scale(1.1);
+}
+
+.banner-indicators {
+    position: absolute;
+    bottom: 15px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    z-index: 2;
+}
+
+.banner-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.banner-indicator.active {
+    background-color: var(--verde-ifmg);
+    transform: scale(1.2);
+}
+
+/* Estilos para a página de filme */
+.filme-header {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+@media (min-width: 768px) {
+    .filme-header {
+        flex-direction: row;
+        gap: 30px;
+    }
+}
+
+.filme-info {
+    flex: 1;
+}
+
+.filme-title {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    color: var(--verde-escuro);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.filme-details {
+    margin-bottom: 20px;
+}
+
+.filme-details p {
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+    color: var(--cinza-medio);
+}
+
+.filme-details strong {
+    color: var(--verde-escuro);
+}
+
+.filme-section {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.filme-section h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: var(--verde-escuro);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.filme-section p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--cinza-medio);
+}
+
+.theme-tag {
+    display: inline-block;
+    background-color: #f0f0f0;
+    color: var(--cinza-medio);
+    padding: 5px 12px;
+    margin: 0 8px 8px 0;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+}
+
+.theme-tag:hover {
+    background-color: #e0e0e0;
+}
+
+.teaching-plan-card, .other-material-card {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-left: 4px solid var(--verde-ifmg);
+}
+
+.teaching-plan-card p, .other-material-card p {
+    margin-bottom: 8px;
+}
+
+.btn-voltar {
+    display: inline-block;
+    background-color: var(--verde-ifmg);
+    color: var(--branco);
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-bottom: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-voltar:hover {
+    background-color: var(--verde-escuro);
+}
+
+.classification {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 0.9rem;
+    margin-right: 10px;
+}
+
+.L { background-color: #00a651; color: white; }
+.ten { background-color: #0091cf; color: white; }
+.twelve { background-color: #ffcc29; color: black; }
+.fourteen { background-color: #f7941d; color: black; }
+.sixteen { background-color: #ed1c24; color: white; }
+.eighteen { background-color: #000000; color: white; }
+
+/* Seção de conteúdo expandido */
+.expanded-content {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 30px;
+    border-left: 4px solid var(--verde-ifmg);
+}
+
+.expanded-content h3 {
+    color: var(--verde-ifmg);
+    margin-bottom: 15px;
+}
+
+/* Galeria de imagens (para expansão futura) */
+.filme-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.gallery-item {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.05);
+}
+
+/* YouTube placeholder */
+.youtube-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.youtube-placeholder:hover {
+    background-color: rgba(255, 0, 0, 0.7);
+}
+
+.youtube-placeholder i {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+.youtube-placeholder span {
+    font-size: 1.2rem;
+}
+
+/* Responsividade para o banner */
+@media (max-width: 768px) {
+    .banner-carrossel {
+        height: 45vh; /* Aumentado em 50% (de 30vh para 45vh) */
+    }
+    
+    .banner-control {
+        width: 40px;
+        height: 40px;
+        margin: 0 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .banner-carrossel {
+        height: 37.5vh; /* Aumentado em 50% (de 25vh para 37.5vh) */
+    }
+    
+    .banner-control {
+        width: 35px;
+        height: 35px;
+        margin: 0 5px;
+    }
+}
+
+/* Estilos para mensagens de erro */
+.error-message {
+    text-align: center;
+    padding: 30px;
+    background-color: #fff3f3;
+    border-radius: 8px;
+    border-left: 4px solid #cc0000;
+}
+
+.error-message i {
+    font-size: 3rem;
+    color: #cc0000;
+    margin-bottom: 15px;
+}
+
+.error-message p {
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+
+/* Estilos para expandir/recolher planos de aula */
+.site-preview-toggle {
+    margin-top: 10px;
+}
+
+.btn-toggle-preview, .btn-toggle-preview-close {
+    background-color: var(--verde-ifmg);
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+}
+
+.btn-toggle-preview:hover, .btn-toggle-preview-close:hover {
+    background-color: var(--verde-escuro);
+}
+
+.btn-toggle-preview-close {
+    margin-top: 10px;
+    background-color: #cc0000;
+}
+
+.btn-toggle-preview-close:hover {
+    background-color: #aa0000;
+}
+
+.site-preview {
+    margin-top: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.site-preview iframe {
+    width: 100%;
+    height: 600px; /* Aumentado em 50% (de 400px para 600px) */
+    border: none;
+}
+
+/* Responsividade para a caixa de expansão */
+@media (max-width: 768px) {
+    .site-preview iframe {
+        height: 450px; /* Aumentado em 50% (de 300px para 450px) */
+    }
+}
+
+@media (max-width: 480px) {
+    .site-preview iframe {
+        height: 375px; /* Aumentado em 50% (de 250px para 375px) */
+    }
+}

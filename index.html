@@ -4,667 +4,176 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catálogo de DVDs</title>
-    <style>
-        :root {
-            --verde-ifmg: #009a44;
-            --verde-escuro: #007236;
-            --cinza-escuro: #333333;
-            --cinza-medio: #666666;
-            --cinza-claro: #f2f2f2;
-            --branco: #ffffff;
-        }
-        
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: var(--cinza-claro);
-            color: var(--cinza-escuro);
-        }
-        
-        header {
-            background-color: var(--verde-ifmg);
-            color: var(--branco);
-            padding: 20px;
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        
-        h1 {
-            margin: 0;
-            font-size: 2.5em;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        .controls {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            margin-bottom: 20px;
-            gap: 15px;
-        }
-        
-        .search-box {
-            flex: 1;
-            min-width: 250px;
-            margin-right: 15px;
-        }
-        
-        .search-box input {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid var(--cinza-medio);
-            border-radius: 4px;
-        }
-        
-        .filters {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-        
-        .filter-group {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .filter-group label {
-            white-space: nowrap;
-        }
-        
-        select, .items-per-page button {
-            padding: 8px 12px;
-            border: 1px solid var(--cinza-medio);
-            border-radius: 4px;
-            background-color: var(--branco);
-        }
-        
-        .items-per-page {
-            display: flex;
-            gap: 5px;
-        }
-        
-        .items-per-page button {
-            cursor: pointer;
-            background-color: var(--branco);
-        }
-        
-        .items-per-page button.active {
-            background-color: var(--verde-ifmg);
-            color: var(--branco);
-            border-color: var(--verde-escuro);
-        }
-        
-        .film-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 30px;
-            margin-bottom: 30px;
-        }
-        
-        .film-card {
-            background-color: var(--branco);
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-            cursor: pointer;
-        }
-        
-        .film-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .film-poster {
-            width: 100%;
-            height: 350px;
-            object-fit: cover;
-            border-bottom: 3px solid var(--verde-ifmg);
-        }
-        
-        .film-info {
-            padding: 15px;
-        }
-        
-        .film-title {
-            font-weight: bold;
-            margin: 0 0 5px 0;
-            color: var(--verde-escuro);
-        }
-        
-        .film-meta {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.9em;
-            color: var(--cinza-medio);
-        }
-        
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.8);
-            overflow: auto;
-        }
-        
-        .modal-content {
-            background-color: var(--branco);
-            margin: 5% auto;
-            padding: 30px;
-            width: 70%;
-            max-width: 800px;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            position: relative;
-        }
-        
-        .close {
-            position: absolute;
-            top: 15px;
-            right: 25px;
-            font-size: 28px;
-            font-weight: bold;
-            color: var(--cinza-medio);
-            cursor: pointer;
-        }
-        
-        .close:hover {
-            color: var(--verde-escuro);
-        }
-        
-        .modal-poster {
-            float: left;
-            width: 200px;
-            height: 280px;
-            object-fit: cover;
-            margin-right: 20px;
-            margin-bottom: 20px;
-            border: 3px solid var(--verde-ifmg);
-        }
-        
-        .modal-title {
-            color: var(--verde-escuro);
-            margin-top: 0;
-            border-bottom: 2px solid var(--cinza-claro);
-            padding-bottom: 10px;
-        }
-        
-        .modal-details {
-            margin-bottom: 20px;
-        }
-        
-        .modal-details p {
-            margin: 5px 0;
-        }
-        
-        .modal-synopsis {
-            clear: both;
-            line-height: 1.6;
-        }
-        
-        .classification {
-            display: inline-block;
-            background-color: var(--verde-ifmg);
-            color: white;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 0.8em;
-            margin-right: 10px;
-        }
-        
-        .pagination {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 30px;
-        }
-        
-        .pagination button {
-            padding: 8px 12px;
-            border: 1px solid var(--cinza-medio);
-            border-radius: 4px;
-            background-color: var(--branco);
-            cursor: pointer;
-        }
-        
-        .pagination button.active {
-            background-color: var(--verde-ifmg);
-            color: var(--branco);
-            border-color: var(--verde-escuro);
-        }
-        
-        footer {
-            background-color: var(--verde-escuro);
-            color: var(--branco);
-            text-align: center;
-            padding: 20px;
-            margin-top: 30px;
-        }
-    </style>
-</head>
+ 
+    <!-- FONTS E ÍCONES -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- FAVICON TEMPORÁRIO -->
+    <!-- <link rel="icon" href="data:,"> -->
+    <link rel="icon" type="image/png" href="favicon.png" />
+    
+        <!-- ESTILOS -->
+             
+            <!-- SE DIVIDIR O CÓDIGO EM 3 PARTES (HTML+CSS+JS), ISSO AQUI ABAIXO FARÁ REFERÊNCIA AO CSS -->
+            <link rel="stylesheet" href="styles.css">
+    
+</head>  
+    
 <body>
-    <header>
-        <div class="container">
-            <h1>Nosso catálogo de DVDs</h1>
-        </div>
-    </header>
-    
-    <div class="container">
-        <div class="controls">
-            <div class="search-box">
-                <input type="text" id="searchInput" placeholder="Buscar filmes por título, diretor ou elenco...">
+        <!-- CABEÇALHO -->
+        <header>
+            <div class="container">
+                <h1><i class="fas fa-film"></i> CATÁLOGO DE DVDs</h1>
+                <h3>Filmes Brasileiros do Projeto Um Trem de Cinema do IFMG Sabará</h3>
+                <strong>LEI Nº 13.006, DE 26 DE JUNHO DE 2014:</strong>
+                  A exibição de filmes de produção nacional constituirá componente curricular complementar integrado à proposta pedagógica da escola, sendo a sua exibição obrigatória por, no mínimo, 2 (duas) horas mensais.
+                  <a href="https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2014/lei/l13006.htm" target="_blank" style="margin-left: 8px; color: #ffffff; text-decoration: underline;">
+                    Saiba mais
+                  </a>
             </div>
-            
-            <div class="filters">
-                <div class="filter-group">
-                    <label for="genreFilter">Gênero:</label>
-                    <select id="genreFilter">
-                        <option value="">Todos</option>
-                        <!-- Gêneros serão preenchidos pelo JavaScript -->
-                    </select>
+        </header>
+    
+        <!-- CONTEÚDO PRINCIPAL -->
+        <main class="container">
+            <!-- SEÇÃO DE CONTROLES -->
+            <div class="controls-wrapper">
+                <!-- BARRA DE BUSCA -->
+                <div class="search-container">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input 
+                            type="text" 
+                            id="searchInput"
+                            placeholder="Buscar filmes por título, diretor, elenco, sinopse..."
+                        >
+                    </div>
                 </div>
-                
-                <div class="filter-group items-per-page">
-                    <span>Itens por página:</span>
-                    <button class="active" data-items="10">10</button>
-                    <button data-items="20">20</button>
-                    <button data-items="30">30</button>
+    
+                <!-- LINHA DE FILTROS -->
+                <div class="filters-row">
+                    <!-- FILTRO DE GÊNERO -->
+                    <div class="filter-container">
+                        <div class="filter-box">
+                            <i class="fas fa-film"></i>
+                            <select id="genreSelect">
+                                <option value="">Todos os Gêneros</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- OUTROS FILTROS -->
+                    <div class="filter-container">
+                        <div class="filter-box">
+                            <i class="fas fa-universal-access"></i>
+                            <select id="accessibilitySelect">
+                                <option value="">Todos os recursos</option>
+                                <option value="planos_de_aula">Planos de Aula</option>
+                                <option value="audiodescricao">Audiodescrição</option>
+                                <option value="closed_caption">Closed Caption</option>
+                                <option value="trailer">Trailer</option>
+                                <option value="material_outros">Outros Materiais</option> <!-- Nova opção -->
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <!-- FILTRO DE CLASSIFICAÇÃO -->
+                    <div class="filter-container">
+                        <div class="filter-box">
+                            <i class="fas fa-user-shield"></i>
+                            <select id="classificationSelect">
+                                <option value="">Todas as Classificações</option>
+                                <option value="L">Livre</option>
+                                <option value="10">10 anos</option>
+                                <option value="12">12 anos</option>
+                                <option value="14">14 anos</option>
+                                <option value="16">16 anos</option>
+                                <option value="18">18 anos</option>
+                            </select>
+                        </div>
+                    </div>
+    
+                    <!-- ORDENAÇÃO -->
+                    <div class="filter-container">
+                        <div class="filter-box">
+                            <i class="fas fa-sort"></i>
+                            <select id="sortSelect">
+                                <option value="title-asc">Título (A-Z)</option>
+                                <option value="title-desc">Título (Z-A)</option>
+                                <option value="year-asc">Ano (Antigo-Novo)</option>
+                                <option value="year-desc">Ano (Novo-Antigo)</option>
+                                <option value="duration-asc">Duração (Menor-Maior)</option>
+                                <option value="duration-desc">Duração (Maior-Menor)</option>
+                            </select>
+                        </div>
+                    </div>
+    
+                    <!-- CONTADOR DE RESULTADOS -->
+                    <div class="results-counter">
+                        <span id="filmsCount">0</span> filmes encontrados
+                    </div>
                 </div>
             </div>
-        </div>
-        
-        <div class="film-grid" id="filmGrid">
-            <!-- Os filmes serão inseridos aqui pelo JavaScript -->
-        </div>
-        
-        <div class="pagination" id="pagination">
-            <!-- A paginação será inserida aqui pelo JavaScript -->
-        </div>
-    </div>
     
-    <div id="filmModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <div id="modalContent"></div>
-        </div>
-    </div>
+            <!-- LOADING STATE -->
+            <div id="loadingMessage" class="loading">
+                <div class="skeleton" style="width: 100%; height: 300px; margin-bottom: 20px;"></div>
+                <div class="skeleton" style="width: 80%; height: 20px; margin: 0 auto 10px;"></div>
+                <div class="skeleton" style="width: 60%; height: 20px; margin: 0 auto;"></div>
+            </div>
     
+            <!-- GRID DE FILMES -->
+            <div class="film-grid" id="filmGrid"></div>
+    
+            <!-- PAGINAÇÃO -->
+            <div class="pagination" id="pagination"></div>
+        </main>
+    
+        <!-- MODAL DE DETALHES DO FILME -->
+        <div id="filmModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <div id="modalContent"></div>
+            </div>
+        </div>
+    
+        <!-- RODAPÉ -->
+
     <footer>
-        <div class="container">
-            <p>UM TREM DE CINEMA 2017-2021</p>
-        </div>
-    </footer>
+            <div class="container">
+               <p>
+                Acervo doado pelo Ministério da Cultura ao Projeto de Extensão
+                <br>                
+               <i  class="fas fa-train"></i> UM TREM DE CINEMA IFMG SABARÁ 2019-2021
+               </p>
+            </div>
+        </footer>
+
     
-    <script>
-        // Dados dos 6 filmes (com capas personalizadas)
-        const films = [
-            {
-                title: "O Canto do Mar",
-                director: "Alberto Cavalcanti",
-                cast: "Ingra Liberato",
-                duration: 87,
-                genre: "Ficção",
-                year: 1953,
-                imdb: "6,9/85",
-                state: "SP",
-                synopsis: "Documentário sobre um tema difícil, cercado de tabus e pactos de silêncio: a violência sexual contra meninas. Depoimentos de vítimas que relatam detalhes dos abusos sofridos intercalam-se a comentários de especialistas, desenhos feitos por crianças abusadas, filmes de ficção e enquetes nas quais ficam evidentes os mitos e preconceitos envolvendo o assunto, tudo pontuado pelo poema Canção para a menina maltratada, feito especialmente para o documentário pelo escritor e psiquiatra infantil Celso Gutfreind e interpretado pela atriz Ingra Liberato.",
-                dvd: "O Canto do Mar",
-                classification: 10,
-                cover: "capas/o_canto_do_mar.png"
-            },
-            {
-                title: "Assim era a Atlantida",
-                director: "Carlos Manga",
-                cast: "Oscarito, Sonia Mamede, Zezé Macedo e outros",
-                duration: 105,
-                genre: "Documentário",
-                year: 1975,
-                imdb: "7,5/52",
-                state: "RJ",
-                synopsis: "A Atlântida ficou mesmo conhecida com as famosas chanchadas ou comédias populares, que foram o principal produto de um cinema que pretendia firmar-se como indústria. E assim foi feito. O público lotava os cinemas, reverenciava seus ídolos, numa época (anos 50) em que o musical americano dominava o mundo.",
-                dvd: "Assim era a Atlantida",
-                classification: 10,
-                cover: "capas/assim_era_a_atlantida.png"
-            },
-            {
-                title: "Brasa adormecida",
-                director: "Djalma Limongi Batista",
-                cast: "Maitê Proença, Edson Celulari, Paulo César Grande",
-                duration: 105,
-                genre: "Ficção",
-                year: 1986,
-                imdb: "5,6/34",
-                state: "SP",
-                synopsis: "Comédia-romântica ambientada em 1962, revival da ingenuidade dos anos dourados e, também, homenagem ao cineasta brasileiro pioneiro do cinema-mudo, Humberto Mauro (Braza dormida, 1928).",
-                dvd: "Brasa adormecida",
-                classification: 10,
-                cover: "capas/brasa_adormecida.png"
-            },
-            {
-                title: "A lasanha assassina",
-                director: "Alê Machado",
-                cast: "NÃO HÁ",
-                duration: 8,
-                genre: "Animação",
-                year: 2002,
-                imdb: "6,2/33",
-                state: "SP",
-                synopsis: "Em suas ruas estreitas e tortuosas, persistem as igrejas, os velhos e ricos sobrados em ruínas e o casario da gente pobre a lembrar o passado faustoso da cidade de Laranjeiras, em Sergipe.",
-                dvd: "Os Xeretas e A lasanha assassina",
-                classification: 10,
-                cover: "capas/a_lasanha_assassina.png"
-            },
-            {
-                title: "Os Xeretas",
-                director: "Michael Ruman",
-                cast: "-",
-                duration: 90,
-                genre: "Ficção",
-                year: 2001,
-                imdb: "6,3/21",
-                state: "SP",
-                synopsis: "Debate sobre a qualidade de vida no mundo corporativo entremeado com entrevistas gravadas em NY e SP.",
-                dvd: "Os Xeretas e A lasanha assassina",
-                classification: 10,
-                cover: "capas/os_xeretas.png"
-            },
-            {
-                title: "Informística",
-                director: "César Coelho",
-                cast: "Vozes: César Coelho",
-                duration: 7,
-                genre: "Animação",
-                year: 1986,
-                imdb: "",
-                state: "RJ",
-                synopsis: "Um líder espiritual é encarregado de enfrentar e domesticar a máquina através de enigmas e palavras mágicas. Subitamente a máquina sai do seu controle e o destrói, mas uma criança, por curiosidade, arranca o fio da máquina desligando-a. Estabelece-se o caos.",
-                dvd: "Núcleo de animação do CTAv",
-                classification: 10,
-                cover: "capas/informistica.png"
-            }
-        ];
+        <!-- SCRIPTS -->
+        <script src="script.js"></script>   
+ 
 
-        // Variáveis globais
-        let currentPage = 1;
-        let itemsPerPage = 10;
-        let filteredFilms = [...films];
-        let allGenres = [];
+        <!-- FALE CONOSCO -->
+        <div class="feedback-button">
+            <button id="btnFaleConosco">
+                <i class="fas fa-comments"></i> Fale Conosco
+            </button>
+        </div>
 
-        // Inicializar o catálogo
-        function initCatalog() {
-            // Extrair todos os gêneros únicos
-            allGenres = [...new Set(films.map(film => film.genre))];
-            populateGenreFilter();
-            
-            // Configurar eventos
-            setupEventListeners();
-            
-            // Renderizar a primeira página
-            filterAndRenderFilms();
-        }
-
-        // Popular o filtro de gêneros
-        function populateGenreFilter() {
-            const genreFilter = document.getElementById('genreFilter');
-            
-            // Ordenar gêneros alfabeticamente
-            allGenres.sort();
-            
-            // Adicionar opções ao filtro
-            allGenres.forEach(genre => {
-                const option = document.createElement('option');
-                option.value = genre;
-                option.textContent = genre;
-                genreFilter.appendChild(option);
-            });
-        }
-
-        // Configurar event listeners
-        function setupEventListeners() {
-            // Filtro de gênero
-            document.getElementById('genreFilter').addEventListener('change', filterAndRenderFilms);
-            
-            // Itens por página
-            document.querySelectorAll('.items-per-page button').forEach(button => {
-                button.addEventListener('click', () => {
-                    document.querySelectorAll('.items-per-page button').forEach(btn => btn.classList.remove('active'));
-                    button.classList.add('active');
-                    itemsPerPage = parseInt(button.dataset.items);
-                    currentPage = 1;
-                    filterAndRenderFilms();
-                });
-            });
-            
-            // Barra de pesquisa
-            document.getElementById('searchInput').addEventListener('input', filterAndRenderFilms);
-            
-            // Fechar modal
-            document.querySelector('.close').addEventListener('click', () => {
-                document.getElementById('filmModal').style.display = 'none';
-            });
-            
-            // Fechar modal ao clicar fora
-            window.addEventListener('click', (event) => {
-                if (event.target === document.getElementById('filmModal')) {
-                    document.getElementById('filmModal').style.display = 'none';
-                }
-            });
-        }
-
-        // Filtrar e renderizar filmes
-        function filterAndRenderFilms() {
-            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-            const genreFilter = document.getElementById('genreFilter').value;
-            
-            // Aplicar filtros
-            filteredFilms = films.filter(film => {
-                const matchesSearch = 
-                    film.title.toLowerCase().includes(searchTerm) ||
-                    film.director.toLowerCase().includes(searchTerm) ||
-                    (film.cast && film.cast.toLowerCase().includes(searchTerm));
-                
-                const matchesGenre = genreFilter === '' || film.genre === genreFilter;
-                
-                return matchesSearch && matchesGenre;
-            });
-            
-            // Resetar para a primeira página
-            currentPage = 1;
-            
-            // Renderizar filmes e paginação
-            renderFilms();
-            renderPagination();
-        }
-
-        // Renderizar filmes na página atual
-        function renderFilms() {
-            const filmGrid = document.getElementById('filmGrid');
-            filmGrid.innerHTML = '';
-            
-            const startIndex = (currentPage - 1) * itemsPerPage;
-            const endIndex = startIndex + itemsPerPage;
-            const filmsToShow = filteredFilms.slice(startIndex, endIndex);
-            
-            if (filmsToShow.length === 0) {
-                filmGrid.innerHTML = '<p style="grid-column: 1 / -1; text-align: center;">Nenhum filme encontrado com os critérios selecionados.</p>';
-                return;
-            }
-            
-            filmsToShow.forEach(film => {
-                const filmCard = document.createElement('div');
-                filmCard.className = 'film-card';
-                
-                const posterImg = document.createElement('img');
-                posterImg.className = 'film-poster';
-                posterImg.alt = film.title;
-                posterImg.onerror = function() {
-                    this.src = 'capas/progbrasil.png';
-                };
-                posterImg.src = film.cover;
-                
-                const filmInfo = document.createElement('div');
-                filmInfo.className = 'film-info';
-                
-                const title = document.createElement('h3');
-                title.className = 'film-title';
-                title.textContent = film.title;
-                
-                const meta = document.createElement('div');
-                meta.className = 'film-meta';
-                
-                const duration = document.createElement('span');
-                duration.textContent = `${film.duration} min`;
-                
-                const imdb = document.createElement('span');
-                imdb.textContent = film.imdb ? `IMDb: ${film.imdb}` : '';
-                
-                meta.appendChild(duration);
-                meta.appendChild(imdb);
-                
-                filmInfo.appendChild(title);
-                filmInfo.appendChild(meta);
-                
-                filmCard.appendChild(posterImg);
-                filmCard.appendChild(filmInfo);
-                
-                filmCard.addEventListener('click', () => openModal(film));
-                
-                filmGrid.appendChild(filmCard);
-            });
-        }
-
-        // Renderizar controles de paginação
-        function renderPagination() {
-            const pagination = document.getElementById('pagination');
-            pagination.innerHTML = '';
-            
-            const totalPages = Math.ceil(filteredFilms.length / itemsPerPage);
-            
-            if (totalPages <= 1) return;
-            
-            // Botão Anterior
-            const prevButton = document.createElement('button');
-            prevButton.textContent = '« Anterior';
-            prevButton.disabled = currentPage === 1;
-            prevButton.addEventListener('click', () => {
-                if (currentPage > 1) {
-                    currentPage--;
-                    renderFilms();
-                }
-            });
-            pagination.appendChild(prevButton);
-            
-            // Números das páginas (máximo 5 visíveis)
-            const maxVisiblePages = 5;
-            let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
-            let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
-            
-            if (endPage - startPage + 1 < maxVisiblePages) {
-                startPage = Math.max(1, endPage - maxVisiblePages + 1);
-            }
-            
-            // Botão Página 1
-            if (startPage > 1) {
-                const firstButton = document.createElement('button');
-                firstButton.textContent = '1';
-                firstButton.addEventListener('click', () => {
-                    currentPage = 1;
-                    renderFilms();
-                });
-                pagination.appendChild(firstButton);
-                
-                if (startPage > 2) {
-                    const ellipsis = document.createElement('span');
-                    ellipsis.textContent = '...';
-                    pagination.appendChild(ellipsis);
-                }
-            }
-            
-            // Botões das páginas
-            for (let i = startPage; i <= endPage; i++) {
-                const pageButton = document.createElement('button');
-                pageButton.textContent = i;
-                if (i === currentPage) {
-                    pageButton.classList.add('active');
-                }
-                pageButton.addEventListener('click', () => {
-                    currentPage = i;
-                    renderFilms();
-                });
-                pagination.appendChild(pageButton);
-            }
-            
-            // Botão Última Página
-            if (endPage < totalPages) {
-                if (endPage < totalPages - 1) {
-                    const ellipsis = document.createElement('span');
-                    ellipsis.textContent = '...';
-                    pagination.appendChild(ellipsis);
-                }
-                
-                const lastButton = document.createElement('button');
-                lastButton.textContent = totalPages;
-                lastButton.addEventListener('click', () => {
-                    currentPage = totalPages;
-                    renderFilms();
-                });
-                pagination.appendChild(lastButton);
-            }
-            
-            // Botão Próximo
-            const nextButton = document.createElement('button');
-            nextButton.textContent = 'Próximo »';
-            nextButton.disabled = currentPage === totalPages;
-            nextButton.addEventListener('click', () => {
-                if (currentPage < totalPages) {
-                    currentPage++;
-                    renderFilms();
-                }
-            });
-            pagination.appendChild(nextButton);
-        }
-
-        // Abrir modal com detalhes do filme
-        function openModal(film) {
-            const modal = document.getElementById('filmModal');
-            const modalContent = document.getElementById('modalContent');
-            
-            let castContent = film.cast ? `<p><strong>Elenco:</strong> ${film.cast}</p>` : '';
-            let imdbContent = film.imdb ? `<p><strong>Nota IMDb:</strong> ${film.imdb}</p>` : '';
-            
-            modalContent.innerHTML = `
-                <img src="${film.cover}" alt="${film.title}" class="modal-poster" onerror="this.src='capas/progbrasil.png'">
-                <h2 class="modal-title"><span class="classification">${film.classification}</span>${film.title}</h2>
-                <div class="modal-details">
-                    <p><strong>Direção:</strong> ${film.director}</p>
-                    ${castContent}
-                    <p><strong>Duração:</strong> ${film.duration} min</p>
-                    <p><strong>Gênero:</strong> ${film.genre}</p>
-                    <p><strong>Ano:</strong> ${film.year}</p>
-                    ${imdbContent}
-                    <p><strong>DVD:</strong> ${film.dvd}</p>
+        <div id="modalFaleConosco" class="feedback-modal">
+            <div class="feedback-modal-content">
+                <span class="close">&times;</span>
+                <h2>Fale Conosco</h2>
+                <div class="form-container">
+                    <iframe id="googleForm" 
+                            src="https://docs.google.com/forms/d/e/1FAIpQLSfaMr7-ermLAAO8S8zDk0WMcPrVX34mF2xhTrHiC1Z53GbIFQ/viewform?usp=sharing&ouid=101786859238464224020"
+                            frameborder="0" 
+                            marginheight="0" 
+                            marginwidth="0">
+                        Carregando…
+                    </iframe>
                 </div>
-                <div class="modal-synopsis">
-                    <h3>Sinopse</h3>
-                    <p>${film.synopsis}</p>
-                </div>
-            `;
-            
-            modal.style.display = 'block';
-        }
-
-        // Inicializar quando a página carrega
-        window.addEventListener('DOMContentLoaded', initCatalog);
-    </script>
-</body>
+            </div>
+        </div>
+    </body>
 </html>
