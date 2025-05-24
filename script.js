@@ -168,19 +168,14 @@ function filterAndRenderFilms() {
             const matchesGenre = !selectedGenre || film.genre === selectedGenre;
             
             const matchesClassification = !selectedClassification || 
-                film.classification === parseInt(selectedClassification) ||
-                (selectedClassification === 'L' && film.classification <= 0);
-           
-            // Filtro de acessibilidade corrigido
-            const matchesAccessibility = !selectedAccessibility || (
-                (selectedAccessibility === 'planos_de_aula' && film.planos_de_aula && film.planos_de_aula.length > 0) ||
-                (selectedAccessibility === 'audiodescricao' && film.audiodescricao) ||
-                (selectedAccessibility === 'closed_caption' && film.closedCaption) ||
-                (selectedAccessibility === 'trailer' && film.trailer && film.trailer.trim() !== '') ||
-                (selectedAccessibility === 'material_outros' && film.materialOutros && film.materialOutros.length > 0) 
-            );
-            
-            return matchesSearch && matchesGenre && matchesClassification && matchesAccessibility;
+                film.classification === parseInt(selectedClassifi                            const matchesAccessibility = !selectedAccessibility || (
+                                (selectedAccessibility === 'planos_de_aula' && film.planos_de_aula && film.planos_de_aula.length > 0) ||
+                                (selectedAccessibility === 'audiodescricao' && film.audiodescricao) ||
+                                (selectedAccessibility === 'closed_caption' && film.closedCaption) ||
+                                (selectedAccessibility === 'trailer' && film.trailer && film.trailer.trim() !== '') ||
+                                (selectedAccessibility === 'material_outros' && film.materialOutros && film.materialOutros.length > 0) ||
+                                (selectedAccessibility === 'assistir_online' && film.assistirOnline && film.assistirOnline.trim() !== '') // Nova condição
+                            );eturn matchesSearch && matchesGenre && matchesClassification && matchesAccessibility;
         });
 
         // ATUALIZA CONTADOR E APLICA ORDENAÇÃO
@@ -485,12 +480,10 @@ function openModal(film) {
         <div class="modal-additional">
             <h3><i class="fas fa-info-circle"></i> Informações Adicionais</h3>
             ${film.audiodescricao ? `<p><strong><i class="fas fa-assistive-listening-systems"></i> Audiodescrição:</strong> ${film.audiodescricao}</p>` : ''}
-            ${film.closedCaption ? `<p><strong><i class="fas fa-closed-captioning"></i> Closed Caption:</strong> ${film.closedCaption}</p>` : ''}
-            ${film.website ? `<p><strong><i class="fas fa-globe"></i> Website:</strong> <a href="${film.website.startsWith('http') ? film.website : 'https://' + film.website}" target="_blank">${film.website}</a></p>` : ''}
+            ${film.closedCaption ? `<p><strong><i class="fas fa-closed-captioning"></i> Closed Caption:</strong> ${film.closedCap            ${film.website ? `<p><strong><i class="fas fa-globe"></i> Website:</strong> <a href="${film.website.startsWith('http') ? film.website : 'https://' + film.website}" target="_blank">${film.website}</a></p>` : ''}
             ${film.festivais ? `<p><strong><i class="fas fa-trophy"></i> Festivais:</strong> ${film.festivais}</p>` : ''}
             ${film.premios ? `<p><strong><i class="fas fa-award"></i> Prêmios:</strong> ${film.premios}</p>` : ''}
-            ${film.legendasOutras ? `<p><strong><i class="fas fa-language"></i> Outras Legendas:</strong> ${film.legendasOutras}</p>` : ''}
-            <!-- Bloco Outros Materiais (Modal) -->
+            ${film.legendasOutras ? `<p><strong><i class="fas fa-language"></i> Outras Legendas:</strong> ${film.legendasOutras}</p>` : ''}tros Materiais (Modal) -->
             <div class="modal-other-materials">
                 <h3><i class="fas fa-box-open"></i> Outros Materiais</h3>
                 ${renderOtherMaterialsModal(film, encodedTitle)}

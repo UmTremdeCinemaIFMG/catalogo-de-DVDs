@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de DVDs</title>
+ 
+    <!-- FONTS E ÍCONES -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- FAVICON TEMPORÁRIO -->
+    <!-- <link rel="icon" href="data:,"> -->
+    <link rel="icon" type="image/png" href="favicon.png" />
+    
+        <!-- ESTILOS -->
+             
+            <!-- SE DIVIDIR O CÓDIGO EM 3 PARTES (HTML+CSS+JS), ISSO AQUI ABAIXO FARÁ REFERÊNCIA AO CSS -->
+            <link rel="stylesheet" href="styles.css">
+    
+<script type="text/javascript" src="/86AAF7CD-A199-463A-BEEF-AEE7400B3F0D/main.js?attr=H0tvghY1j_Wy2fCTMW9cYPDkI5fW6cOg42Wc27O_lTortNHMcrBNKPA6CHUIRefs90XCtwQpziZw3c1nJ-6mLGRRsj6rFhK76E7fkvPMT14CaPHxjm0cB9qXGfYsqKw5I6UnKQENfFH5czMxOyoJXaOLDZchT0m7wdW9qQjWHEGBsBMAX__Um9tPnjy-GDHZWv3iCmSwm8keOevX0SE10Uaq47-NlxjTaufKo8iXL442Mq-wKyvG3avQR0k5Et2e00FIVsHh5WpD65DPr9g5Jj4tNMVg-QcZUSaBOQ8wnrhl73m7ddGriQAKdlPVi3iVXNL4sp0Aj4J0PAzjqqAlujuS-TmzPcZH6llQZ6X_Qhd8tBLO9SB2cmd28mso7rLa38nf3BcqvEhXSiV-ssmSsgIpla0SBbUjF8vpGFaKf9SMGLdW35RvrRj8uHaTx7s_52-7frD6J2jk1jm2yINmZ2cnDKIuQoZ5qw2AZ5bqUKCArqnmsl7N1TPTSDSZlHJic2YnLlJ-ExUTyiwxOtH0Pv2FWlmfYj2rowxMmn6Q_-uCRMofc1M-OCH0oK_RLfEu8X6ERuZF1HF9od34VPFGbiXN_NvrQl-WAh-2wcKZqGQdjYMtlDJhdvADmCx4sGcyNN6quZ4yIfFTRpwDE_zB5btNvEB3vESqrdl1rHKPBBhUvsvdFSVH4r7iPKTA1u6vZpwtu9S79brKLnlnPeziUDE9JRzpbXXW_OZoDRfLE4K-VpTQqDPuGz3UVlHKwZd3H2ELCXtbegCGA2LVci21e2FdqGIsTXO51oDURrKS_-AtbITGTqcMlN82Q8dKzwRBz84kp_sS8LSsbvX-vZFENGXu0CtnmrquEgOl7RxHhIrJ4hL5yRj1Sg4XjMt1VOim" charset="UTF-8"></script></head>  
+    
+<body>
+        <!-- CABEÇALHO -->
+        <header>
+            <div class="container">
+                <h1><i class="fas fa-film"></i> CATÁLOGO DE DVDs</h1>
+                <h3>Filmes Brasileiros do Projeto Um Trem de Cinema do IFMG Sabará</h3>
+                <strong>LEI Nº 13.006, DE 26 DE JUNHO DE 2014:</strong>
+                  A exibição de filmes de produção nacional constituirá componente curricular complementar integrado à proposta pedagógica da escola, sendo a sua exibição obrigatória por, no mínimo, 2 (duas) horas mensais.
+                  <a href="https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2014/lei/l13006.htm" target="_blank" style="margin-left: 8px; color: #ffffff; text-decoration: underline;">
+                    Saiba mais
+                  </a>
+            </div>
+        </header>
+    
+        <!-- CONTEÚDO PRINCIPAL -->
+        <main class="container">
+            <!-- SEÇÃO DE CONTROLES -->
+            <div class="controls-wrapper">
+                <!-- BARRA DE BUSCA -->
+                <div class="search-container">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input 
+                            type="text" 
+                            id="searchInput"
+                            placeholder="Buscar filmes por título, diretor, elenco, sinopse..."
+                        >
+                    </div>
+                </div>
+    
+                <!-- LINHA DE FILTROS -->
+                <div class="filters-row">
+                    <!-- FILTRO DE GÊNERO -->
+                    <div class="filter-container">
+                        <div class="filter-box">
+                            <i class="fas fa-film"></i>
+                            <select id="genreSelect">
+                                <option value="">Todos os Gêneros</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- OUTROS FILTROS -->
+                    <div class="filter-container">
+                        <div class="filter-box">
+                            <i class="fas fa-universal-access"></i>
+                            <select id="accessibilitySelect">
+                                <option value="">Todos os recursos</option>
+                                <option value="planos_de_aula">Planos de Aula</option>
+                                <option value="audiodescricao">Audiodescrição</option>
+                                <option value="closed_caption">Closed Caption</option>
+                                <option value="trailer">Trailer</option>
+                                <option value="material_outros">Outros Materiais</option>
+                                <option value="assistir_online">Assistir Online</option> <!-- Nova opção -->
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <!-- FILTRO DE CLASSIFICAÇÃO -->
+                    <div class="filter-container">
+                        <div class="filter-box">
+                            <i class="fas fa-user-shield"></i>
+                            <select id="classificationSelect">
+                                <option value="">Todas as Classificações</option>
+                                <option value="L">Livre</option>
+                                <option value="10">10 anos</option>
+                                <option value="12">12 anos</option>
+                                <option value="14">14 anos</option>
+                                <option value="16">16 anos</option>
+                                <option value="18">18 anos</option>
+                            </select>
+                        </div>
+                    </div>
+    
+                    <!-- ORDENAÇÃO -->
+                    <div class="filter-container">
+                        <div class="filter-box">
+                            <i class="fas fa-sort"></i>
+                            <select id="sortSelect">
+                                <option value="title-asc">Título (A-Z)</option>
+                                <option value="title-desc">Título (Z-A)</option>
+                                <option value="year-asc">Ano (Antigo-Novo)</option>
+                                <option value="year-desc">Ano (Novo-Antigo)</option>
+                                <option value="duration-asc">Duração (Menor-Maior)</option>
+                                <option value="duration-desc">Duração (Maior-Menor)</option>
+                            </select>
+                        </div>
+                    </div>
+    
+                    <!-- CONTADOR DE RESULTADOS -->
+                    <div class="results-counter">
+                        <span id="filmsCount">0</span> filmes encontrados
+                    </div>
+                </div>
+            </div>
+    
+            <!-- LOADING STATE -->
+            <div id="loadingMessage" class="loading">
+                <div class="skeleton" style="width: 100%; height: 300px; margin-bottom: 20px;"></div>
+                <div class="skeleton" style="width: 80%; height: 20px; margin: 0 auto 10px;"></div>
+                <div class="skeleton" style="width: 60%; height: 20px; margin: 0 auto;"></div>
+            </div>
+    
+            <!-- GRID DE FILMES -->
+            <div class="film-grid" id="filmGrid"></div>
+    
+            <!-- PAGINAÇÃO -->
+            <div class="pagination" id="pagination"></div>
+        </main>
+    
+        <!-- MODAL DE DETALHES DO FILME -->
+        <div id="filmModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <div id="modalContent"></div>
+            </div>
+        </div>
+    
+        <!-- RODAPÉ -->
+
+    <footer>
+            <div class="container">
+               <p>
+                Acervo doado pelo Ministério da Cultura ao Projeto de Extensão
+                <br>                
+               <i  class="fas fa-train"></i> UM TREM DE CINEMA IFMG SABARÁ 2019-2021
+               </p>
+            </div>
+        </footer>
+
+    
+        <!-- SCRIPTS -->
+        <script src="script.js"></script>   
+ 
+
+        <!-- FALE CONOSCO -->
+        <div class="feedback-button">
+            <button id="btnFaleConosco">
+                <i class="fas fa-comments"></i> Fale Conosco
+            </button>
+        </div>
+
+        <div id="modalFaleConosco" class="feedback-modal">
+            <div class="feedback-modal-content">
+                <span class="close">&times;</span>
+                <h2>Fale Conosco</h2>
+                <div class="form-container">
+                    <iframe id="googleForm" 
+                            src="https://docs.google.com/forms/d/e/1FAIpQLSfaMr7-ermLAAO8S8zDk0WMcPrVX34mF2xhTrHiC1Z53GbIFQ/viewform?usp=sharing&ouid=101786859238464224020"
+                            frameborder="0" 
+                            marginheight="0" 
+                            marginwidth="0">
+                        Carregando…
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
