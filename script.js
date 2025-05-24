@@ -83,7 +83,7 @@
                         tema: cleanField(originalFilm["tema (Programadora Brasil)"]),
                         tags: cleanField(originalFilm["tags"]),
                         website: cleanField(originalFilm["website"]),
-                        assistirOnline: cleanField(originalFilm["Assistir Online"] || ''),
+                        portaCurta: cleanField(originalFilm["Porta Curta"]),
                         festivais: cleanField(originalFilm["festivais"]),
                         premios: cleanField(originalFilm["premios"]),
                         legendasOutras: cleanField(originalFilm["legendas_outras"]),
@@ -489,61 +489,37 @@
 
 
 // ==========================================
-// FUNÇÃO DE RENDERIZAÇÃO DOS PLANOS DE AULA (MODAL)
+// FUNÇÃO DE RENDERIZAÇÃO DOS PLANOS DE AULA
 // ==========================================
-function renderTeachingPlansModal(film, encodedTitle) {
+function renderTeachingPlans(film) {
+    // Se não houver campo ou for vazio, retorna mensagem padrão
     if (!film.planos_de_aula || film.planos_de_aula.length === 0) {
         return '<p><i class="fas fa-info-circle"></i> Nenhum plano de aula disponível.</p>';
     }
-
-    const firstPlan = film.planos_de_aula[0];
-    let html = `
+    // Monta o HTML para cada plano de aula
+    return film.planos_de_aula.map(plano => `
         <div class="teaching-plan-card">
-            <p><strong><i class="fas fa-graduation-cap"></i> Nível de Ensino:</strong> ${firstPlan.nivel_ensino || ''}</p>
-            <p><strong><i class="fas fa-book"></i> Área de Conhecimento:</strong> ${firstPlan.area_conhecimento || ''}</p>
-            <p><strong><i class="fas fa-globe"></i> Site:</strong> <a href="${firstPlan.url}" target="_blank">${firstPlan.site}</a></p>
-            <p><strong><i class="fas fa-info-circle"></i> Descrição:</strong> ${firstPlan.descricao || ''}</p>
+            <p><strong><i class="fas fa-graduation-cap"></i> Nível de Ensino:</strong> ${plano.nivel_ensino || ''}</p>
+            <p><strong><i class="fas fa-book"></i> Área de Conhecimento:</strong> ${plano.area_conhecimento || ''}</p>
+            <p><strong><i class="fas fa-globe"></i> Site:</strong> <a href="${plano.url}" target="_blank">${plano.site}</a></p>
+            <p><strong><i class="fas fa-info-circle"></i> Descrição:</strong> ${plano.descricao || ''}</p>
         </div>
-    `;
-
-    if (film.planos_de_aula.length > 1) {
-        const remainingCount = film.planos_de_aula.length - 1;
-        html += `
-            <a href="filme.html?titulo=${encodedTitle}" class="btn-ver-mais">
-                +${remainingCount} mais
-            </a>
-        `;
-    }
-
-    return html;
+    `).join('');
 }
 
 // ==========================================
-// FUNÇÃO DE RENDERIZAÇÃO DE OUTROS MATERIAIS (MODAL)
+// FUNÇÃO DE RENDERIZAÇÃO DE OUTROS MATERIAIS
 // ==========================================
-function renderOtherMaterialsModal(film, encodedTitle) {
+function renderOtherMaterials(film) {
     if (!film.materialOutros || film.materialOutros.length === 0) {
         return '<p><i class="fas fa-info-circle"></i> Nenhum material adicional disponível.</p>';
     }
-
-    const firstMaterial = film.materialOutros[0];
-    let html = `
+    return film.materialOutros.map(material => `
         <div class="other-material-card">
-            <p><strong><i class="fas fa-bookmark"></i> Tipo:</strong> ${firstMaterial.tipo || ''}</p>
-            <p><strong><i class="fas fa-file-alt"></i> Título:</strong> <a href="${firstMaterial.url}" target="_blank">${firstMaterial.titulo}</a></p>
+            <p><strong><i class="fas fa-bookmark"></i> Tipo:</strong> ${material.tipo || ''}</p>
+            <p><strong><i class="fas fa-file-alt"></i> Título:</strong> <a href="${material.url}" target="_blank">${material.titulo}</a></p>
         </div>
-    `;
-
-    if (film.materialOutros.length > 1) {
-        const remainingCount = film.materialOutros.length - 1;
-        html += `
-            <a href="filme.html?titulo=${encodedTitle}" class="btn-ver-mais">
-                +${remainingCount} mais
-            </a>
-        `;
-    }
-
-    return html;
+    `).join('');
 }
 
                 // ABRE O MODAL COM ANIMAÇÃO
@@ -559,7 +535,7 @@ function renderOtherMaterialsModal(film, encodedTitle) {
                     const hasThemes = themes.length > 0;
                     
                     const hasAdditionalInfo = film.audiodescricao || film.closedCaption || film.website || 
-                                            film.assistirOnline || film.festivais || film.premios || 
+                                            film.portaCurta || film.festivais || film.premios || 
                                             film.legendasOutras || film.materialOutros;
                     
                     // Codifica o título do filme para uso na URL
@@ -604,12 +580,14 @@ function renderOtherMaterialsModal(film, encodedTitle) {
                             <h3><i class="fas fa-info-circle"></i> Informações Adicionais</h3>
                             ${film.audiodescricao ? `<p><strong><i class="fas fa-assistive-listening-systems"></i> Audiodescrição:</strong> ${film.audiodescricao}</p>` : ''}
                             ${film.closedCaption ? `<p><strong><i class="fas fa-closed-captioning"></i> Closed Caption:</strong> ${film.closedCaption}</p>` : ''}
-                            ${film.website ? `<p><strong><i class="fas fa-globe"></i> Website:</strong> <a href="${film.website.startsWith('http') ? film.website : 'https://' + film.website}" target="_blank">${film.website}</a></p>` :                            ${film.festivais ? `<p><strong><i class="fas fa-trophy"></i> Festivais:</strong> ${film.festivais}</p>` : ''}
+                            ${film.website ? `<p><strong><i class="fas fa-globe"></i> Website:</strong> <a href="${film.website.startsWith('http') ? film.website : 'https://' + film.website}" target="_blank">${film.website}</a></p>` : ''}
+                            ${film.portaCurta ? `<p><strong><i class="fas fa-film"></i> Porta Curtas:</strong> <a href="${film.portaCurta.startsWith('http') ? film.portaCurta : 'https://' + film.portaCurta}" target="_blank">Link</a></p>` : ''}
+                            ${film.festivais ? `<p><strong><i class="fas fa-trophy"></i> Festivais:</strong> ${film.festivais}</p>` : ''}
                             ${film.premios ? `<p><strong><i class="fas fa-award"></i> Prêmios:</strong> ${film.premios}</p>` : ''}
                             ${film.legendasOutras ? `<p><strong><i class="fas fa-language"></i> Outras Legendas:</strong> ${film.legendasOutras}</p>` : ''}
                             <div class="modal-other-materials">
                                 <h3><i class="fas fa-box-open"></i> Outros Materiais</h3>
-                                ${renderOtherMaterialsModal(film, encodedTitle)}
+                                ${renderOtherMaterials(film)}
                             </div>
                         </div>
                         ` : ''}

@@ -133,7 +133,7 @@ function transformFilmData(originalFilm) {
         tema: cleanField(originalFilm["tema (Programadora Brasil)"]),
         tags: cleanField(originalFilm["tags"]),
         website: cleanField(originalFilm["website"]),
-        assistirOnline: cleanField(originalFilm["Assistir Online"] || "),
+        portaCurta: cleanField(originalFilm["Porta Curta"]),
         festivais: cleanField(originalFilm["festivais"]),
         premios: cleanField(originalFilm["premios"]),
         legendasOutras: cleanField(originalFilm["legendas_outras"]),
@@ -308,6 +308,9 @@ function renderFilmData(film) {
             additionalContent += `<p><strong><i class="fas fa-globe"></i> Website:</strong> <a href="${film.website}" target="_blank">${film.website}</a></p>`;
         }
         
+        if (film.portaCurta) {
+            additionalContent += `<p><strong><i class="fas fa-film"></i> Porta Curta:</strong> <a href="${film.portaCurta}" target="_blank">${film.portaCurta}</a></p>`;
+        }
         
         if (additionalContent) {
             filmContent += `
@@ -320,7 +323,9 @@ function renderFilmData(film) {
     }
     
     // ADICIONA O CONTEÚDO AO CONTAINER
-    filmContainer.innerHTML = `
+ filmContainer.innerHTML = `
+        
+        
         <!-- Banner com carrossel -->
         <div class="banner-carrossel">
             <div class="banner-slides" id="bannerSlides"></div>
@@ -338,17 +343,6 @@ function renderFilmData(film) {
         ${filmHeader.outerHTML}
         ${filmContent}
     `;
-
-    // ADICIONA O BOTÃO "ASSISTIR ONLINE" SE EXISTIR O LINK
-    const controlsContainer = document.querySelector('.filme-page-controls');
-    if (controlsContainer && film.assistirOnline && film.assistirOnline.trim() !== '') {
-        const assistirOnlineBtn = document.createElement('a');
-        assistirOnlineBtn.href = film.assistirOnline.startsWith('http') ? film.assistirOnline : 'https://' + film.assistirOnline;
-        assistirOnlineBtn.target = '_blank';
-        assistirOnlineBtn.className = 'btn-assistir-online'; // Usar a mesma classe ou uma nova
-        assistirOnlineBtn.innerHTML = 'Assistir Online <i class="fas fa-arrow-right"></i>';
-        controlsContainer.appendChild(assistirOnlineBtn);
-    }
 }
 
 // FUNÇÃO PARA INICIALIZAR O CARROSSEL
