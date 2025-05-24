@@ -235,6 +235,12 @@ function createThemesList(film) {
     return [...new Set(themes.filter(t => t))];
 }
 
+// INICIALIZAÇÃO DA APLICAÇÃO
+window.addEventListener('DOMContentLoaded', function() {
+    setupEventListeners();
+    loadCatalogData();
+});
+
 // ==========================================
 // FUNÇÕES DE RENDERIZAÇÃO PARA PÁGINA DO FILME (filme.js)
 // ==========================================
