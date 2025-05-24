@@ -5,7 +5,7 @@ let allFilms = [];           // ARMAZENA TODOS OS FILMES DO CATÁLOGO
 let currentFilms = [];       // ARMAZENA OS FILMES FILTRADOS ATUALMENTE
 let currentPage = 1;         // PÁGINA ATUAL DA PAGINAÇÃO
 let allGenres = [];          // LISTA DE TODOS OS GÊNEROS ÚNICOS
-let selectedGenre = '';      // GÊNERO SELECIONADO ATUALMENTE
+let selectedGenre = ";      // GÊNERO SELECIONADO ATUALMENTE
 let debounceTimer;          // TIMER PARA DEBOUNCE DA BUSCA
 const itemsPerPage = 20;     // QUANTIDADE DE FILMES POR PÁGINA
 
@@ -15,9 +15,9 @@ const itemsPerPage = 20;     // QUANTIDADE DE FILMES POR PÁGINA
 
 // LIMPA E FORMATA CAMPOS DE TEXTO
 function cleanField(value) {
-    if (!value) return '';
+    if (!value) return ";
     // Remove aspas extras no início/fim e espaços em branco
-    return String(value).replace(/^"|"$/g, '').trim(); 
+    return String(value).replace(/^\"|\"$/g, ").trim(); 
 }
 
 // OBTÉM A CLASSE CSS PARA CLASSIFICAÇÃO INDICATIVA
@@ -41,7 +41,7 @@ function getDvdCover(filmData) {
     const DEFAULT_COVER = 'capas/progbrasil.png';
     
     if (filmData.imageName) {
-        const baseName = filmData.imageName.replace(/\.(jpg|jpeg|png|gif)$/i, '');
+        const baseName = filmData.imageName.replace(/\.(jpg|jpeg|png|gif)$/i, ");
         const imagePath = `capas/${baseName}.jpg`;
         return imagePath;
     }
@@ -281,7 +281,7 @@ function renderTeachingPlansModal(film, encodedTitle) { // Versão limitada para
         const remainingCount = film.planos_de_aula.length - 1;
         html += `
             <a href="filme.html?titulo=${encodedTitle}" class="btn-ver-mais">
-                +${remainingCount} mais
+                +${remainingCount} resultados <!-- Texto alterado -->
             </a>
         `;
     }
@@ -306,7 +306,7 @@ function renderOtherMaterialsModal(film, encodedTitle) { // Versão limitada par
         const remainingCount = film.materialOutros.length - 1;
         html += `
             <a href="filme.html?titulo=${encodedTitle}" class="btn-ver-mais">
-                +${remainingCount} mais
+                +${remainingCount} resultados <!-- Texto alterado -->
             </a>
         `;
     }
@@ -510,12 +510,14 @@ function openModal(film) {
         <div class="modal-teaching-plans">
             <h3><i class="fas fa-chalkboard-teacher"></i> Planos de Aula</h3>
             ${renderTeachingPlansModal(film, encodedTitle)} <!-- Chama a função correta -->
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdxQz8onMOFjxIqEPpo5v2I4CJdLQ9cN50I7zUhmnBwgUeGIQ/viewform?usp=sharing&ouid=101786859238464224020" target="_blank" class="btn-enviar-plano" style="display:inline-block; margin-top:15px; background:#009a44; color:#fff; padding:10px 18px; border-radius:6px; text-decoration:none; font-weight:500;">
-                <i class="fas fa-plus"></i> Envie um plano de aula
-            </a>
-            <p style="font-size: 0.95em; color: #666; margin-top: 6px;">
-                Você pode colaborar enviando um plano de aula para este filme. Ao clicar, você será direcionado a um formulário.
-            </p>
+            <div class="modal-plan-actions"> <!-- Wrapper para os botões -->
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSdxQz8onMOFjxIqEPpo5v2I4CJdLQ9cN50I7zUhmnBwgUeGIQ/viewform?usp=sharing&ouid=101786859238464224020" target="_blank" class="btn-enviar-plano">
+                    <i class="fas fa-plus"></i> Envie um plano de aula
+                </a>
+                <p class="modal-plan-collab-text">
+                    Você pode colaborar enviando um plano de aula para este filme. Ao clicar, você será direcionado a um formulário.
+                </p>
+            </div>
         </div>
         
         <!-- Botão para página exclusiva do filme -->

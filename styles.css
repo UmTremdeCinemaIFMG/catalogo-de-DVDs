@@ -421,6 +421,10 @@
                 
                 /* CLASSIFICAÇÕES */
                 .classification {
+                    position: absolute; /* Garante que z-index funcione */
+                    top: 10px;
+                    right: 10px;
+                    z-index: 2; /* Aumenta o z-index */
                     display: inline-flex;
                     align-items: center;
                     justify-content: center;
@@ -429,7 +433,7 @@
                     border-radius: 4px;
                     font-weight: bold;
                     font-size: 12px;
-                    margin-right: 10px;
+                    /* margin-right removido pois position:absolute o torna irrelevante */
                     color: white;
                     border: 1px solid rgba(0,0,0,0.1);
                 }
@@ -1088,3 +1092,71 @@
         min-height: 800px; /* aumenta ainda mais a altura mínima */
     }
 }
+
+/* Adiciona estilos para padronizar links e ajustar botões do modal */
+
+/* Padroniza todos os links */
+a {
+    color: var(--azul); /* Cor azul padrão para links */
+    text-decoration: none; /* Remove sublinhado padrão */
+    font-weight: bold; /* Deixa links em negrito */
+    transition: var(--transicao);
+}
+
+a:hover {
+    color: var(--verde-escuro); /* Muda cor no hover */
+    text-decoration: underline; /* Adiciona sublinhado no hover */
+}
+
+/* Ajusta botão 'Ver Mais' no modal */
+.btn-ver-mais {
+    display: inline-block;
+    margin-top: 10px; /* Espaço acima do botão */
+    margin-right: 10px; /* Espaço à direita, se houver outro botão */
+    padding: 6px 12px;
+    background-color: var(--cinza-claro);
+    color: var(--cinza-escuro); /* Cor diferente do link padrão */
+    border: 1px solid var(--cinza-medio);
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: normal; /* Não negrito para diferenciar de links comuns */
+    cursor: pointer;
+}
+
+.btn-ver-mais:hover {
+    background-color: var(--cinza-medio);
+    color: var(--branco);
+    text-decoration: none;
+}
+
+/* Ajusta container dos botões de ação no modal de planos de aula */
+.modal-plan-actions {
+    margin-top: 15px; /* Espaço acima do container */
+    display: flex; /* Usa flexbox para alinhar botões */
+    flex-wrap: wrap; /* Permite quebrar linha se não couber */
+    align-items: center; /* Alinha itens verticalmente */
+    gap: 10px; /* Espaço entre os botões */
+}
+
+/* Ajusta botão 'Enviar Plano' */
+.btn-enviar-plano {
+    /* Estilos já definidos inline, mas podemos garantir aqui se necessário */
+    /* Exemplo: flex-shrink: 0; para não encolher */
+}
+
+/* Ajusta texto de colaboração */
+.modal-plan-collab-text {
+    font-size: 0.9em; 
+    color: var(--cinza-medio);
+    margin-top: 0; /* Remove margem superior padrão do <p> */
+    flex-basis: 100%; /* Faz ocupar a linha inteira abaixo dos botões */
+}
+
+/* Garante que o z-index da classificação funcione */
+.film-poster-container .classification {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 2;
+}
+
