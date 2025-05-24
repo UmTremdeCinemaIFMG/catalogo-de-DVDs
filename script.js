@@ -617,7 +617,7 @@ function renderOtherMaterialsModal(film, encodedTitle) {
                         <!-- Bloco dos Planos de Aula -->
                         <div class="modal-teaching-plans">
                             <h3><i class="fas fa-chalkboard-teacher"></i> Planos de Aula</h3>
-                            ${renderTeachingPlans(film)}
+                            ${renderTeachingPlansModal(film, encodedTitle)}
                             <a href="https://docs.google.com/forms/d/e/1FAIpQLSdxQz8onMOFjxIqEPpo5v2I4CJdLQ9cN50I7zUhmnBwgUeGIQ/viewform?usp=sharing&ouid=101786859238464224020" target="_blank" class="btn-enviar-plano" style="display:inline-block; margin-top:15px; background:#009a44; color:#fff; padding:10px 18px; border-radius:6px; text-decoration:none; font-weight:500;">
                                 <i class="fas fa-plus"></i> Envie um plano de aula
                             </a>
