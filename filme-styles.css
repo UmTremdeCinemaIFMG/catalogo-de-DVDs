@@ -419,3 +419,63 @@
         height: 375px; /* Aumentado em 50% (de 250px para 375px) */
     }
 }
+
+
+
+/* Estilos para os controles da página do filme */
+.filme-page-controls {
+    display: flex;
+    justify-content: space-between; /* Alinha botões nas extremidades */
+    align-items: center;
+    margin-bottom: 20px; /* Mantém o espaçamento original */
+    flex-wrap: wrap; /* Permite quebrar linha em telas menores */
+    gap: 10px; /* Espaço entre os botões caso quebrem linha */
+}
+
+/* Estilo para o novo botão Assistir Online */
+.btn-assistir-online {
+    display: inline-flex; /* Usar flex para alinhar ícone */
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #007bff; /* Azul primário */
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-assistir-online i {
+    margin-left: 8px; /* Espaço entre texto e ícone */
+}
+
+.btn-assistir-online:hover {
+    background-color: #0056b3; /* Azul mais escuro no hover */
+}
+
+/* Ajuste para garantir que o botão Voltar mantenha seu estilo */
+.btn-voltar {
+    display: inline-flex; /* Usar flex para alinhar ícone */
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #6c757d; /* Cinza */
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    /* margin-bottom removido daqui e controlado pelo container */
+    transition: background-color 0.3s ease;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-voltar i {
+    margin-right: 8px; /* Espaço entre ícone e texto */
+}
+
+.btn-voltar:hover {
+    background-color: #5a6268; /* Cinza mais escuro no hover */
+}
+
