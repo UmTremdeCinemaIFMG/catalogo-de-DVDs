@@ -2648,27 +2648,13 @@
         "festivais": "É Tudo Verdade, Festival de Brasilia e todos os festivais abaixo em que ganhou prêmios.",
         "premios": "- Melhor Filme de Média-metragem, Melhor Diretor, Melhor Roteiro, Prêmio Especial de Filme Gaúcho, no 28º Festival de Gramado – Cinema Latino e Brasileiro;\n- Eleito um dos 10 favoritos do público, no 11º Festival Internacional de Curtas Metragens de São Paulo;\n- Melhor Filme pelo júri popular e Prêmio UNICEF, no 42º Festival Internacional de Filme Documentário e Curta-Metragem de Bilbao – Espanha;\n- Melhor Filme 16mm, no 1º Prêmio APTC de Cinema;\n- Melhor Curta-metragem, eleito pelo público, na 4ª Mostra de Cinema Brasileiro de Tiradentes; \n- Melhor Média-metragem, no II Grande Prêmio Cinema Brasil;\n- Melhor Curta-metragem, no II Images du Noveau Monde – Quebéc/Canadá;\n- Melhor Filme Documentário, Melhor Direção, Roteiro e Montagem de Curta-metragem em 16mm, no 5º Festival de Cinema do Recife;\n- Melhor Filme eleito pelo público, na 3ª Mostra de Taguatinga de curta-metragem; \n- Melhor Filme, no Short Short Film Festival – Tokio/Japão – 2001;\n- Menção Honrosa, no Sexto Festival Internacional Santiago Álvarez In Memoriam – Cuba – 2005.",
         "legendas_outras": "",
-        "material_outros": [
-                    {
-                        "tipo": "Dissertação",
-                        "titulo": "'Construindo conhecimentos sobre direitos humanos a partir de atividades escolares mediadas por filmes",
-                        "url":"https://repositorio.ufmg.br/handle/1843/44756"
-                    }
-        ],
+        "material_outros": "",
         "duracao FORMATO": "MÉDIA",
         "PGM": 294,
         "Filmes": 139,
         "Nome do Programa": "Visões da Infância",
         "imageName": "visoes_da_infancia",
-        "planos_de_aula": [
-            {
-                "nivel_ensino": "estudantes a partir de 12  anos",
-                "area_conhecimento": "direitos das crianças",
-                "site": "Repositório Institucional da UFMG",
-                "url": "https://repositorio.ufmg.br/handle/1843/44756",
-                "descricao": "Atividade resultado do Mestrado Profissional de Matheus Felipe Santos que propõe um 'processo de reflexão a respeito da luta pelos direitos das crianças em nosso país'"
-            }
-        ],
+        "planos_de_aula": [],
         "trailer": "",
         "imagens_adicionais": [],
         "videos": []
@@ -14072,7 +14058,7 @@
         "duracao FORMATO": "CURTA",
         "PGM": 138,
         "Filmes": 72,
-        "Nome do Programa": "",
+        "Nome do Programa": "Anos de Chumbo",
         "imageName": "anos_de_chumbo",
         "planos_de_aula": [],
         "trailer": "",
@@ -14263,8 +14249,7 @@
         "GEN.": "Ficção",
         "Ano": "1986",
         "nota imdb": {
-            "votantes": "7,9/375",
-            "url":"https://www.imdb.com/pt/title/tt0125721/"
+            "votantes": "7,3/237"
         },
         "País": "Brasil",
         "UF": "RS",
@@ -14273,41 +14258,22 @@
         "Closed Caption": "",
         "Sinopse": "Todo trabalhador tem seu dia de folga.",
         "tema (Programadora Brasil)": "Crítica social",
-        "tags": "Operário, dia de folga, alucinação, Ditadura, Presídio, Resistência, Direitos humanos",
+        "tags": "Operário, dia de folga, alucinação",
         "website": "www.400filmes.com",
-        "Porta Curta": "https://www.curtanaescola.org.br/filme/?name=o_dia_em_que_dorival_encarou_a_guarda",
-        "festivais": "Festivais e prêmios nacionais\n39º Festival de Brasília do Cinema Brasileiro 2006 – Melhor Roteiro\nCine PE 2007 (Recife-PE)\nCurta SE 7 2007 (Aracaju-SE)\n14º Festival de Cinema e Vídeo de Cuiabá 2007 – Melhor Ator para Cláudio Jaborandy\n11º FAM 2007 (Florianópolis-SC) – Melhor Fotografia\n17º Cine Ceará 2007 (Fortaleza-CE) – Melhor Ator para Cláudio Jaborandy\nExibição especial no 12o Festival Brasileiro de Cinema Universitário 2007 (Niterói-RJ)\n2o Festival do Paraná de Cinema Brasileiro e Latino 2007\n2o Festival Macapá de Cinema e Vídeo 2007 (Amapá)\n6a Goiânia Mostra Curtas 2007\n2a Mostra Curta Audiovisual 2007 (Campinas-SP)\n17o Curta Cinema – Festival Internacional de Curtas do Rio de Janeiro 2007\nFestivais internacionais\nSundance Film Festival\n1st Brazilian Film Festival of Toronto 2007 (Canadá)\n25eme Festival Tous Courts 2007 (Aix-en-Provence - França)\n4o Festival Internacional de Cortometrajes FENACO 2007 (Cusco - Peru)\n",
+        "Porta Curta": "https://portacurtas.org.br/busca/?termo=Dia%20em%20que%20Dorival%20encarou%20a%20guarda,%20O",
+        "festivais": "Festivais e prêmios nacionais\n39º Festival de Brasília do Cinema Brasileiro 2006 – Melhor Roteiro\nCine PE 2007 (Recife-PE)\nCurta SE 7 2007 (Aracaju-SE)\n14º Festival de Cinema e Vídeo de Cuiabá 2007 – Melhor Ator para Cláudio Jaborandy\n11º FAM 2007 (Florianópolis-SC) – Melhor Fotografia\n17º Cine Ceará 2007 (Fortaleza-CE) – Melhor Ator para Cláudio Jaborandy\nExibição especial no 12o Festival Brasileiro de Cinema Universitário 2007 (Niterói-RJ)\n2o Festival do Paraná de Cinema Brasileiro e Latino 2007\n2o Festival Macapá de Cinema e Vídeo 2007 (Amapá)\n6a Goiânia Mostra Curtas 2007\n2a Mostra Curta Audiovisual 2007 (Campinas-SP)\n17o Curta Cinema – Festival Internacional de Curtas do Rio de Janeiro 2007\nFestivais internacionais\n1st Brazilian Film Festival of Toronto 2007 (Canadá)\n25eme Festival Tous Courts 2007 (Aix-en-Provence - França)\n4o Festival Internacional de Cortometrajes FENACO 2007 (Cusco - Peru)\n",
         "premios": "39º Festival de Brasília do Cinema Brasileiro 2006 – Melhor Roteiro\n14º Festival de Cinema e Vídeo de Cuiabá 2007 – Melhor Ator para Cláudio Jaborandy\n11º FAM 2007 (Florianópolis-SC) – Melhor Fotografia\n17º Cine Ceará 2007 (Fortaleza-CE) – Melhor Ator para Cláudio Jaborandy\n\n\n\n\n",
         "legendas_outras": "",
         "material_outros": "Fotos still",
         "duracao FORMATO": "CURTA",
         "PGM": 138,
         "Filmes": 77,
-        "Nome do Programa": "Anos de Chumbo",
-        "imageName": "anos_de_chumbo",
-        "planos_de_aula": [
-             {
-                "nivel_ensino": "Ensino Médio",
-                "area_conhecimento": "Sociologia",
-                "site": "Curta na Escola",
-                "url": "https://www.curtanaescola.org.br/relatos/Default.aspx?movie=399&teacherReport=1486",
-                "descricao": "Objetivos gerais: compreender e interpretar aspectos relevantes do filme assistido. Objetivos específicos:  Explorar o tema 'Poder' enquanto teoria e na prática;  Desenvolver o espírito reflexivo-crítico dos alunos."
-            },
-            {
-                "nivel_ensino": "Ensino Médio",
-                "area_conhecimento": "História",
-                "site": "Curta na Escola",
-                "url": "https://www.curtanaescola.org.br/relatos/Default.aspx?movie=399&teacherReport=1556",
-                "descricao": "O objetivo ao utilizar o curta 'O dia em que Dorival encarou a guarda', de Jorge Furtado, era entender o funcionamento de um regime ditatorial como o vivenciado no Brasil entre 1964 e 1985 e a impessoalidade do poder, que faz com que ordens não sejam questionadas."
-            }
-        ],
-        "trailer": "https://www.youtube.com/watch?v=O2I8ZXbIsuM",
+        "Nome do Programa": "Animação para adultos 3",
+        "imageName": "animacao_para_adultos_3",
+        "planos_de_aula": [],
+        "trailer": "",
         "imagens_adicionais": [],
-        "videos": [
-            {
-                "url": "https://www.youtube.com/watch?v=940vKqukhug"
-            }
-        ]
+        "videos": []
     },
     {
         "Classificação Indicativa POR PGM": "14",
@@ -26179,41 +26145,13 @@
         "festivais": "",
         "premios": "17º Festival do Cinema Brasileiro, Gramado, 1989:\n Melhor filme de curta metragem (júri oficial, júri popular e prêmio da crítica), Melhor roteiro, Melhor montagem e mais 4 prêmios regionais (Melhor Filme, Melhor Direção, Melhor Roteiro e Melhor Montagem). \n40º International Filmfestival, Berlim, Alemanha, 1990: \nUrso de Prata para curta metragem. \nPrêmio Air France, Rio de Janeiro, 1990: \nMelhor curta metragem brasileiro. \nPrêmio Margarida de Prata (CNBB), Brasília, 1990: \nMelhor curta-metragem. \n3º Festival Internacional do Curta-metragem, Clermont-Ferrand, França, 1991: \nPrêmio Especial do Júri, Melhor Filme (Júri Popular). \nAmerican Film and Video Festival, New York, 1991: \nBlue Ribbon Award. \n7º No-budget Kurzfilmfestival, Hamburgo, Alemanha, 1991: \nMelhor Filme. \nFestival International du Film de Region, Saint Paul, França, 1993: \nMelhor Filme. \nExibido na mostra \"Os 10 Melhores curtas brasileiros da década de 80\", no Cineclube Estação Botafogo, Rio de Janeiro, 1990.",
         "legendas_outras": "",
-        "material_outros": [
-            {
-                "tipo": "Dissertação",
-                "titulo": "'Construindo conhecimentos sobre direitos humanos a partir de atividades escolares mediadas por filmes",
-                "url":"https://repositorio.ufmg.br/handle/1843/44756"
-            },
-            {
-                "tipo": "Notícia",
-                "titulo": "'Ilha das Flores' é eleito melhor curta-metragem brasileiro da história. Levantamento da Associação Brasileira de Críticos de Cinema (Abraccine) listou os 100 melhores filmes de todos os tempos. 'Infelizmente, segue muito atual em todos os sentidos', diz o diretor Jorge Furtado.",
-                "url":"https://g1.globo.com/rs/rio-grande-do-sul/noticia/2019/05/06/ilha-das-flores-e-eleito-melhor-curta-metragem-brasileiro-da-historia.ghtml"
-            },
-            {
-                "tipo": "Notícia",
-                "titulo": "(web archive) Ilha das Flores após o fim da sessão: descaso, dúvidas, avanços, meio ambiente e novas histórias",
-                "url":"https://web.archive.org/web/20210414001600/https://multiversoipa.metodistadosul.edu.br/jornalismo/portfolio-jornalismo/jornalismo-especializado-ii/971-ilha-das-flores-ap%C3%B3s-o-fim-da-sess%C3%A3o-descaso,-d%C3%BAvidas,-avan%C3%A7os,-meio-ambiente-e-novas-hist%C3%B3rias-2"
-            },
-            {
-                "tipo": "Notícia",
-                "titulo": "(web archive) Ilha das Flores duas décadas depois. Moradores relatam o impacto que filme de Jorge Furtado, realizado há 22 anos, teve em suas vidas.",
-                "url":"https://web.archive.org/web/20120129043121/http://www.pucrs.br/famecos/editorialj/"
-            }
-        ],
+        "material_outros": "",
         "duracao FORMATO": "CURTA",
         "PGM": 54,
         "Filmes": 30,
         "Nome do Programa": "Clássicos e modernos",
         "imageName": "classicos_e_modernos",
         "planos_de_aula": [
-            {
-                "nivel_ensino": "estudantes a partir de 12  anos",
-                "area_conhecimento": "direito à igualdade social",
-                "site": "Repositório Institucional da UFMG",
-                "url": "https://repositorio.ufmg.br/handle/1843/44756",
-                "descricao": "Atividade resultado do Mestrado Profissional de Matheus Felipe Santos que propõe um 'processo de reflexão a respeito de desigualdade social e as tensões advindas dessa mazela no nosso país.'"
-            },
             {
                 "nivel_ensino": "Ensino Fundamental 2, Ensino Médio e Educação de Jovens e Adultos",
                 "area_conhecimento": "Língua Portuguesa, Geografia, Sociologia",
@@ -26245,20 +26183,7 @@
         ],
         "trailer": "https://www.youtube.com/watch?v=3l0DplBkiPU",
         "imagens_adicionais": [],
-        "videos": [
-            {
-                "url": "https://www.youtube.com/watch?v=ALUL1sWVofg"
-            },
-            {
-               "url": "https://www.youtube.com/watch?v=SF6L3ukz9sI"
-            },
-            {
-               "url": "https://www.youtube.com/watch?v=Ch-LIsnG9Wc"
-            },
-            {
-               "url": "https://www.youtube.com/watch?v=i2_yTV2ueYg"
-            }
-        ]
+        "videos": []
     },
     {
         "Classificação Indicativa POR PGM": "Livre",
