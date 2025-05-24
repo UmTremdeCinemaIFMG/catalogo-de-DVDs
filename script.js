@@ -5,7 +5,7 @@ let allFilms = [];           // ARMAZENA TODOS OS FILMES DO CATÁLOGO
 let currentFilms = [];       // ARMAZENA OS FILMES FILTRADOS ATUALMENTE
 let currentPage = 1;         // PÁGINA ATUAL DA PAGINAÇÃO
 let allGenres = [];          // LISTA DE TODOS OS GÊNEROS ÚNICOS
-let selectedGenre = ";      // GÊNERO SELECIONADO ATUALMENTE
+let selectedGenre = ";      // GÊNERO SELECIONADO ATUALMENTE - CORRIGIDO PARA ASPAS SIMPLES
 let debounceTimer;          // TIMER PARA DEBOUNCE DA BUSCA
 const itemsPerPage = 20;     // QUANTIDADE DE FILMES POR PÁGINA
 
@@ -15,9 +15,9 @@ const itemsPerPage = 20;     // QUANTIDADE DE FILMES POR PÁGINA
 
 // LIMPA E FORMATA CAMPOS DE TEXTO
 function cleanField(value) {
-    if (!value) return ";
+    if (!value) return "; // Retorna string vazia se valor for nulo/undefined
     // Remove aspas extras no início/fim e espaços em branco
-    return String(value).replace(/^\"|\"$/g, ").trim(); 
+    return String(value).replace(/^"|"$/g, ").trim(); // CORRIGIDO: Substitui por string vazia
 }
 
 // OBTÉM A CLASSE CSS PARA CLASSIFICAÇÃO INDICATIVA
@@ -41,7 +41,7 @@ function getDvdCover(filmData) {
     const DEFAULT_COVER = 'capas/progbrasil.png';
     
     if (filmData.imageName) {
-        const baseName = filmData.imageName.replace(/\.(jpg|jpeg|png|gif)$/i, ");
+        const baseName = filmData.imageName.replace(/\.(jpg|jpeg|png|gif)$/i, "); // Remove extensão
         const imagePath = `capas/${baseName}.jpg`;
         return imagePath;
     }
@@ -88,7 +88,13 @@ function transformFilmData(originalFilm) {
             const material = originalFilm["material_outros"];
             if (!material) return [];
             if (typeof material === 'string') {
-                return [{ tipo: material, titulo: material, url: '#' }];
+                // Tenta analisar como JSON se for string, caso contrário, trata como texto simples
+                try {
+                    const parsed = JSON.parse(material);
+                    return Array.isArray(parsed) ? parsed : [{ tipo: 'Info', titulo: material, url: '#' }];
+                } catch (e) {
+                     return [{ tipo: 'Info', titulo: material, url: '#' }];
+                }
             }
             return Array.isArray(material) ? material : [];
         })(),
@@ -281,7 +287,7 @@ function renderTeachingPlansModal(film, encodedTitle) { // Versão limitada para
         const remainingCount = film.planos_de_aula.length - 1;
         html += `
             <a href="filme.html?titulo=${encodedTitle}" class="btn-ver-mais">
-                +${remainingCount} resultados <!-- Texto alterado -->
+                +${remainingCount} resultados
             </a>
         `;
     }
@@ -306,7 +312,7 @@ function renderOtherMaterialsModal(film, encodedTitle) { // Versão limitada par
         const remainingCount = film.materialOutros.length - 1;
         html += `
             <a href="filme.html?titulo=${encodedTitle}" class="btn-ver-mais">
-                +${remainingCount} resultados <!-- Texto alterado -->
+                +${remainingCount} resultados
             </a>
         `;
     }
