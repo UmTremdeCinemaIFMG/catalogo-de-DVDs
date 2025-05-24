@@ -133,7 +133,7 @@ function transformFilmData(originalFilm) {
         tema: cleanField(originalFilm["tema (Programadora Brasil)"]),
         tags: cleanField(originalFilm["tags"]),
         website: cleanField(originalFilm["website"]),
-        assistirOnline: cleanField(originalFilm["Assistir Online"] || "),
+        assistirOnline: cleanField(originalFilm["Assistir Online"] || ''),
         festivais: cleanField(originalFilm["festivais"]),
         premios: cleanField(originalFilm["premios"]),
         legendasOutras: cleanField(originalFilm["legendas_outras"]),
@@ -182,7 +182,7 @@ function renderFilmData(film) {
     
     // INFORMAÇÕES ADICIONAIS
     const hasAdditionalInfo = film.audiodescricao || film.closedCaption || film.website || 
-                            film.portaCurta || film.festivais || film.premios || 
+                            film.assistirOnline || film.festivais || film.premios || 
                             film.legendasOutras || film.materialOutros.length > 0;
     
     // HEADER DO FILME
