@@ -306,7 +306,7 @@ function renderOtherMaterialsModal(film, encodedTitle) { // Versão limitada par
         const remainingCount = film.materialOutros.length - 1;
         html += `
             <a href="filme.html?titulo=${encodedTitle}" class="btn-ver-mais">
-                +${remainingCount} mais
+                +${remainingCount} Resultados
             </a>
         `;
     }
