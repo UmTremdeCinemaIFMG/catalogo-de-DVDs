@@ -1115,9 +1115,9 @@ a:hover {
     margin-top: 10px; /* Espaço acima do botão */
     margin-right: 10px; /* Espaço à direita, se houver outro botão */
     padding: 6px 12px;
-    background-color: var(--cinza-claro);
-    color: var(--cinza-escuro); /* Cor diferente do link padrão */
-    border: 1px solid var(--cinza-medio);
+    background-color: var(--verde-ifmg);
+    color: var(--verde-ifmg); /* Cor diferente do link padrão */
+    border: 1px solid var(--verde-ifmg);
     border-radius: 4px;
     font-size: 14px;
     font-weight: normal; /* Não negrito para diferenciar de links comuns */
@@ -1125,7 +1125,7 @@ a:hover {
 }
 
 .btn-ver-mais:hover {
-    background-color: var(--cinza-medio);
+    background-color: var(--verde-ifmg);
     color: var(--branco);
     text-decoration: none;
 }
