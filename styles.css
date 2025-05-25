@@ -33,7 +33,8 @@
                 
                 /* CABEÇALHO */
                 header {
-                    background-color: var(--verde-ifmg);
+                    background-image: radial-gradient(ellipse at center, #19882c 1%, #025310 100%);
+                    /*background-color: var(--verde-ifmg);*/
                     color: var(--branco);
                     padding: 25px 0;
                     text-align: center;
@@ -340,9 +341,11 @@
                 }
                 
                 .film-poster {
-                    width: auto;
+                    display: block;
+                  width: auto;
                     height: 100%;
-                    position: absolute;
+                  object-fit: cover;
+                   object-position: right center !important;
                     top: 0;
                     transition: transform 0.5s ease;
                 }
