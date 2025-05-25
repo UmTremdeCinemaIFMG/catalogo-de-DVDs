@@ -438,7 +438,7 @@
     align-items: center;
     padding: 10px 20px;
     background-color: #007bff; /* Azul primário */
-    color: #fff;
+    color: var(--branco) !important; /* Força texto branco sempre */
     text-decoration: none;
     border-radius: 5px;
     transition: background-color 0.3s ease;
@@ -453,6 +453,7 @@
 
 .btn-assistir-online:hover {
     background-color: #0056b3; /* Azul mais escuro no hover */
+    color: var(--branco) !important; /* Força texto branco no hover */
 }
 
 /* Ajuste para garantir que o botão Voltar mantenha seu estilo */
@@ -460,8 +461,8 @@
     display: inline-flex; /* Usar flex para alinhar ícone */
     align-items: center;
     padding: 10px 20px;
-    background-color: #6c757d; /* Cinza */
-    color: #fff;
+    background-color: var(--verde-ifmg);
+    color: var(--branco) !important; /* Força texto branco sempre */
     text-decoration: none;
     border-radius: 5px;
     /* margin-bottom removido daqui e controlado pelo container */
@@ -476,6 +477,7 @@
 }
 
 .btn-voltar:hover {
-    background-color: #5a6268; /* Cinza mais escuro no hover */
+    background-color: var(--verde-escuro); /* Verde mais escuro no hover */
+    color: var(--branco) !important; /* Força texto branco no hover */
 }
 
