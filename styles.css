@@ -331,7 +331,7 @@
                 }
                 
                 /* POSTER DO FILME */
-                .-container {
+                .film-poster-container {
                     width: 100%;
                     height: 350px;
                     position: relative;
@@ -342,8 +342,7 @@
                 .film-poster {
                     width: auto;
                     height: 100%;
-                    /*object-position: center center;*/
-                  object-position: right center;
+                    position: absolute;
                     top: 0;
                     transition: transform 0.5s ease;
                 }
@@ -1115,9 +1114,9 @@ a:hover {
     margin-top: 10px; /* Espaço acima do botão */
     margin-right: 10px; /* Espaço à direita, se houver outro botão */
     padding: 6px 12px;
-    background-color: var(--verde-ifmg);
-    color: var(--verde-ifmg); /* Cor diferente do link padrão */
-    border: 1px solid var(--verde-ifmg);
+    background-color: var(--cinza-claro);
+    color: var(--cinza-escuro); /* Cor diferente do link padrão */
+    border: 1px solid var(--cinza-medio);
     border-radius: 4px;
     font-size: 14px;
     font-weight: normal; /* Não negrito para diferenciar de links comuns */
@@ -1125,7 +1124,7 @@ a:hover {
 }
 
 .btn-ver-mais:hover {
-    background-color: var(--verde-ifmg);
+    background-color: var(--cinza-medio);
     color: var(--branco);
     text-decoration: none;
 }
