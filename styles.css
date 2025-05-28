@@ -2,13 +2,9 @@
                    1. VARIÁVEIS GLOBAIS
                    ========================================== */
                 :root {
-                    /* Cores IFMG Sabará (Aproximadas) */
-                    --verde-ifmg-principal: #1b5e20; /* Verde mais escuro principal */
-                    --verde-ifmg-secundario: #2e7d32; /* Verde um pouco mais claro */
-                    --verde-ifmg-barra-superior: #1a4b1d; /* Verde bem escuro para barra superior */
-                    --verde-ifmg-hover: #388e3c; /* Verde para hover */
-                    --verde-original: #009a44; /* Verde original mantido para referência */
-                    --verde-escuro-original: #007236;
+                    /* Cores Originais */
+                    --verde-ifmg: #009a44;
+                    --verde-escuro: #007236;
                     
                     --cinza-escuro: #333333;
                     --cinza-medio: #666666;
@@ -37,18 +33,18 @@
                     line-height: 1.6;
                 }
                 
-                /* CABEÇALHO - Estilo IFMG Sabará */
+                /* CABEÇALHO - Estilo Original */
                 header {
-                    background-color: var(--verde-ifmg-principal); /* Cor principal do cabeçalho */
+                    background-color: var(--verde-ifmg); /* Cor original */
                     color: var(--branco);
-                    padding: 20px 0; /* Ajuste no padding */
+                    padding: 25px 0; /* Padding original */
                     text-align: center;
                     margin-bottom: 30px;
                     box-shadow: var(--sombra);
                     position: relative;
                     overflow: hidden;
                     transition: var(--transicao);
-                    border-top: 5px solid var(--verde-ifmg-barra-superior); /* Barra superior */
+                    /* border-top removido */
                 }
                 
                 header::after {
@@ -57,15 +53,15 @@
                     bottom: 0;
                     left: 0;
                     width: 100%;
-                    height: 8px; /* Barra inferior mais espessa */
-                    background: var(--verde-ifmg-secundario); /* Cor da barra inferior */
+                    height: 5px; /* Altura original */
+                    background: linear-gradient(90deg, var(--verde-ifmg), var(--verde-escuro)); /* Gradiente original */
                 }
                 
                 h1 {
                     margin: 0;
-                    font-size: 2.2em; /* Tamanho ajustado */
+                    font-size: 2.5em; /* Tamanho original */
                     font-weight: 700;
-                    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3); /* Sombra ajustada */
+                    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Sombra original */
                     transition: var(--transicao);
                 }
                 
@@ -110,9 +106,9 @@
                 }
                 
                 .search-box input:focus {
-                    border-color: var(--verde-ifmg-principal);
+                    border-color: var(--verde-ifmg); /* Cor original */
                     outline: none;
-                    box-shadow: 0 0 0 3px rgba(27, 94, 32, 0.2);
+                    box-shadow: 0 0 0 3px rgba(0, 154, 68, 0.2); /* Cor original */
                 }
                 
                 .search-box i {
@@ -166,9 +162,9 @@
                 }
                 
                 .sort-box select:focus {
-                    border-color: var(--verde-ifmg-principal);
+                    border-color: var(--verde-ifmg); /* Cor original */
                     outline: none;
-                    box-shadow: 0 0 0 3px rgba(27, 94, 32, 0.2);
+                    box-shadow: 0 0 0 3px rgba(0, 154, 68, 0.2); /* Cor original */
                 }
                 
                 /* LINHA DE FILTROS */
@@ -218,14 +214,14 @@
                 }
                 
                 .filter-box select:focus {
-                    border-color: var(--verde-ifmg-principal);
+                    border-color: var(--verde-ifmg); /* Cor original */
                     outline: none;
-                    box-shadow: 0 0 0 3px rgba(27, 94, 32, 0.2);
+                    box-shadow: 0 0 0 3px rgba(0, 154, 68, 0.2); /* Cor original */
                 }
                         
                 /* CONTADOR DE RESULTADOS */
                 .results-counter {
-                    background-color: var(--verde-ifmg-secundario); /* Cor ajustada */
+                    background-color: var(--verde-ifmg); /* Cor original */
                     color: var(--branco);
                     padding: 8px 15px;
                     border-radius: 20px;
@@ -240,7 +236,7 @@
                 }
                 
                 .results-counter.com-resultados {
-                    background-color: var(--verde-ifmg-secundario);
+                    background-color: var(--verde-ifmg);
                 }
                 
                 #filmsCount {
@@ -297,15 +293,15 @@
                 }
                 
                 .genre-tag:hover {
-                    background-color: var(--verde-ifmg-hover);
+                    background-color: var(--verde-ifmg); /* Cor original */
                     color: var(--branco);
-                    border-color: var(--verde-ifmg-secundario);
+                    border-color: var(--verde-escuro); /* Cor original */
                 }
                 
                 .genre-tag.active {
-                    background-color: var(--verde-ifmg-secundario);
+                    background-color: var(--verde-ifmg); /* Cor original */
                     color: var(--branco);
-                    border-color: var(--verde-ifmg-principal);
+                    border-color: var(--verde-escuro); /* Cor original */
                     font-weight: bold;
                 }
                 
@@ -343,7 +339,7 @@
                     height: 350px; /* Altura mantida */
                     position: relative;
                     overflow: hidden;
-                    border-bottom: 3px solid var(--verde-ifmg-secundario); /* Cor ajustada */
+                    border-bottom: 3px solid var(--verde-ifmg); /* Cor original */
                     background-color: var(--cinza-claro); /* Fundo para caso a imagem não carregue */
                 }
                 
@@ -352,7 +348,9 @@
                     width: 100%; /* Ocupa toda a largura */
                     height: 100%; /* Ocupa toda a altura */
                     object-fit: cover; /* Cobre o container, pode cortar */
-                    object-position: right center !important; /* Força alinhamento à direita */
+                    object-position: center center; /* Centraliza por padrão */
+                    /* Para alinhar à direita */
+                    object-position: right center; 
                     transition: transform 0.5s ease;
                 }
                 
@@ -369,7 +367,7 @@
                 .film-title {
                     font-weight: bold;
                     margin: 0 0 5px 0;
-                    color: var(--verde-ifmg-principal); /* Cor ajustada */
+                    color: var(--verde-escuro); /* Cor original */
                     font-size: 16px;
                     line-height: 1.3;
                     display: -webkit-box;
@@ -510,7 +508,9 @@
                     width: 100%;
                     height: 100%;
                     object-fit: cover;
-                    object-position: right center !important; /* Força alinhamento à direita */
+                    object-position: center center; /* Centraliza por padrão */
+                     /* Para alinhar à direita */
+                    object-position: right center; 
                 }
                 
                 .modal-poster-container .classification {
@@ -523,7 +523,7 @@
                 
                 .modal-title {
                     font-size: 1.8em;
-                    color: var(--verde-ifmg-principal);
+                    color: var(--verde-escuro); /* Cor original */
                     margin-bottom: 15px;
                     text-align: center;
                 }
@@ -568,7 +568,7 @@
                 
                 .modal-details i,
                 .modal-additional i {
-                    color: var(--verde-ifmg-secundario);
+                    color: var(--verde-ifmg); /* Cor original */
                     width: 16px; /* Largura fixa para ícones */
                     text-align: center;
                 }
@@ -579,7 +579,7 @@
                 .modal-other-materials h3,
                 .modal-teaching-plans h3 {
                     font-size: 1.2em;
-                    color: var(--verde-ifmg-principal);
+                    color: var(--verde-escuro); /* Cor original */
                     margin-bottom: 10px;
                     display: flex;
                     align-items: center;
@@ -591,7 +591,7 @@
                 .modal-additional h3 i,
                 .modal-other-materials h3 i,
                 .modal-teaching-plans h3 i {
-                    color: var(--verde-ifmg-secundario);
+                    color: var(--verde-ifmg); /* Cor original */
                 }
                 
                 .theme-tag {
@@ -616,7 +616,7 @@
                     padding: 15px;
                     border-radius: 6px;
                     margin-bottom: 10px;
-                    border-left: 4px solid var(--verde-ifmg-secundario);
+                    border-left: 4px solid var(--verde-ifmg); /* Cor original */
                 }
                 
                 .teaching-plan-card p,
@@ -630,17 +630,17 @@
                 
                 .teaching-plan-card i,
                 .other-material-card i {
-                    color: var(--verde-ifmg-secundario);
+                    color: var(--verde-ifmg); /* Cor original */
                     width: 16px;
                     text-align: center;
                 }
                 
-                /* BOTÃO VER MAIS (+N resultados) - Estilo Verde */
+                /* BOTÃO VER MAIS (+N resultados) - Estilo Verde Original */
                 .btn-ver-mais {
                     display: inline-block;
                     margin-top: 10px;
                     padding: 8px 15px;
-                    background-color: var(--verde-ifmg-secundario); /* Cor verde */
+                    background-color: var(--verde-ifmg); /* Cor verde original */
                     color: var(--branco); /* Texto branco */
                     border: none; /* Sem borda */
                     border-radius: 4px;
@@ -652,7 +652,7 @@
                 }
                 
                 .btn-ver-mais:hover {
-                    background-color: var(--verde-ifmg-hover); /* Verde mais claro no hover */
+                    background-color: var(--verde-escuro); /* Verde escuro original no hover */
                     text-decoration: none;
                     transform: translateY(-2px);
                     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
@@ -673,7 +673,7 @@
                     align-items: center;
                     gap: 8px;
                     padding: 10px 20px;
-                    background-color: var(--verde-ifmg-secundario);
+                    background-color: var(--verde-ifmg); /* Cor original */
                     color: var(--branco);
                     border: none;
                     border-radius: 4px;
@@ -686,7 +686,7 @@
                 }
                 
                 .btn-enviar-plano:hover {
-                    background-color: var(--verde-ifmg-hover);
+                    background-color: var(--verde-escuro); /* Cor original */
                     text-decoration: none;
                     transform: translateY(-2px);
                     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
@@ -707,7 +707,7 @@
                     align-items: center;
                     gap: 8px;
                     padding: 12px 25px;
-                    background-color: var(--verde-ifmg-principal);
+                    background-color: var(--verde-escuro); /* Cor original */
                     color: var(--branco);
                     border: none;
                     border-radius: 6px;
@@ -717,7 +717,7 @@
                 }
                 
                 .btn-pagina-completa:hover {
-                    background-color: var(--verde-ifmg-hover);
+                    background-color: var(--verde-ifmg); /* Cor original */
                     text-decoration: none;
                     transform: translateY(-2px);
                     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
@@ -737,8 +737,8 @@
                 
                 .pagination button {
                     background-color: var(--branco);
-                    color: var(--verde-ifmg-principal);
-                    border: 1px solid var(--verde-ifmg-secundario);
+                    color: var(--verde-ifmg); /* Cor original */
+                    border: 1px solid var(--verde-ifmg); /* Cor original */
                     padding: 8px 14px;
                     margin: 0 3px;
                     cursor: pointer;
@@ -748,14 +748,14 @@
                 }
                 
                 .pagination button:hover {
-                    background-color: var(--verde-ifmg-secundario);
+                    background-color: var(--verde-ifmg); /* Cor original */
                     color: var(--branco);
                 }
                 
                 .pagination button.active {
-                    background-color: var(--verde-ifmg-principal);
+                    background-color: var(--verde-escuro); /* Cor original */
                     color: var(--branco);
-                    border-color: var(--verde-ifmg-principal);
+                    border-color: var(--verde-escuro); /* Cor original */
                     font-weight: bold;
                 }
                 
@@ -785,7 +785,7 @@
                 }
                 
                 footer a:hover {
-                    color: var(--verde-ifmg-hover);
+                    color: var(--verde-ifmg); /* Cor original */
                 }
                 
                 /* ==========================================
@@ -804,7 +804,7 @@
                 
                 .spinner {
                     border: 4px solid var(--cinza-claro);
-                    border-top: 4px solid var(--verde-ifmg-secundario);
+                    border-top: 4px solid var(--verde-ifmg); /* Cor original */
                     border-radius: 50%;
                     width: 30px;
                     height: 30px;
@@ -844,7 +844,7 @@
                     position: fixed;
                     bottom: 20px;
                     right: 20px;
-                    background-color: var(--verde-ifmg-principal);
+                    background-color: var(--verde-ifmg); /* Cor original */
                     color: white;
                     border: none;
                     border-radius: 50%;
@@ -861,7 +861,7 @@
                 }
                 
                 #btnFaleConosco:hover {
-                    background-color: var(--verde-ifmg-hover);
+                    background-color: var(--verde-escuro); /* Cor original */
                     transform: scale(1.1);
                 }
                 
@@ -870,7 +870,7 @@
                 }
                 
                 #modalFaleConosco h2 {
-                    color: var(--verde-ifmg-principal);
+                    color: var(--verde-escuro); /* Cor original */
                     text-align: center;
                     margin-bottom: 20px;
                 }
@@ -895,7 +895,7 @@
                 }
                 
                 #modalFaleConosco li i {
-                    color: var(--verde-ifmg-secundario);
+                    color: var(--verde-ifmg); /* Cor original */
                     font-size: 1.2em;
                     width: 20px;
                     text-align: center;
@@ -1003,11 +1003,11 @@ a {
 }
 
 a:hover {
-    color: var(--verde-ifmg-hover); /* Muda cor no hover para verde IFMG */
+    color: var(--verde-ifmg); /* Muda cor no hover para verde IFMG original */
     text-decoration: underline; /* Adiciona sublinhado no hover */
 }
 
-/* Ajusta botão 'Ver Mais' no modal - AGORA VERDE */
+/* Ajusta botão 'Ver Mais' no modal - AGORA VERDE ORIGINAL */
 /* .btn-ver-mais está sendo estilizado acima na seção do modal */
 
 /* Ajusta container dos botões de ação no modal de planos de aula */
