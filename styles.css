@@ -679,7 +679,8 @@
     cursor: pointer;
     font-size: 16px;
     font-weight: 500;
-    transition: var(--transicao);
+    /*transition: var(--transicao)*/;
+  transition: background-color 0.3s ease;
 }
 
 .btn-full-page:hover {
@@ -1122,6 +1123,7 @@ a:hover {
     font-size: 14px;
     font-weight: normal; /* Não negrito para diferenciar de links comuns */
     cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .btn-ver-mais:hover {
