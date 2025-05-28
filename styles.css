@@ -1106,8 +1106,8 @@ a {
 }
 
 a:hover {
-    color: var(--verde-escuro); /* Muda cor no hover */
-    text-decoration: underline; /* Adiciona sublinhado no hover */
+    color: var(--branco); /* Muda cor no hover */
+    text-decoration: none; /* Adiciona sublinhado no hover */
 }
 
 /* Ajusta botão 'Ver Mais' no modal */
