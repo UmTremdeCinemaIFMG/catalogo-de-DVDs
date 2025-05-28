@@ -36,7 +36,7 @@
                     background-image: radial-gradient(ellipse at center, #19882c 1%, #025310 100%);
                     /*background-color: var(--verde-ifmg);*/
                     color: var(--branco);
-                    padding: 25px 0;
+                    padding: 0px 0;
                     text-align: center;
                     margin-bottom: 30px;
                     box-shadow: var(--sombra);
@@ -51,7 +51,7 @@
                     bottom: 0;
                     left: 0;
                     width: 100%;
-                    height: 5px;
+                    height: 0px;
                     background: linear-gradient(90deg, var(--verde-ifmg), var(--verde-escuro));
                 }
                 
