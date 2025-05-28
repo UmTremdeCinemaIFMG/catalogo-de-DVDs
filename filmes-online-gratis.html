@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filmes Online Grátis - Catálogo de DVDs</title>
+ 
+    <!-- FONTS E ÍCONES -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- FAVICON -->
+    <link rel="icon" type="image/png" href="favicon.png" />
+    
+    <!-- ESTILOS -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <script type="text/javascript" src="/86AAF7CD-A199-463A-BEEF-AEE7400B3F0D/main.js?attr=q8DrcCqY-R1nJ1IQx0DvhBqqWRgrb3popckxYZ9v9tGi3FcnjjgSiu8TmqtwT0VX-Y5jvOeXDFQIrMytB5jMTIlCw8vAwyq9PXO7PY5LxNcZErxcvsgwEQ_lL7V5KWfF-0u_0aEE1vDvBqbUpiUunhrIMrTG1jk8iIcbfCVj0RBZz7ex2h4MyEhW44zQN5ByZEUp0CJlW0jHkR68v1kTfhoFqk3ZJnDuxnMmW81HZosPtyAFkrDZKdO8hdchgy6YZhFzeMq4bKVB2TiaH6O8m8SaRzWznXrHm18bpS-QR5X_SPg5gIlPBdhwSujY1-YR1ruYgLYnOwYd3VFbqHvhcNgp3-l_oHIg_kSGTN-NFrsfg1IIBP5d1NYezVpP8ohMSzVYNF_QWEaxetoPsUYfiLqQCfjAvwNSTOI3TjcU5hcdYu7jVjRP85MDx2pIL3b3uE6vZV4zGljz5LzvB1_Un9Lpz76qAu1HvATqDE3ASmPJu0HwgB_u8912nwu49Sc6pI6gAQ21uFJcrTn7UC8cikog8HImh9qjtHAgAy750yi2EAyp_a-l-2qWU0P7WTVLU_3qixwKNVnBZSa1xnGK_u_2Aj0OsmComs7KvMnqlu3vORvDrgtGIaMMFwSB8LA0Xwq-49FyOsGixrpB0MAQ4hIBTBT4vNoRAGeFKNFISrX5w3gFa5OC_aqW5Yvm6DAg_rTUO-Q4Uie1KU78uE7T0fuNaUFCITGVwwsSAizpRiaM1ayGXtjKFmAf2O0pLR5Jp3h3jg0rgoomhRTePkPz7q6piUKl1NHxhkw5TZ84lPpptQVpI8KrdEBwSkmGnITaRcuDHTTHDppLnG2tIMXcTGEL2aqHgp1Wh61XaQC1dPovAge--klU80xkMcxxWCQx5RY9-b70oIcJ5Ls4hh3q9EVIh99rdyZu610wlCI0HJs" charset="UTF-8"></script><style>
+        /* Estilos específicos para a página de Filmes Online Grátis */
+        .barra-extra {
+            background-color: var(--verde-escuro);
+            padding: 10px 0;
+            text-align: center;
+            box-shadow: var(--sombra);
+        }
+        
+        .barra-extra .container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .barra-extra a {
+            color: var(--branco);
+            text-decoration: none;
+            font-size: 14px;
+            padding: 5px 10px;
+            transition: var(--transicao);
+        }
+        
+        .barra-extra a:hover {
+            text-decoration: underline;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+        
+        .plataforma {
+            background-color: var(--branco);
+            border-radius: 8px;
+            box-shadow: var(--sombra);
+            margin-bottom: 30px;
+            padding: 20px;
+            transition: var(--transicao);
+        }
+        
+        .plataforma:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+        
+        .plataforma h3 {
+            color: var(--verde-escuro);
+            margin-top: 0;
+            border-bottom: 2px solid var(--verde-ifmg);
+            padding-bottom: 10px;
+        }
+        
+        .plataforma-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .plataforma-info-item {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .plataforma-info-item strong {
+            color: var(--verde-escuro);
+        }
+        
+        .plataforma-descricao {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .plataforma-link {
+            display: inline-block;
+            background-color: var(--verde-ifmg);
+            color: var(--branco);
+            padding: 8px 15px;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: var(--transicao);
+            margin-top: 10px;
+        }
+        
+        .plataforma-link:hover {
+            background-color: var(--verde-escuro);
+            transform: scale(1.05);
+        }
+        
+        .intro-text {
+            background-color: var(--cinza-claro);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border-left: 5px solid var(--verde-ifmg);
+        }
+        
+        @media (max-width: 768px) {
+            .plataforma-info {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>  
+    
+<body>
+    <!-- CABEÇALHO -->
+    <header>
+        <div class="container">
+            <h1><i class="fas fa-film"></i> CATÁLOGO DE DVDs</h1>
+            <h3>Filmes Brasileiros do Projeto Um Trem de Cinema do IFMG Sabará</h3>
+            <strong>LEI Nº 13.006, DE 26 DE JUNHO DE 2014:</strong>
+              A exibição de filmes de produção nacional constituirá componente curricular complementar integrado à proposta pedagógica da escola, sendo a sua exibição obrigatória por, no mínimo, 2 (duas) horas mensais.
+              <a href="https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2014/lei/l13006.htm" target="_blank" style="margin-left: 8px; color: #ffffff; text-decoration: underline;">
+                Saiba mais
+              </a>
+        </div>
+    </header>
+
+    <!-- BARRA EXTRA -->
+    <div class="barra-extra">
+        <div class="container">
+            <a href="index.html">Início</a>
+            <a href="sobre.html">Sobre</a>
+            <a href="filmes-online-gratis.html">Filmes Online Grátis</a>
+            <a href="#" onclick="alert('Página em desenvolvimento')">PDI</a>
+            <a href="#" onclick="alert('Página em desenvolvimento')">Acesso a sistemas</a>
+            <a href="#" onclick="alert('Página em desenvolvimento')">Meu IFMG</a>
+            <a href="#" onclick="alert('Página em desenvolvimento')">SEI</a>
+            <a href="#" onclick="alert('Página em desenvolvimento')">SUAP</a>
+            <a href="#" onclick="alert('Página em desenvolvimento')">Área de imprensa</a>
+            <a href="#" onclick="alert('Página em desenvolvimento')">Ouvidoria</a>
+            <a href="#" onclick="alert('Página em desenvolvimento')">Contato</a>
+            <a href="#" onclick="alert('Página em desenvolvimento')">Webmail</a>
+            <a href="#" onclick="alert('Página em desenvolvimento')">Sala Virtual (EAD)</a>
+        </div>
+    </div>
+    
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="container">
+        <h2><i class="fas fa-play-circle"></i> Filmes Online Grátis</h2>
+        
+        <div class="intro-text">
+            <p>Nesta página, apresentamos uma seleção de plataformas de streaming gratuitas e oficiais que disponibilizam filmes, documentários e curtas-metragens brasileiros. Estas plataformas são excelentes recursos para educadores que buscam cumprir a Lei 13.006/2014, que estabelece a exibição de filmes nacionais nas escolas, e também para qualquer pessoa interessada em conhecer e apreciar a produção audiovisual brasileira.</p>
+            <p>Todas as plataformas listadas abaixo são gratuitas e de acesso legal, oferecendo conteúdo diversificado e de qualidade. Algumas exigem cadastro simples, enquanto outras permitem acesso direto. Explore estas opções e descubra a riqueza do cinema nacional!</p>
+        </div>
+        
+        <!-- LGBTFLIX -->
+        <div class="plataforma">
+            <h3>LGBTFlix</h3>
+            <div class="plataforma-info">
+                <div class="plataforma-info-item">
+                    <strong>Tipo de acesso:</strong> Gratuito sem cadastro
+                </div>
+                <div class="plataforma-info-item">
+                    <strong>Organização:</strong> ONG Vote LGBT+
+                </div>
+                <div class="plataforma-info-item">
+                    <strong>Foco:</strong> Produções com temáticas LGBTQIA+
+                </div>
+            </div>
+            <div class="plataforma-descricao">
+                <p>O LGBTFlix é uma plataforma de streaming gratuita dedicada à visibilidade e representatividade LGBTQIA+ no audiovisual. Criada pela ONG Vote LGBT+, oferece um catálogo diversificado de filmes, séries, documentários e curtas-metragens com temáticas LGBTQIA+, todos disponíveis gratuitamente e sem necessidade de cadastro. A plataforma tem como objetivo ampliar o acesso a produções que abordam questões de identidade de gênero, orientação sexual e diversidade, contribuindo para a educação e conscientização sobre temas LGBTQIA+.</p>
+            </div>
+            <a href="https://flix.votelgbt.org/" target="_blank" class="plataforma-link"><i class="fas fa-external-link-alt"></i> Acessar LGBTFlix</a>
+        </div>
+        
+        <!-- LIBREFLIX -->
+        <div class="plataforma">
+            <h3>Libreflix</h3>
+            <div class="plataforma-info">
+                <div class="plataforma-info-item">
+                    <strong>Tipo de acesso:</strong> Gratuito sem cadastro
+                </div>
+                <div class="plataforma-info-item">
+                    <strong>Organização:</strong> Projeto colaborativo independente
+                </div>
+                <div class="plataforma-info-item">
+                    <strong>Foco:</strong> Produções independentes e licenças livres
+                </div>
+            </div>
+            <div class="plataforma-descricao">
+                <p>O Libreflix é uma plataforma colaborativa de streaming aberto e gratuito, focada na difusão de produções audiovisuais independentes. Com um modelo baseado em licenças livres e conteúdo de domínio público, a plataforma permite acesso sem cadastro a filmes, documentários, séries e curtas-metragens. O projeto defende a cultura livre e o compartilhamento de conhecimento, oferecendo um espaço para produções que muitas vezes não encontram lugar em circuitos comerciais.</p>
+            </div>
+            <a href="https://libreflix.org/" target="_blank" class="plataforma-link"><i class="fas fa-external-link-alt"></i> Acessar Libreflix</a>
+        </div>
+        
+        <!-- PORTA CURTAS -->
+        <div class="plataforma">
+            <h3>Porta Curtas</h3>
+            <div class="plataforma-info">
+                <div class="plataforma-info-item">
+                    <strong>Tipo de acesso:</strong> Gratuito sem cadastro
+                </div>
+                <div class="plataforma-info-item">
+                    <strong>Organização:</strong> IBCA com patrocínio da Petrobras
+                </div>
+                <div class="plataforma-info-item">
+                    <strong>Foco:</strong> Curtas-metragens brasileiros
+                </div>
+            </div>
+            <div class="plataforma-descricao">
+                <p>O Porta Curtas é uma plataforma pioneira dedicada exclusivamente à exibição de curtas-metragens brasileiros, mantida pelo Instituto Brasileiro de Conteúdos Audiovisuais (IBCA) com patrocínio da Petrobras. Desde 2002, oferece acesso gratuito a um vasto acervo de curtas nacionais, incluindo ficções, documentários, animações e experimentais. A plataforma conta com mais de 1.000 filmes catalogados, organizados por categorias, gêneros, diretores e temas, facilitando a pesquisa e descoberta de obras.</p>
+            </div>
+            <a href="https://portacurtas.org.br/" target="_blank" class="plataforma-link"><i class="fas fa-external-link-alt"></i> Acessar Porta Curtas</a>
+        </div>
+        
+        <!-- CURTA NA ESCOLA -->
+        <div class="plataforma">
+            <h3>Curta Na Escola</h3>
+            <div class="plataforma-info">
+                <div class="plataforma-info-item">
+                    <strong>Tipo de acesso:</strong> Gratuito mediante cadastro
+                </div>
+                <div class="plataforma-info-item">
+                    <strong>Organização:</strong> Instituto Brasileiro de Conteúdos Audiovisuais
+                </div>
+                <div class="plataforma-info-item">
+                    <strong>Foco:</strong> Curtas-metragens para uso educacional
+                </div>
+            </div>
+            <div class="plataforma-descricao">
+                <p>O Curta na Escola é uma plataforma educacional que utiliza curtas-metragens como ferramentas pedagógicas, oferecendo gratuitamente aos educadores um acervo de filmes brasileiros acompanhados de materiais didáticos. Desenvolvida pelo Instituto Brasileiro de Conteúdos Audiovisuais (IBCA), a plataforma disponibiliza mais de 200 curtas-metragens selecionados por seu potencial educativo, todos com planos de aula, atividades e orientações pedagógicas alinhadas à Base Nacional Comum Curricular (BNCC).</p>
+            </div>
+            <a href="https://www.curtanaescola.org.br/" target="_blank" class="plataforma-link"><i class="fas fa-external-link-alt"></i> Acessar Curta Na Escola</a>
+        </div>
+        
+        <!-- CURTAENEM -->
+        <div class="plataforma">
+            <h3>CurtaEnem</h3>
+            <div class="plataforma-info">
+                <div class="plataforma-info-item">
+                    <strong>Tipo de acesso:</strong> Gratuito mediante cadastro
+                </div>
+                <div class="plataforma-info-item">
+                    <strong>Organização:</strong> Ministério da Cultura, Claro e CurtaEducação
+                </div>
+                <div class="plataforma-info-item">
+                    <strong>Foco:</strong> Filmes e séries para preparação ao ENEM
+                </div>
+            </div>
+            <div class="plataforma-descricao">
+                <p>O CurtaEnem é uma plataforma educacional que utiliza filmes e séries como ferramentas pedagógicas para auxiliar estudantes na preparação para o Exame Nacional do Ensino Médio (ENEM). Iniciativa do Ministério da Cultura em parceria com a Claro e o CurtaEducação, oferece conteúdo audiovisual gratuito alinhado com os temas e competências exigidos no exame. Com mais de 400 filmes e episódios de séries, a plataforma apresenta curadoria direcionada para o ENEM, materiais pedagógicos complementares e formação gratuita para professores.</p>
+            </div>
+            <a href="https://www.curtaenem.org.br/" target="_blank" class="plataforma-link"><i class="fas fa-external-link-alt"></i> Acessar CurtaEnem</a>
+        </div>
+        
+        <!-- ITAÚ CULTURAL PLAY -->
+        <div class="plataforma">
+            <h3>Itaú Cultural Play</h3>
+            <div class="plataforma-info">
+                <div class="plataforma-info-item">
+                    <strong>Tipo de acesso:</strong> Gratuito mediante cadastro
+                </div>
+                <div class="plataforma-info-item">
+                    <strong>Organização:</strong> Itaú Cultural
+                </div>
+                <div class="plataforma-info-item">
+                    <strong>Foco:</strong> Cinema brasileiro e produções culturais
+                </div>
+            </div>
+            <div class="plataforma-descricao">
+                <p>O Itaú Cultural Play é uma plataforma de streaming gratuita mantida pelo Itaú Cultural, que disponibiliza um acervo diversificado de produções audiovisuais brasileiras, incluindo clássicos, obras premiadas e produções independentes. A plataforma se destaca por oferecer conteúdo sem publicidade e com curadoria especializada, valorizando a diversidade cultural brasileira. Seu acervo inclui coleções temáticas como Cinema Negro, Filmoteca Indígena e Coleção Jorge Furtado, além de séries originais produzidas pelo próprio Itaú Cultural.</p>
+            </div>
+            <a href="https://www.itauculturalplay.com.br/" target="_blank" class="plataforma-link"><i class="fas fa-external-link-alt"></i> Acessar Itaú Cultural Play</a>
+        </div>
+        
+        <!-- ECOFALANTE PLAY -->
+        <div class="plataforma">
+            <h3>Ecofalante Play</h3>
+            <div class="plataforma-info">
+                <div class="plataforma-info-item">
+                    <strong>Tipo de acesso:</strong> Gratuito mediante cadastro
+                </div>
+                <div class="plataforma-info-item">
+                    <strong>Organização:</strong> Ecofalante
+                </div>
+                <div class="plataforma-info-item">
+                    <strong>Foco:</strong> Filmes com temáticas socioambientais
+                </div>
+            </div>
+            <div class="plataforma-descricao">
+                <p>O Ecofalante Play é uma plataforma gratuita que utiliza o cinema de impacto para enriquecer o processo educacional e despertar a consciência cidadã em todos os níveis de ensino. Voltada principalmente para educadores e administradores de instituições educacionais, oferece um acervo de mais de 160 filmes nacionais e internacionais com temáticas socioambientais para uso em sala de aula. Os filmes abordam temas como emergência climática, consumo, cidades, energia, conservação, economia, trabalho e saúde.</p>
+            </div>
+            <a href="https://play.ecofalante.org.br/" target="_blank" class="plataforma-link"><i class="fas fa-external-link-alt"></i> Acessar Ecofalante Play</a>
+        </div>
+        
+        <!-- EMBAÚBA PLAY -->
+        <div class="plataforma">
+            <h3>Embaúba Play</h3>
+            <div class="plataforma-info">
+                <div class="plataforma-info-item">
+                    <strong>Tipo de acesso:</strong> Misto (gratuito e locação)
+                </div>
+                <div class="plataforma-info-item">
+                    <strong>Organização:</strong> Embaúba Filmes
+                </div>
+                <div class="plataforma-info-item">
+                    <strong>Foco:</strong> Cinema brasileiro independente
+                </div>
+            </div>
+            <div class="plataforma-descricao">
+                <p>O Embaúba Play é uma plataforma de streaming dedicada ao cinema brasileiro, oferecendo uma combinação de filmes disponíveis gratuitamente e filmes em locação. Apresentando-se como "O lugar do cinema brasileiro", tem como objetivo difundir produções nacionais, com foco em obras independentes e autorais. A plataforma disponibiliza filmes brasileiros independentes, longas e curtas-metragens nacionais, organizados em coleções temáticas e focos em diretores específicos como Cao Guimarães, Renata Pinheiro e Yasmin Thayná.</p>
+            </div>
+            <a href="https://embaubaplay.com/" target="_blank" class="plataforma-link"><i class="fas fa-external-link-alt"></i> Acessar Embaúba Play</a>
+        </div>
+        
+        <!-- MARIA FARINHA FILMES -->
+        <div class="plataforma">
+            <h3>Maria Farinha Filmes - Exibições Públicas</h3>
+            <div class="plataforma-info">
+                <div class="plataforma-info-item">
+                    <strong>Tipo de acesso:</strong> Gratuito mediante solicitação
+                </div>
+                <div class="plataforma-info-item">
+                    <strong>Organização:</strong> Maria Farinha Filmes
+                </div>
+                <div class="plataforma-info-item">
+                    <strong>Foco:</strong> Documentários de impacto social
+                </div>
+            </div>
+            <div class="plataforma-descricao">
+                <p>A Maria Farinha Filmes disponibiliza um catálogo especial de produções para exibições públicas gratuitas, com foco em histórias que promovem transformação social. A produtora acredita no poder das narrativas como ferramentas para conscientização, engajamento e inspiração de mudanças significativas, disponibilizando seus documentários para uso em comunidades locais, organizações sociais, salas de aula e órgãos públicos. O catálogo inclui documentários sobre temas sociais e ambientais, alinhados aos Objetivos de Desenvolvimento Sustentável da Agenda 2030.</p>
+            </div>
+            <a href="https://mff.com.br/exibicoes-publicas/" target="_blank" class="plataforma-link"><i class="fas fa-external-link-alt"></i> Acessar Maria Farinha Filmes</a>
+        </div>
+        
+        <!-- FESTIVAL DO MINUTO -->
+        <div class="plataforma">
+            <h3>Festival do Minuto</h3>
+            <div class="plataforma-info">
+                <div class="plataforma-info-item">
+                    <strong>Tipo de acesso:</strong> Gratuito sem cadastro
+                </div>
+                <div class="plataforma-info-item">
+                    <strong>Organização:</strong> Ministério da Cultura e Governo do Estado de SP
+                </div>
+                <div class="plataforma-info-item">
+                    <strong>Foco:</strong> Filmes de até um minuto de duração
+                </div>
+            </div>
+            <div class="plataforma-descricao">
+                <p>O Festival do Minuto é uma plataforma que promove e exibe filmes de curta duração, com foco em produções de até um minuto. Iniciativa do Ministério da Cultura e do Governo do Estado de São Paulo, através da Secretaria de Cultura, Economia e Indústria Criativa, oferece um espaço para cineastas compartilharem suas criações curtas e concisas, além de promover competições temáticas. A plataforma apresenta filmes organizados em categorias como "Vídeos em Destaque" e "Vídeos Recentes", com competições temáticas como "Se minha cidade fosse um filme".</p>
+            </div>
+            <a href="https://www.festivaldominuto.com.br/" target="_blank" class="plataforma-link"><i class="fas fa-external-link-alt"></i> Acessar Festival do Minuto</a>
+        </div>
+        
+        <!-- CINE HUMBERTO MAURO MAIS -->
+        <div class="plataforma">
+            <h3>Cine Humberto Mauro Mais</h3>
+            <div class="plataforma-info">
+                <div class="plataforma-info-item">
+                    <strong>Tipo de acesso:</strong> Gratuito sem cadastro
+                </div>
+                <div class="plataforma-info-item">
+                    <strong>Organização:</strong> Fundação Clóvis Salgado
+                </div>
+                <div class="plataforma-info-item">
+                    <strong>Foco:</strong> Cinema clássico nacional e mundial
+                </div>
+            </div>
+            <div class="plataforma-descricao">
+                <p>O Cine Humberto Mauro Mais (cHM+) é a plataforma digital do Cine Humberto Mauro, principal sala de cinema público do estado de Minas Gerais, mantida pela Fundação Clóvis Salgado. Criada em 2020, a plataforma virtual amplia o acesso à programação de um dos cinemas mais respeitados do país, oferecendo exibições online gratuitas de filmes clássicos, curtas-metragens premiados e produções contemporâneas. Seu conteúdo inclui filmes clássicos do cinema nacional e mundial, curtas-metragens premiados no Prêmio Humberto Mauro, mostras temáticas e curadorias especiais.</p>
+            </div>
+            <a href="https://www.cinehumbertomauromais.com/" target="_blank" class="plataforma-link"><i class="fas fa-external-link-alt"></i> Acessar Cine Humberto Mauro Mais</a>
+        </div>
+        
+        <!-- SPCINE PLAY -->
+        <div class="plataforma">
+            <h3>Spcine Play</h3>
+            <div class="plataforma-info">
+                <div class="plataforma-info-item">
+                    <strong>Tipo de acesso:</strong> Gratuito mediante cadastro
+                </div>
+                <div class="plataforma-info-item">
+                    <strong>Organização:</strong> Empresa de Cinema e Audiovisual de São Paulo
+                </div>
+                <div class="plataforma-info-item">
+                    <strong>Foco:</strong> Cinema brasileiro e produções nacionais
+                </div>
+            </div>
+            <div class="plataforma-descricao">
+                <p>A Spcine Play é a primeira plataforma de streaming público do Brasil, uma iniciativa da Prefeitura de São Paulo através da Empresa de Cinema e Audiovisual de São Paulo (Spcine). Totalmente gratuita e acessível para todos os brasileiros, a plataforma tem como objetivo democratizar o acesso ao cinema nacional, oferecendo um acervo diversificado de produções brasileiras, desde lançamentos até obras premiadas e conteúdos exclusivos. Seu conteúdo abrange cinema brasileiro contemporâneo, obras premiadas nacionais, conteúdos exclusivos e títulos de mostras e festivais.</p>
+            </div>
+            <a href="https://www.spcineplay.com.br/" target="_blank" class="plataforma-link"><i class="fas fa-external-link-alt"></i> Acessar Spcine Play</a>
+        </div>
+        
+        <!-- SESCTV -->
+        <div class="plataforma">
+            <h3>SescTV</h3>
+            <div class="plataforma-info">
+                <div class="plataforma-info-item">
+                    <strong>Tipo de acesso:</strong> Gratuito sem cadastro
+                </div>
+                <div class="plataforma-info-item">
+                    <strong>Organização:</strong> Sesc São Paulo
+                </div>
+                <div class="plataforma-info-item">
+                    <strong>Foco:</strong> Conteúdo cultural e audiovisual
+                </div>
+            </div>
+            <div class="plataforma-descricao">
+                <p>O SescTV é o canal cultural do Sesc São Paulo que amplia a ação da instituição para todo o país. Disponível 24 horas por dia, oferece programação gratuita com foco em literatura, teatro, cinema, artes visuais, dança e música brasileira. A plataforma funciona como um canal de TV e também disponibiliza conteúdo via streaming na internet, com mais de 500 episódios de diversos programas para acesso sob demanda. Seu conteúdo inclui filmes de ficção e documentários, produções originais, shows e apresentações musicais.</p>
+            </div>
+            <a href="https://sesctv.org.br/" target="_blank" class="plataforma-link"><i class="fas fa-external-link-alt"></i> Acessar SescTV</a>
+        </div>
+    </main>
+    
+    <!-- RODAPÉ -->
+    <footer>
+        <div class="container">
+           <p>
+            Acervo doado pelo Ministério da Cultura ao Projeto de Extensão
+            <br>                
+           <i  class="fas fa-train"></i> UM TREM DE CINEMA IFMG SABARÁ 2019-2021
+           </p>
+        </div>
+    </footer>
+
+    <!-- FALE CONOSCO -->
+    <div class="feedback-button">
+        <button id="btnFaleConosco">
+            <i class="fas fa-comments"></i> Fale Conosco
+        </button>
+    </div>
+
+    <div id="modalFaleConosco" class="feedback-modal">
+        <div class="feedback-modal-content">
+            <span class="close">&times;</span>
+            <h2>Fale Conosco</h2>
+            <div class="form-container">
+                <iframe id="googleForm" 
+                        src="https://docs.google.com/forms/d/e/1FAIpQLSfaMr7-ermLAAO8S8zDk0WMcPrVX34mF2xhTrHiC1Z53GbIFQ/viewform?usp=sharing&ouid=101786859238464224020"
+                        frameborder="0" 
+                        marginheight="0" 
+                        marginwidth="0">
+                    Carregando…
+                </iframe>
+            </div>
+        </div>
+    </div>
+    
+    <!-- SCRIPTS -->
+    <script>
+        // Script para o modal de Fale Conosco
+        document.addEventListener('DOMContentLoaded', function() {
+            var modal = document.getElementById('modalFaleConosco');
+            var btn = document.getElementById('btnFaleConosco');
+            var span = document.getElementsByClassName('close')[0];
+            
+            btn.onclick = function() {
+                modal.style.display = 'block';
+            }
+            
+            span.onclick = function() {
+                modal.style.display = 'none';
+            }
+            
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = 'none';
+                }
+            }
+        });
+    </script>
+</body>
+</html>

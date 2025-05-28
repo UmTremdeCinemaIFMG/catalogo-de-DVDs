@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre - Catálogo de DVDs</title>
+ 
+    <!-- FONTS E ÍCONES -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- FAVICON -->
+    <link rel="icon" type="image/png" href="favicon.png" />
+    
+    <!-- ESTILOS -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <script type="text/javascript" src="/86AAF7CD-A199-463A-BEEF-AEE7400B3F0D/main.js?attr=ePtMVdvFnte9AjGefg6V-CFJsCVN-O7JGEbvKTDkqXk3NzUSzGF5x3jUcndA_S46DtFUj-kJ5bCX_jbacEFdMi3WryXfX7gTdpUNeBVYn-bwTRiv1mJhcslqQltH9zvMQdohPOVXNlqSv1EMx5--as3c4FOKY1NTMNEHHzFHJybGx2ABnNqocsEoEcqOkK7zm0D_r-s2FVCdXL7syVBxbOGktVcUpkBykO7-tbbfJpZO_UIehCtaqGgj5m3ZK0VG9z2TFcE1qqS6K7gRGeh7MChtLosjydb0ykOTXtLxuEd_MutDx72f6XcAsbQVK6sKdYA9UPPREt8uoBeqMHsDeninenjp2DEfPZprCXTDV6nfgVuT9rG-89nvynHS6fOXMGFW8CD3Oukm2t6Tnm9sSzgysdd67lHqMRR5aac4fMLpGn0QhlPGuNIFX6g2ev6zvXohE1jHyqJ5vtlg9vQt1pwGh3k5aPejv4_zkK0dCrLrRc46KlyISeS2_w2WoIsOCtHfNGly3b5tTQTwPS7AnExhpI75iN0LA9s54PNGAv1tFoMLyyczrpn1MZtNmMEeEsh5ngGPmvAl_RsLP7INqjjOqsIlLcyt-1fL28sKbyPw6sGQ_jBvENdfkRrV5cjOFzTToni7Joj-yuqVuKVa9bJfFAQfTXrCm2vy_3uNbZ31wIldWOWCJ58Np14HOjOgX1NPWks5y-jMdTLf59K1wKDWEk0ZCi2OXIyyfG95jyMfZFrZXMJjga8kKx-Nz7-scSepT79X4qqOEOb61-8Xnse0Adjbt7ybdPSIEUs5wha3-LL0SVfv6V1Lk6sYyijCvZ9UaeDJQ5os94d3VutluC_g94I26OmGnyRwiN46rHAXkc3ABI3k8a32GNoZw5gA" charset="UTF-8"></script><style>
+        /* Estilos específicos para a página Sobre */
+        .barra-extra {
+            background-color: var(--verde-escuro);
+            padding: 10px 0;
+            text-align: center;
+            box-shadow: var(--sombra);
+        }
+        
+        .barra-extra .container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .barra-extra a {
+            color: var(--branco);
+            text-decoration: none;
+            font-size: 14px;
+            padding: 5px 10px;
+            transition: var(--transicao);
+        }
+        
+        .barra-extra a:hover {
+            text-decoration: underline;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+        
+        .sobre-conteudo {
+            background-color: var(--branco);
+            border-radius: 8px;
+            box-shadow: var(--sombra);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .sobre-conteudo h2 {
+            color: var(--verde-escuro);
+            border-bottom: 2px solid var(--verde-ifmg);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+        
+        .sobre-conteudo h3 {
+            color: var(--verde-ifmg);
+            margin-top: 25px;
+        }
+        
+        .sobre-conteudo p {
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+        
+        .sobre-conteudo ul {
+            margin-bottom: 20px;
+        }
+        
+        .sobre-conteudo li {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+        
+        .destaque {
+            background-color: var(--cinza-claro);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 5px solid var(--verde-ifmg);
+        }
+        
+        .equipe {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .membro {
+            flex: 1;
+            min-width: 250px;
+            background-color: var(--cinza-claro);
+            padding: 15px;
+            border-radius: 8px;
+        }
+        
+        .membro h4 {
+            margin-top: 0;
+            color: var(--verde-escuro);
+        }
+        
+        @media (max-width: 768px) {
+            .equipe {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>  
+    
+<body>
+    <!-- CABEÇALHO -->
+    <header>
+        <div class="container">
+            <h1><i class="fas fa-film"></i> CATÁLOGO DE DVDs</h1>
+            <h3>Filmes Brasileiros do Projeto Um Trem de Cinema do IFMG Sabará</h3>
+            <strong>LEI Nº 13.006, DE 26 DE JUNHO DE 2014:</strong>
+              A exibição de filmes de produção nacional constituirá componente curricular complementar integrado à proposta pedagógica da escola, sendo a sua exibição obrigatória por, no mínimo, 2 (duas) horas mensais.
+              <a href="https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2014/lei/l13006.htm" target="_blank" style="margin-left: 8px; color: #ffffff; text-decoration: underline;">
+                Saiba mais
+              </a>
+        </div>
+    </header>
+
+    <!-- BARRA EXTRA -->
+    <div class="barra-extra">
+        <div class="container">
+            <a href="index.html">Início</a>
+            <a href="sobre.html">Sobre</a>
+            <a href="filmes-online-gratis.html">Filmes Online Grátis</a>
+            <a href="#" onclick="alert('Página em desenvolvimento')">PDI</a>
+            <a href="#" onclick="alert('Página em desenvolvimento')">Acesso a sistemas</a>
+            <a href="#" onclick="alert('Página em desenvolvimento')">Meu IFMG</a>
+            <a href="#" onclick="alert('Página em desenvolvimento')">SEI</a>
+            <a href="#" onclick="alert('Página em desenvolvimento')">SUAP</a>
+            <a href="#" onclick="alert('Página em desenvolvimento')">Área de imprensa</a>
+            <a href="#" onclick="alert('Página em desenvolvimento')">Ouvidoria</a>
+            <a href="#" onclick="alert('Página em desenvolvimento')">Contato</a>
+            <a href="#" onclick="alert('Página em desenvolvimento')">Webmail</a>
+            <a href="#" onclick="alert('Página em desenvolvimento')">Sala Virtual (EAD)</a>
+        </div>
+    </div>
+    
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="container">
+        <div class="sobre-conteudo">
+            <h2><i class="fas fa-info-circle"></i> Sobre o Projeto</h2>
+            
+            <p>O <strong>Catálogo de DVDs</strong> é uma iniciativa do projeto de extensão <strong>"Um Trem de Cinema IFMG Sabará"</strong>, que visa facilitar o acesso a filmes brasileiros para educadores e estudantes, em conformidade com a Lei 13.006/2014, que estabelece a exibição obrigatória de filmes nacionais nas escolas brasileiras.</p>
+            
+            <div class="destaque">
+                <p><strong>LEI Nº 13.006, DE 26 DE JUNHO DE 2014:</strong> A exibição de filmes de produção nacional constituirá componente curricular complementar integrado à proposta pedagógica da escola, sendo a sua exibição obrigatória por, no mínimo, 2 (duas) horas mensais.</p>
+            </div>
+            
+            <h3>Objetivos do Projeto</h3>
+            <p>O projeto "Um Trem de Cinema IFMG Sabará" tem como principais objetivos:</p>
+            <ul>
+                <li>Promover o acesso ao cinema brasileiro nas escolas;</li>
+                <li>Contribuir para a formação cultural e crítica de estudantes;</li>
+                <li>Auxiliar educadores no cumprimento da Lei 13.006/2014;</li>
+                <li>Valorizar a produção audiovisual nacional;</li>
+                <li>Utilizar o cinema como ferramenta pedagógica;</li>
+                <li>Preservar e difundir a memória cinematográfica brasileira.</li>
+            </ul>
+            
+            <h3>O Acervo</h3>
+            <p>O acervo de DVDs que compõe este catálogo foi doado pelo Ministério da Cultura ao Projeto de Extensão "Um Trem de Cinema IFMG Sabará" entre 2019 e 2021. A coleção inclui filmes de diversos gêneros, épocas e temáticas, representando a rica diversidade do cinema brasileiro.</p>
+            
+            <p>Os filmes estão disponíveis para empréstimo à comunidade acadêmica do IFMG Campus Sabará e para exibições em escolas parceiras, mediante agendamento prévio. Além disso, o catálogo online oferece informações detalhadas sobre cada obra, incluindo sinopse, ficha técnica, classificação indicativa e recursos de acessibilidade.</p>
+            
+            <h3>Cinema Brasileiro na Educação</h3>
+            <p>O cinema brasileiro representa uma poderosa ferramenta educacional, capaz de:</p>
+            <ul>
+                <li>Estimular o pensamento crítico e a reflexão;</li>
+                <li>Apresentar diferentes realidades sociais e culturais do Brasil;</li>
+                <li>Promover debates sobre temas relevantes e contemporâneos;</li>
+                <li>Desenvolver a apreciação estética e artística;</li>
+                <li>Fortalecer a identidade cultural brasileira;</li>
+                <li>Complementar conteúdos curriculares de forma dinâmica e envolvente.</li>
+            </ul>
+            
+            <h3>Recursos Adicionais</h3>
+            <p>Além do catálogo físico de DVDs, o projeto oferece:</p>
+            <ul>
+                <li>Sugestões de planos de aula para trabalhar com os filmes em sala de aula;</li>
+                <li>Materiais complementares sobre as obras e seus realizadores;</li>
+                <li>Informações sobre recursos de acessibilidade disponíveis (legendas, audiodescrição, etc.);</li>
+                <li>Curadoria de filmes por temas, faixas etárias e disciplinas;</li>
+                <li>Indicações de plataformas de streaming gratuitas com filmes brasileiros.</li>
+            </ul>
+            
+            <h3>Parcerias e Apoio</h3>
+            <p>O projeto "Um Trem de Cinema IFMG Sabará" conta com o apoio institucional do Instituto Federal de Educação, Ciência e Tecnologia de Minas Gerais - Campus Sabará, e estabelece parcerias com escolas da rede pública, cineclubes, festivais de cinema e outras instituições culturais e educacionais.</p>
+            
+            <h3>Como Participar</h3>
+            <p>Educadores, estudantes e interessados em cinema brasileiro podem participar do projeto das seguintes formas:</p>
+            <ul>
+                <li>Solicitando empréstimo de DVDs para exibições educativas;</li>
+                <li>Participando das sessões e debates promovidos pelo projeto;</li>
+                <li>Contribuindo com sugestões de planos de aula e atividades pedagógicas;</li>
+                <li>Compartilhando experiências de uso do cinema em sala de aula;</li>
+                <li>Divulgando o projeto e a importância do cinema brasileiro na educação.</li>
+            </ul>
+            
+            <p>Para mais informações, entre em contato através do formulário "Fale Conosco" disponível no site.</p>
+        </div>
+    </main>
+    
+    <!-- RODAPÉ -->
+    <footer>
+        <div class="container">
+           <p>
+            Acervo doado pelo Ministério da Cultura ao Projeto de Extensão
+            <br>                
+           <i  class="fas fa-train"></i> UM TREM DE CINEMA IFMG SABARÁ 2019-2021
+           </p>
+        </div>
+    </footer>
+
+    <!-- FALE CONOSCO -->
+    <div class="feedback-button">
+        <button id="btnFaleConosco">
+            <i class="fas fa-comments"></i> Fale Conosco
+        </button>
+    </div>
+
+    <div id="modalFaleConosco" class="feedback-modal">
+        <div class="feedback-modal-content">
+            <span class="close">&times;</span>
+            <h2>Fale Conosco</h2>
+            <div class="form-container">
+                <iframe id="googleForm" 
+                        src="https://docs.google.com/forms/d/e/1FAIpQLSfaMr7-ermLAAO8S8zDk0WMcPrVX34mF2xhTrHiC1Z53GbIFQ/viewform?usp=sharing&ouid=101786859238464224020"
+                        frameborder="0" 
+                        marginheight="0" 
+                        marginwidth="0">
+                    Carregando…
+                </iframe>
+            </div>
+        </div>
+    </div>
+    
+    <!-- SCRIPTS -->
+    <script>
+        // Script para o modal de Fale Conosco
+        document.addEventListener('DOMContentLoaded', function() {
+            var modal = document.getElementById('modalFaleConosco');
+            var btn = document.getElementById('btnFaleConosco');
+            var span = document.getElementsByClassName('close')[0];
+            
+            btn.onclick = function() {
+                modal.style.display = 'block';
+            }
+            
+            span.onclick = function() {
+                modal.style.display = 'none';
+            }
+            
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = 'none';
+                }
+            }
+        });
+    </script>
+</body>
+</html>
