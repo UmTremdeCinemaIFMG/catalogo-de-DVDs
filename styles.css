@@ -1,9 +1,15 @@
-                /* ==========================================
+/* ==========================================
                    1. VARIÁVEIS GLOBAIS
                    ========================================== */
                 :root {
-                    --verde-ifmg: #009a44;
-                    --verde-escuro: #007236;
+                    /* Cores IFMG Sabará (Aproximadas) */
+                    --verde-ifmg-principal: #1b5e20; /* Verde mais escuro principal */
+                    --verde-ifmg-secundario: #2e7d32; /* Verde um pouco mais claro */
+                    --verde-ifmg-barra-superior: #1a4b1d; /* Verde bem escuro para barra superior */
+                    --verde-ifmg-hover: #388e3c; /* Verde para hover */
+                    --verde-original: #009a44; /* Verde original mantido para referência */
+                    --verde-escuro-original: #007236;
+                    
                     --cinza-escuro: #333333;
                     --cinza-medio: #666666;
                     --cinza-claro: #f2f2f2;
@@ -31,18 +37,18 @@
                     line-height: 1.6;
                 }
                 
-                /* CABEÇALHO */
+                /* CABEÇALHO - Estilo IFMG Sabará */
                 header {
-                    background-image: radial-gradient(ellipse at center, #19882c 1%, #025310 100%);
-                    /*background-color: var(--verde-ifmg);*/
+                    background-color: var(--verde-ifmg-principal); /* Cor principal do cabeçalho */
                     color: var(--branco);
-                    padding: 25px 0;
+                    padding: 20px 0; /* Ajuste no padding */
                     text-align: center;
                     margin-bottom: 30px;
                     box-shadow: var(--sombra);
                     position: relative;
                     overflow: hidden;
                     transition: var(--transicao);
+                    border-top: 5px solid var(--verde-ifmg-barra-superior); /* Barra superior */
                 }
                 
                 header::after {
@@ -51,15 +57,15 @@
                     bottom: 0;
                     left: 0;
                     width: 100%;
-                    height: 5px;
-                    background: linear-gradient(90deg, var(--verde-ifmg), var(--verde-escuro));
+                    height: 8px; /* Barra inferior mais espessa */
+                    background: var(--verde-ifmg-secundario); /* Cor da barra inferior */
                 }
                 
                 h1 {
                     margin: 0;
-                    font-size: 2.5em;
+                    font-size: 2.2em; /* Tamanho ajustado */
                     font-weight: 700;
-                    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+                    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3); /* Sombra ajustada */
                     transition: var(--transicao);
                 }
                 
@@ -104,9 +110,9 @@
                 }
                 
                 .search-box input:focus {
-                    border-color: var(--verde-ifmg);
+                    border-color: var(--verde-ifmg-principal);
                     outline: none;
-                    box-shadow: 0 0 0 3px rgba(0, 154, 68, 0.2);
+                    box-shadow: 0 0 0 3px rgba(27, 94, 32, 0.2);
                 }
                 
                 .search-box i {
@@ -160,9 +166,9 @@
                 }
                 
                 .sort-box select:focus {
-                    border-color: var(--verde-ifmg);
+                    border-color: var(--verde-ifmg-principal);
                     outline: none;
-                    box-shadow: 0 0 0 3px rgba(0, 154, 68, 0.2);
+                    box-shadow: 0 0 0 3px rgba(27, 94, 32, 0.2);
                 }
                 
                 /* LINHA DE FILTROS */
@@ -212,14 +218,14 @@
                 }
                 
                 .filter-box select:focus {
-                    border-color: var(--verde-ifmg);
+                    border-color: var(--verde-ifmg-principal);
                     outline: none;
-                    box-shadow: 0 0 0 3px rgba(0, 154, 68, 0.2);
+                    box-shadow: 0 0 0 3px rgba(27, 94, 32, 0.2);
                 }
                         
                 /* CONTADOR DE RESULTADOS */
                 .results-counter {
-                    background-color: var(--verde-ifmg);
+                    background-color: var(--verde-ifmg-secundario); /* Cor ajustada */
                     color: var(--branco);
                     padding: 8px 15px;
                     border-radius: 20px;
@@ -234,7 +240,7 @@
                 }
                 
                 .results-counter.com-resultados {
-                    background-color: var(--verde-ifmg);
+                    background-color: var(--verde-ifmg-secundario);
                 }
                 
                 #filmsCount {
@@ -291,15 +297,15 @@
                 }
                 
                 .genre-tag:hover {
-                    background-color: var(--verde-ifmg);
+                    background-color: var(--verde-ifmg-hover);
                     color: var(--branco);
-                    border-color: var(--verde-escuro);
+                    border-color: var(--verde-ifmg-secundario);
                 }
                 
                 .genre-tag.active {
-                    background-color: var(--verde-ifmg);
+                    background-color: var(--verde-ifmg-secundario);
                     color: var(--branco);
-                    border-color: var(--verde-escuro);
+                    border-color: var(--verde-ifmg-principal);
                     font-weight: bold;
                 }
                 
@@ -334,57 +340,25 @@
                 /* POSTER DO FILME */
                 .film-poster-container {
                     width: 100%;
-                    height: 350px;
+                    height: 350px; /* Altura mantida */
                     position: relative;
                     overflow: hidden;
-                    border-bottom: 3px solid var(--verde-ifmg);
+                    border-bottom: 3px solid var(--verde-ifmg-secundario); /* Cor ajustada */
+                    background-color: var(--cinza-claro); /* Fundo para caso a imagem não carregue */
                 }
                 
                 .film-poster {
-                    display: block;
-                  width: 100%;
-                    height: 100%;
-                  object-fit: cover;
-                   object-position: right center !important;
-                   transition: transform 0.5s ease;
-                }
-                
-                .film-poster-controls {
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                    pointer-events: none;
-                }
-                
-                .film-poster-control {
-                    background-color: rgba(0, 0, 0, 0.5);
-                    color: white;
-                    border: none;
-                    width: 40px;
-                    height: 40px;
-                    border-radius: 50%;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    cursor: pointer;
-                    pointer-events: auto;
-                    margin: 0 10px;
-                    transition: var(--transicao);
-                    z-index: 2;
-                }
-                
-                .film-poster-control:hover {
-                    background-color: rgba(0, 0, 0, 0.8);
-                    transform: scale(1.1);
+                    display: block; /* Garante que a imagem seja um bloco */
+                    width: 100%; /* Ocupa toda a largura */
+                    height: 100%; /* Ocupa toda a altura */
+                    object-fit: cover; /* Cobre o container, pode cortar */
+                    object-position: right center !important; /* Força alinhamento à direita */
+                    transition: transform 0.5s ease;
                 }
                 
                 .film-card:hover .film-poster {
                     opacity: 0.9;
+                    transform: scale(1.05); /* Efeito de zoom suave no hover */
                 }
                 
                 /* INFORMAÇÕES DO FILME */
@@ -395,7 +369,7 @@
                 .film-title {
                     font-weight: bold;
                     margin: 0 0 5px 0;
-                    color: var(--verde-escuro);
+                    color: var(--verde-ifmg-principal); /* Cor ajustada */
                     font-size: 16px;
                     line-height: 1.3;
                     display: -webkit-box;
@@ -405,67 +379,61 @@
                     min-height: 2.6em;
                 }
                 
-                .film-meta {
-                    display: flex;
-                    justify-content: space-between;
+                .film-director {
                     font-size: 14px;
                     color: var(--cinza-medio);
+                    margin-bottom: 10px;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
                 }
                 
-                .film-badge {
-                    position: absolute;
-                    top: 10px;
-                    right: 10px;
-                    background-color: transparent;
-                    padding: 0;
-                    z-index: 1;
+                .film-details {
+                    display: flex;
+                    justify-content: space-between;
+                    font-size: 13px;
+                    color: var(--cinza-medio);
+                    border-top: 1px solid var(--cinza-claro);
+                    padding-top: 10px;
+                }
+                
+                .film-details span {
+                    display: flex;
+                    align-items: center;
+                    gap: 5px;
                 }
                 
                 /* CLASSIFICAÇÕES */
                 .classification {
+                    position: absolute;
+                    top: 10px;
+                    right: 10px;
+                    z-index: 2;
                     display: inline-flex;
                     align-items: center;
                     justify-content: center;
-                    width: 24px;
-                    height: 24px;
+                    width: 28px; /* Tamanho ajustado */
+                    height: 28px; /* Tamanho ajustado */
                     border-radius: 4px;
                     font-weight: bold;
-                    font-size: 12px;
-                    margin-right: 10px;
-                    color: white;
-                    border: 1px solid rgba(0,0,0,0.1);
+                    color: var(--branco);
+                    font-size: 12px; /* Tamanho da fonte ajustado */
+                    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+                    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
                 }
                 
-                .classification.L { 
-                    background-color: var(--verde-ifmg);
-                }
+                .classification.L { background-color: #00a651; } /* Verde */
+                .classification.ten { background-color: #00aeef; } /* Azul Claro */
+                .classification.twelve { background-color: #fdb813; } /* Amarelo */
+                .classification.fourteen { background-color: #f68e1e; } /* Laranja */
+                .classification.sixteen { background-color: #ed1c24; } /* Vermelho */
+                .classification.eighteen { background-color: #1a1a1a; } /* Preto */
                 
-                .classification.ten { 
-                    background-color: var(--azul);
-                }
-                
-                .classification.twelve { 
-                    background-color: var(--amarelo);
-                    color: var(--cinza-escuro);
-                }
-                
-                .classification.fourteen { 
-                    background-color: var(--laranja);
-                }
-                
-                .classification.sixteen { 
-                    background-color: var(--vermelho);
-                }
-                
-                .classification.eighteen { 
-                    background-color: var(--preto);
-                }
-                        
                 /* ==========================================
-                   6. MODAL E DETALHES
+                   6. MODAL
                    ========================================== */
                 
-                /* MODAL BASE */
+                /* FUNDO DO MODAL */
                 .modal {
                     display: none;
                     position: fixed;
@@ -474,8 +442,8 @@
                     top: 0;
                     width: 100%;
                     height: 100%;
-                    background-color: rgba(0,0,0,0.8);
                     overflow: auto;
+                    background-color: rgba(0, 0, 0, 0.6);
                     opacity: 0;
                     transition: opacity 0.3s ease;
                 }
@@ -489,12 +457,12 @@
                     background-color: var(--branco);
                     margin: 5% auto;
                     padding: 30px;
-                    width: 70%;
-                    max-width: 800px;
                     border-radius: 8px;
-                    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+                    max-width: 800px;
+                    width: 90%;
                     position: relative;
-                    transform: translateY(-20px);
+                    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+                    transform: translateY(-50px);
                     transition: transform 0.3s ease;
                 }
                 
@@ -502,403 +470,455 @@
                     transform: translateY(0);
                 }
                 
+                /* BOTÃO FECHAR */
                 .close {
+                    color: var(--cinza-medio);
                     position: absolute;
                     top: 15px;
-                    right: 25px;
+                    right: 20px;
                     font-size: 28px;
                     font-weight: bold;
-                    color: var(--cinza-medio);
                     cursor: pointer;
-                    transition: color 0.2s;
+                    transition: var(--transicao);
                 }
                 
-                .close:hover {
-                    color: var(--verde-escuro);
+                .close:hover,
+                .close:focus {
+                    color: var(--preto);
+                    text-decoration: none;
                 }
                 
-                /* POSTER NO MODAL */
+                /* CABEÇALHO DO MODAL */
+                .modal-header {
+                    text-align: center;
+                    margin-bottom: 20px;
+                }
+                
                 .modal-poster-container {
-                    float: left;
-                    width: 200px;
-                    height: 280px;
+                    width: 200px; /* Largura fixa para o poster no modal */
+                    height: 280px; /* Altura proporcional */
+                    margin: 0 auto 15px auto;
                     position: relative;
                     overflow: hidden;
-                    margin-right: 20px;
-                    margin-bottom: 20px;
-                    border: 3px solid var(--verde-ifmg);
-                    border-radius: 4px;
+                    border-radius: 6px;
                     box-shadow: var(--sombra);
+                    background-color: var(--cinza-claro);
                 }
                 
                 .modal-poster {
-                    width: auto;
-                    height: 100%;
-                    position: absolute;
-                    top: 0;
-                    transition: transform 0.5s ease;
-                }
-                
-                .modal-poster-controls {
-                    position: absolute;
-                    top: 0;
-                    left: 0;
+                    display: block;
                     width: 100%;
                     height: 100%;
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                    pointer-events: none;
+                    object-fit: cover;
+                    object-position: right center !important; /* Força alinhamento à direita */
                 }
                 
-                .modal-poster-control {
-                    background-color: rgba(0, 0, 0, 0.5);
-                    color: white;
-                    border: none;
-                    width: 30px;
-                    height: 30px;
-                    border-radius: 50%;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    cursor: pointer;
-                    pointer-events: auto;
-                    margin: 0 5px;
-                    transition: var(--transicao);
-                    z-index: 2;
+                .modal-poster-container .classification {
+                    top: 8px;
+                    right: 8px;
+                    width: 24px;
+                    height: 24px;
+                    font-size: 11px;
                 }
                 
-                .modal-poster-control:hover {
-                    background-color: rgba(0, 0, 0, 0.8);
-                    transform: scale(1.1);
-                }
-                
-                /* DETALHES DO MODAL */
                 .modal-title {
-                    color: var(--verde-escuro);
-                    margin-top: 0;
-                    border-bottom: 2px solid var(--cinza-claro);
-                    padding-bottom: 10px;
+                    font-size: 1.8em;
+                    color: var(--verde-ifmg-principal);
                     margin-bottom: 15px;
-                    font-size: 24px;
+                    text-align: center;
                 }
                 
-                .modal-details {
+                /* SEÇÕES DO MODAL */
+                .modal-details,
+                .modal-themes,
+                .modal-synopsis,
+                .modal-additional,
+                .modal-other-materials,
+                .modal-teaching-plans {
                     margin-bottom: 20px;
+                    padding-bottom: 15px;
+                    border-bottom: 1px solid var(--cinza-claro);
                 }
                 
-                .modal-details p {
-                    margin: 8px 0;
+                .modal-details:last-child,
+                .modal-themes:last-child,
+                .modal-synopsis:last-child,
+                .modal-additional:last-child,
+                .modal-other-materials:last-child,
+                .modal-teaching-plans:last-child {
+                    margin-bottom: 0;
+                    padding-bottom: 0;
+                    border-bottom: none;
+                }
+                
+                .modal-details p,
+                .modal-additional p {
+                    margin: 5px 0;
                     font-size: 15px;
-                    line-height: 1.5;
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
                 }
                 
-                .modal-details strong {
-                    color: var(--cinza-escuro);
+                .modal-details p strong,
+                .modal-additional p strong {
+                    min-width: 120px; /* Alinha os textos */
+                    display: inline-block;
                 }
                 
-                /* SINOPSE E TEMAS */
-                .modal-synopsis {
-                    clear: both;
-                    line-height: 1.6;
+                .modal-details i,
+                .modal-additional i {
+                    color: var(--verde-ifmg-secundario);
+                    width: 16px; /* Largura fixa para ícones */
+                    text-align: center;
                 }
                 
-                .modal-synopsis h3 {
-                    color: var(--verde-escuro);
+                .modal-themes h3,
+                .modal-synopsis h3,
+                .modal-additional h3,
+                .modal-other-materials h3,
+                .modal-teaching-plans h3 {
+                    font-size: 1.2em;
+                    color: var(--verde-ifmg-principal);
                     margin-bottom: 10px;
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                }
+                
+                .modal-themes h3 i,
+                .modal-synopsis h3 i,
+                .modal-additional h3 i,
+                .modal-other-materials h3 i,
+                .modal-teaching-plans h3 i {
+                    color: var(--verde-ifmg-secundario);
+                }
+                
+                .theme-tag {
+                    display: inline-block;
+                    background-color: var(--cinza-claro);
+                    padding: 4px 10px;
+                    border-radius: 15px;
+                    font-size: 13px;
+                    margin-right: 5px;
+                    margin-bottom: 5px;
                 }
                 
                 .modal-synopsis p {
                     font-size: 15px;
-                    line-height: 1.6;
+                    line-height: 1.7;
                 }
                 
-                .modal-themes {
-                    margin: 15px 0;
-                    padding: 15px;
+                /* CARD PLANO DE AULA E OUTROS MATERIAIS */
+                .teaching-plan-card,
+                .other-material-card {
                     background-color: var(--cinza-claro);
+                    padding: 15px;
                     border-radius: 6px;
-                }
-                
-                .modal-themes h3 {
-                    color: var(--verde-escuro);
-                    margin-top: 0;
                     margin-bottom: 10px;
+                    border-left: 4px solid var(--verde-ifmg-secundario);
                 }
                 
-                .modal-themes .theme-tag {
+                .teaching-plan-card p,
+                .other-material-card p {
+                    margin: 5px 0;
+                    font-size: 14px;
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                }
+                
+                .teaching-plan-card i,
+                .other-material-card i {
+                    color: var(--verde-ifmg-secundario);
+                    width: 16px;
+                    text-align: center;
+                }
+                
+                /* BOTÃO VER MAIS (+N resultados) - Estilo Verde */
+                .btn-ver-mais {
                     display: inline-block;
-                    background-color: var(--verde-ifmg);
-                    color: white;
-                    padding: 4px 8px;
+                    margin-top: 10px;
+                    padding: 8px 15px;
+                    background-color: var(--verde-ifmg-secundario); /* Cor verde */
+                    color: var(--branco); /* Texto branco */
+                    border: none; /* Sem borda */
                     border-radius: 4px;
-                    margin-right: 5px;
-                    margin-bottom: 5px;
-                    font-size: 13px;
+                    font-size: 14px;
+                    font-weight: 500; /* Peso da fonte */
+                    cursor: pointer;
+                    text-decoration: none; /* Remove sublinhado */
+                    transition: var(--transicao);
                 }
                 
-                /* INFORMAÇÕES ADICIONAIS */
-                .modal-additional {
-                    margin-top: 20px;
-                    padding-top: 15px;
-                    border-top: 1px dashed var(--cinza-medio);
+                .btn-ver-mais:hover {
+                    background-color: var(--verde-ifmg-hover); /* Verde mais claro no hover */
+                    text-decoration: none;
+                    transform: translateY(-2px);
+                    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
                 }
                 
-                .modal-additional h3 {
-                    color: var(--verde-escuro);
-                    margin-top: 0;
-                    margin-bottom: 10px;
+                /* CONTAINER DOS BOTÕES DE AÇÃO (Plano de Aula) */
+                .modal-plan-actions {
+                    margin-top: 15px;
+                    display: flex;
+                    flex-wrap: wrap;
+                    align-items: center;
+                    gap: 15px; /* Aumenta o espaço */
                 }
                 
-                .modal-additional p {
-                    margin: 8px 0;
+                /* BOTÃO ENVIAR PLANO */
+                .btn-enviar-plano {
+                    display: inline-flex; /* Para alinhar ícone e texto */
+                    align-items: center;
+                    gap: 8px;
+                    padding: 10px 20px;
+                    background-color: var(--verde-ifmg-secundario);
+                    color: var(--branco);
+                    border: none;
+                    border-radius: 4px;
                     font-size: 15px;
-                    line-height: 1.5;
+                    font-weight: 500;
+                    cursor: pointer;
+                    text-decoration: none;
+                    transition: var(--transicao);
+                    flex-shrink: 0; /* Impede que o botão encolha */
                 }
-
-/* BOTÃO DE PÁGINA COMPLETA */
-.modal-actions {
-    margin-top: 20px;
-    padding-top: 15px;
-    border-top: 1px dashed var(--cinza-medio);
-    text-align: center;
-}
-
-.btn-full-page {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 12px 24px;
-    background-color: var(--verde-ifmg);
-    color: var(--branco);
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: 500;
-    transition: var(--transicao);
-}
-
-.btn-full-page:hover {
-    background-color: var(--verde-escuro);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-}
-
-.btn-full-page i {
-    font-size: 0.9em;
-}
-            
+                
+                .btn-enviar-plano:hover {
+                    background-color: var(--verde-ifmg-hover);
+                    text-decoration: none;
+                    transform: translateY(-2px);
+                    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                }
+                
+                /* TEXTO DE COLABORAÇÃO */
+                .modal-plan-collab-text {
+                    font-size: 0.9em;
+                    color: var(--cinza-medio);
+                    margin-top: 0;
+                    flex-basis: 100%; /* Ocupa linha abaixo se quebrar */
+                    order: 2; /* Garante que fique abaixo dos botões */
+                }
+                
+                /* BOTÃO PÁGINA COMPLETA */
+                .btn-pagina-completa {
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 8px;
+                    padding: 12px 25px;
+                    background-color: var(--verde-ifmg-principal);
+                    color: var(--branco);
+                    border: none;
+                    border-radius: 6px;
+                    text-decoration: none;
+                    font-weight: 500;
+                    transition: var(--transicao);
+                }
+                
+                .btn-pagina-completa:hover {
+                    background-color: var(--verde-ifmg-hover);
+                    text-decoration: none;
+                    transform: translateY(-2px);
+                    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                }
+                
                 /* ==========================================
-                   7. ELEMENTOS DE PAGINAÇÃO
+                   7. PAGINAÇÃO
                    ========================================== */
                 
                 .pagination {
                     display: flex;
                     justify-content: center;
-                    gap: 10px;
-                    margin-bottom: 30px;
-                    flex-wrap: wrap;
+                    align-items: center;
+                    margin-top: 40px;
+                    padding-bottom: 40px;
                 }
                 
                 .pagination button {
-                    padding: 8px 12px;
-                    border: 1px solid var(--cinza-medio);
-                    border-radius: 4px;
                     background-color: var(--branco);
+                    color: var(--verde-ifmg-principal);
+                    border: 1px solid var(--verde-ifmg-secundario);
+                    padding: 8px 14px;
+                    margin: 0 3px;
                     cursor: pointer;
                     transition: var(--transicao);
-                    min-width: 40px;
+                    border-radius: 4px;
+                    font-size: 14px;
                 }
                 
                 .pagination button:hover {
-                    background-color: var(--cinza-claro);
+                    background-color: var(--verde-ifmg-secundario);
+                    color: var(--branco);
                 }
                 
                 .pagination button.active {
-                    background-color: var(--verde-ifmg);
+                    background-color: var(--verde-ifmg-principal);
                     color: var(--branco);
-                    border-color: var(--verde-escuro);
+                    border-color: var(--verde-ifmg-principal);
+                    font-weight: bold;
                 }
                 
-                .pagination span {
-                    padding: 8px 12px;
-                    display: flex;
-                    align-items: center;
+                .pagination button:disabled {
+                    color: var(--cinza-medio);
+                    border-color: var(--cinza-claro);
+                    background-color: var(--cinza-claro);
+                    cursor: not-allowed;
                 }
-                        
+                
                 /* ==========================================
                    8. RODAPÉ
                    ========================================== */
                 
                 footer {
-                    background-color: var(--verde-escuro);
-                    color: var(--branco);
+                    background-color: var(--cinza-escuro);
+                    color: var(--cinza-claro);
                     text-align: center;
-                    padding: 20px;
-                    margin-top: 30px;
-                    box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
-                    transition: var(--transicao);
-                    cursor: pointer;
+                    padding: 20px 0;
+                    margin-top: 40px;
+                    font-size: 14px;
                 }
                 
-                footer:hover {
-                    background-color: var(--vermelho);
-                    transform: scale(1.01);
+                footer a {
+                    color: var(--branco);
+                    text-decoration: underline;
                 }
                 
-                footer p {
-                    margin: 0;
-                    transition: var(--transicao);
-                }
-                
-                footer:hover p {
-                    transform: scale(1.02);
+                footer a:hover {
+                    color: var(--verde-ifmg-hover);
                 }
                 
                 /* ==========================================
-                   9. UTILITÁRIOS E ESTADOS
+                   9. MENSAGENS E UTILITÁRIOS
                    ========================================== */
                 
-                /* LOADING E SKELETON */
-                .loading {
-                    text-align: center;
-                    padding: 40px;
+                /* MENSAGEM DE CARREGAMENTO */
+                #loadingMessage {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    padding: 50px;
                     font-size: 1.2em;
                     color: var(--cinza-medio);
                 }
                 
-                .skeleton {
-                    background-color: #e0e0e0;
-                    border-radius: 4px;
-                    overflow: hidden;
-                    position: relative;
+                .spinner {
+                    border: 4px solid var(--cinza-claro);
+                    border-top: 4px solid var(--verde-ifmg-secundario);
+                    border-radius: 50%;
+                    width: 30px;
+                    height: 30px;
+                    animation: spin 1s linear infinite;
+                    margin-right: 15px;
                 }
                 
-                .skeleton::after {
-                    content: '';
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    right: 0;
-                    bottom: 0;
-                    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
-                    animation: shimmer 1.5s infinite;
+                @keyframes spin {
+                    0% { transform: rotate(0deg); }
+                    100% { transform: rotate(360deg); }
                 }
                 
-                /* ESTADOS SEM RESULTADO */
+                /* MENSAGEM SEM RESULTADOS */
                 .no-results {
-                    grid-column: 1 / -1;
                     text-align: center;
                     padding: 40px;
-                    background: var(--branco);
-                    border-radius: 8px;
-                    box-shadow: var(--sombra);
-                }
-                
-                .no-results i {
-                    font-size: 40px;
+                    font-size: 1.1em;
                     color: var(--cinza-medio);
-                    margin-bottom: 15px;
                 }
                 
-                .no-results p {
-                    margin: 0;
-                    font-size: 16px;
-                }
-                
-                /* ANIMAÇÕES */
-                @keyframes shimmer {
-                    0% { transform: translateX(-100%); }
-                    100% { transform: translateX(100%); }
+                /* MENSAGEM DE ERRO */
+                .error-message {
+                    text-align: center;
+                    padding: 40px;
+                    font-size: 1.1em;
+                    color: var(--vermelho);
+                    background-color: #ffebee;
+                    border: 1px solid var(--vermelho);
+                    border-radius: 6px;
                 }
                 
                 /* ==========================================
-                   10. MEDIA QUERIES
+                   10. MODAL FALE CONOSCO
                    ========================================== */
                 
-                @media (max-width: 900px) {
-                    .modal-content {
-                        width: 90%;
-                        padding: 20px;
-                    }
-                    
-                    .modal-poster-container {
-                        float: none;
-                        width: 100%;
-                        height: auto;
-                        max-height: 400px;
-                        margin-right: 0;
-                        margin-bottom: 15px;
-                    }
-                    
-                    .film-grid {
-                        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-                        gap: 20px;
-                    }
-                    
-                    .film-poster-container {
-                        height: 280px;
-                    }
+                #btnFaleConosco {
+                    position: fixed;
+                    bottom: 20px;
+                    right: 20px;
+                    background-color: var(--verde-ifmg-principal);
+                    color: white;
+                    border: none;
+                    border-radius: 50%;
+                    width: 60px;
+                    height: 60px;
+                    font-size: 24px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    cursor: pointer;
+                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                    transition: all 0.3s ease;
+                    z-index: 999;
                 }
+                
+                #btnFaleConosco:hover {
+                    background-color: var(--verde-ifmg-hover);
+                    transform: scale(1.1);
+                }
+                
+                #modalFaleConosco .modal-content {
+                    max-width: 600px;
+                }
+                
+                #modalFaleConosco h2 {
+                    color: var(--verde-ifmg-principal);
+                    text-align: center;
+                    margin-bottom: 20px;
+                }
+                
+                #modalFaleConosco p {
+                    margin-bottom: 15px;
+                    line-height: 1.7;
+                    text-align: justify;
+                }
+                
+                #modalFaleConosco ul {
+                    list-style: none;
+                    padding: 0;
+                    margin-bottom: 20px;
+                }
+                
+                #modalFaleConosco li {
+                    margin-bottom: 10px;
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                }
+                
+                #modalFaleConosco li i {
+                    color: var(--verde-ifmg-secundario);
+                    font-size: 1.2em;
+                    width: 20px;
+                    text-align: center;
+                }
+                
+                /* ==========================================
+                   11. RESPONSIVIDADE
+                   ========================================== */
                 
                 @media (max-width: 768px) {
-                    .secondary-controls {
-                        flex-direction: column;
-                        align-items: stretch;
-                        width: 100%;
-                    }
-                
-                    .sort-container {
-                        max-width: none;
-                        width: 100%;
-                    }
-                
-                    .results-counter {
-                        text-align: center;
-                    }
-                }
-                
-                @media (max-width: 600px) {
                     h1 {
                         font-size: 2em;
                     }
-                    
-                    .film-grid {
-                        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-                        gap: 15px;
-                    }
-                    
-                    .film-poster-container {
-                        height: 220px;
-                    }
-                    
-                    .film-title {
-                        font-size: 14px;
-                    }
-                    
-                    .film-meta {
-                        font-size: 12px;
-                    }
-                    
-                    .pagination {
-                        gap: 5px;
-                    }
-                    
-                    .pagination button, 
-                    .pagination span {
-                        padding: 6px 8px;
-                        min-width: 30px;
-                    }
-                }
-                        
-                /* RESPONSIVIDADE */
-                @media (max-width: 768px) {
+                
+                    .controls-wrapper,
+                    .secondary-controls,
                     .filters-row {
                         flex-direction: column;
-                        gap: 10px;
+                        align-items: stretch;
+                        gap: 15px;
                     }
                 
+                    .sort-container,
                     .filter-container {
                         width: 100%;
                         max-width: none;
@@ -906,187 +926,99 @@
                 
                     .results-counter {
                         margin-left: 0;
-                        text-align: center;
-                        width: 100%;
+                        align-self: flex-start;
                     }
-                }  
-/* ===========================
-   11. PLANOS DE AULA NO MODAL
-   =========================== */
-.modal-teaching-plans,
-.modal-other-materials {
-    margin: 20px 0;
-    padding: 15px;
-    background: #f9f9f9;
-    border-radius: 6px;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
-}
+                
+                    .film-grid {
+                        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                        gap: 20px;
+                    }
+                
+                    .film-poster-container {
+                        height: 280px;
+                    }
+                
+                    .modal-content {
+                        margin: 10% auto;
+                        padding: 20px;
+                        width: 95%;
+                    }
+                
+                    .modal-title {
+                        font-size: 1.5em;
+                    }
+                
+                    .modal-poster-container {
+                        width: 150px;
+                        height: 210px;
+                    }
+                
+                    .pagination button {
+                        padding: 6px 10px;
+                        font-size: 13px;
+                    }
+                
+                    #btnFaleConosco {
+                        width: 50px;
+                        height: 50px;
+                        font-size: 20px;
+                        bottom: 15px;
+                        right: 15px;
+                    }
+                }
+                
+                @media (max-width: 480px) {
+                    h1 {
+                        font-size: 1.8em;
+                    }
+                
+                    .film-grid {
+                        grid-template-columns: 1fr; /* Uma coluna */
+                        gap: 25px;
+                    }
+                
+                    .film-poster-container {
+                        height: 400px; /* Altura maior para coluna única */
+                    }
+                
+                    .modal-content {
+                        margin: 15% auto;
+                    }
+                
+                    .pagination {
+                        flex-wrap: wrap;
+                        justify-content: center;
+                        gap: 5px;
+                    }
+                }
 
-.modal-teaching-plans h3,
-.modal-other-materials h3 {
-    color: #008445;
-    margin-bottom: 15px;
-}
+/* Adiciona estilos para padronizar links e ajustar botões do modal */
 
-.teaching-plan-card,
-.other-material-card {
-    background: #f8f9fa;
-    border-radius: 4px;
-    padding: 15px;
-    margin-bottom: 10px;
-    border-bottom: 1px dashed #ccc;
-}
-
-.teaching-plan-card:last-child,
-.other-material-card:last-child {
-    border-bottom: none;
-}
-
-.teaching-plan-card p,
-.other-material-card p {
-    margin: 5px 0;
-}
-
-.teaching-plan-card a,
-.other-material-card a {
-    color: #2196f3;
-    text-decoration: none;
-}
-
-.teaching-plan-card a:hover,
-.other-material-card a:hover {
-    text-decoration: underline;
-}
-
-            /* ===========================
-               12. FALE CONOSCO
-               =========================== */
-
-/* Botão Fale Conosco */
-.feedback-button {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    z-index: 1000;
-}
-
-.feedback-button button {
-    background-color: var(--verde-ifmg);
-    color: var(--branco);
-    border: none;
-    padding: 15px 25px;
-    border-radius: 30px;
-    cursor: pointer;
-    font-size: 16px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    box-shadow: var(--sombra);
+/* Padroniza todos os links */
+a {
+    color: var(--azul); /* Cor azul padrão para links */
+    text-decoration: none; /* Remove sublinhado padrão */
+    font-weight: bold; /* Deixa links em negrito */
     transition: var(--transicao);
 }
 
-.feedback-button button:hover {
-    background-color: var(--verde-escuro);
-    transform: scale(1.05);
+a:hover {
+    color: var(--verde-ifmg-hover); /* Muda cor no hover para verde IFMG */
+    text-decoration: underline; /* Adiciona sublinhado no hover */
 }
 
-/* Modal do Fale Conosco */
-.feedback-modal {
-    display: none;
-    position: fixed;
-    z-index: 1001;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.5);
-    overflow-y: auto;
-}
+/* Ajusta botão 'Ver Mais' no modal - AGORA VERDE */
+/* .btn-ver-mais está sendo estilizado acima na seção do modal */
 
-.feedback-modal-content {
-    background-color: var(--branco);
-    margin: 20px auto;
-    padding: 20px;
-    border-radius: 8px;
-    width: 95%;
-    max-width: 700px;
-    /*max-height: 90vh;
-    overflow-y: auto;*/
-    position: relative;
-    height: calc(100vh - 40px); /* altura total menos as margens */
-}
+/* Ajusta container dos botões de ação no modal de planos de aula */
+/* .modal-plan-actions está sendo estilizado acima na seção do modal */
 
-.feedback-modal .close {
-    position: absolute;
-    right: 20px;
-    top: 10px;
-    font-size: 28px;
-    cursor: pointer;
-    color: var(--cinza-medio);
-}
+/* Ajusta botão 'Enviar Plano' */
+/* .btn-enviar-plano está sendo estilizado acima na seção do modal */
 
-.feedback-modal .close:hover {
-    color: var(--cinza-escuro);
-}
+/* Ajusta texto de colaboração */
+/* .modal-plan-collab-text está sendo estilizado acima na seção do modal */
 
-/* Container do Formulário */
-.form-container {
-    height: calc(100% - 60px); /* altura total menos o espaço do título e padding */
-    margin-top: 20px;
-  
-  /*position: relative;
-    padding-bottom: 56.25%;
-    height: 0;
-    overflow: hidden;*/
-}
+/* Garante que o z-index da classificação funcione */
+/* .classification z-index já foi ajustado acima */
 
-/* Iframe do Formulário */
-.form-container iframe {
-    /*position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    min-height: 500px;*/
-  
-    width: 100%;
-    height: 100%;
-    border: none;
-    min-height: 600px; /* altura mínima para garantir visibilidade do formulário */
-}
-/* Ajustes para Mobile */
-@media (max-width: 768px) {
-    .feedback-modal-content {
-        margin: 10px;
-        width: calc(100% - 20px);
-        height: calc(100vh - 20px);
-        padding: 15px;
-    }
-
-    .feedback-button {
-        bottom: 20px;
-        right: 20px;
-    }
-
-    .feedback-button button {
-        padding: 12px 20px;
-        font-size: 14px;
-    }
-
-    .form-container iframe {
-        min-height: 700px; /* aumenta a altura mínima em mobile */
-    }
-}
-
-/* Ajustes para telas muito pequenas */
-@media (max-width: 480px) {
-    .feedback-modal-content {
-        margin: 5px;
-        width: calc(100% - 10px);
-        padding: 10px;
-    }
-
-    .form-container iframe {
-        min-height: 800px; /* aumenta ainda mais a altura mínima */
-    }
-}
