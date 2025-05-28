@@ -21,9 +21,9 @@
                    2. ESTILOS BASE
                    ========================================== */
                 
-                /* RESET E CONFIGURAÇÕES BÁSICAS */
+                /* RESET E CONFIGURAÇÕES BÁSICAS Segoe UI */
                 body {
-                    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                    font-family: 'open_sansextrabold', Tahoma, Geneva, Verdana, sans-serif;
                     margin: 0;
                     padding: 0;
                     background-color: var(--cinza-claro);
