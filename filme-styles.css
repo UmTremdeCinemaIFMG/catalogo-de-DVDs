@@ -425,7 +425,7 @@
 /* Estilos para os controles da página do filme */
 .filme-page-controls {
     display: flex;
-    /*justify-content: space-between; /* Alinha botões nas extremidades */
+    center-content: space-between; /* Alinha botões nas extremidades */
     align-items: center;
     margin-bottom: 20px; /* Mantém o espaçamento original */
     flex-wrap: wrap; /* Permite quebrar linha em telas menores */
