@@ -1,4 +1,4 @@
-                /* ==========================================
+/* ==========================================
                    1. VARIÁVEIS GLOBAIS
                    ========================================== */
                 :root {
@@ -21,7 +21,7 @@
                    2. ESTILOS BASE
                    ========================================== */
                 
-                /* RESET E CONFIGURAÇÕES BÁSICAS Segoe UI */
+                /* RESET E CONFIGURAÇÕES BÁSICAS */
                 body {
                     font-family: 'open_sansextrabold', Tahoma, Geneva, Verdana, sans-serif;
                     margin: 0;
@@ -34,7 +34,7 @@
                 /* CABEÇALHO */
                 header {
                     background-image: radial-gradient(ellipse at center, #19882c 1%, #025310 100%);
-                    /*background-color: var(--verde-ifmg);*/
+                    /* BACKGROUND-COLOR: VAR(--VERDE-IFMG); */
                     color: var(--branco);
                     padding: 0px 0;
                     text-align: center;
@@ -71,7 +71,7 @@
                 .container {
                     max-width: 1200px;
                     margin: 0 auto;
-                    padding: 10 20px;
+                    padding: 10px 20px; /* AJUSTADO PADDING */
                 }
                 
                 /* WRAPPER DOS CONTROLES */
@@ -250,58 +250,14 @@
                 }
                 
                 /* ==========================================
-                   4. FILTROS DE GÊNERO
+                   4. FILTROS DE GÊNERO (REMOVIDO - USANDO SELECT)
                    ========================================== */
                 
-                /* CONTAINER DE FILTROS */
-                .genre-filter-container {
-                    background-color: var(--branco);
-                    padding: 15px;
-                    border-radius: 8px;
-                    box-shadow: var(--sombra);
-                    margin-bottom: 30px;
-                }
-                
-                .genre-filter-title {
-                    font-weight: bold;
-                    font-size: 16px;
-                    color: var(--cinza-escuro);
-                    margin-bottom: 10px;
-                    display: flex;
-                    align-items: center;
-                    gap: 8px;
-                }
-                
-                .genre-tags {
-                    display: flex;
-                    flex-wrap: wrap;
-                    gap: 8px;
-                }
-                
-                .genre-tag {
-                    display: inline-block;
-                    padding: 6px 12px;
-                    background-color: var(--cinza-claro);
-                    color: var(--cinza-escuro);
-                    border-radius: 20px;
-                    font-size: 14px;
-                    cursor: pointer;
-                    transition: var(--transicao);
-                    border: 1px solid var(--cinza-medio);
-                }
-                
-                .genre-tag:hover {
-                    background-color: var(--verde-ifmg);
-                    color: var(--branco);
-                    border-color: var(--verde-escuro);
-                }
-                
-                .genre-tag.active {
-                    background-color: var(--verde-ifmg);
-                    color: var(--branco);
-                    border-color: var(--verde-escuro);
-                    font-weight: bold;
-                }
+                /* CONTAINER DE FILTROS (AJUSTADO PARA SELECTS) */
+                /* .genre-filter-container { ... } REMOVIDO */
+                /* .genre-filter-title { ... } REMOVIDO */
+                /* .genre-tags { ... } REMOVIDO */
+                /* .genre-tag { ... } REMOVIDO */
                 
                 /* ==========================================
                    5. GRID DE FILMES
@@ -324,6 +280,8 @@
                     transition: var(--transicao);
                     cursor: pointer;
                     position: relative;
+                    display: flex; /* USAR FLEXBOX PARA MELHOR ALINHAMENTO */
+                    flex-direction: column; /* EMPILHAR VERTICALMENTE */
                 }
                 
                 .film-card:hover {
@@ -334,61 +292,34 @@
                 /* POSTER DO FILME */
                 .film-poster-container {
                     width: 100%;
-                    height: 350px;
+                    height: 350px; /* ALTURA FIXA PARA CONSISTÊNCIA */
                     position: relative;
                     overflow: hidden;
                     border-bottom: 3px solid var(--verde-ifmg);
+                    background-color: var(--cinza-claro); /* COR DE FUNDO PARA IMAGENS QUE NÃO CARREGAM */
                 }
                 
                 .film-poster {
-                    width: auto;
-                    height: 100%;
-                    position: right center;
-                    top: 0;
-                    transition: transform 0.5s ease;
-                }
-                
-                .film-poster-controls {
-                    position: absolute;
-                    top: 0;
-                    left: 0;
                     width: 100%;
                     height: 100%;
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                    pointer-events: none;
-                }
-                
-                .film-poster-control {
-                    background-color: rgba(0, 0, 0, 0.5);
-                    color: white;
-                    border: none;
-                    width: 40px;
-                    height: 40px;
-                    border-radius: 50%;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    cursor: pointer;
-                    pointer-events: auto;
-                    margin: 0 10px;
-                    transition: var(--transicao);
-                    z-index: 2;
-                }
-                
-                .film-poster-control:hover {
-                    background-color: rgba(0, 0, 0, 0.8);
-                    transform: scale(1.1);
+                    object-fit: cover; /* COBRE O CONTAINER MANTENDO ASPECT RATIO */
+                    display: block; /* REMOVE ESPAÇO EXTRA ABAIXO DA IMAGEM */
+                    transition: transform 0.5s ease, opacity 0.3s ease; /* ADICIONA TRANSIÇÃO DE OPACIDADE */
+                    opacity: 1; /* GARANTE OPACIDADE INICIAL */
                 }
                 
                 .film-card:hover .film-poster {
+                    transform: scale(1.05); /* EFEITO DE ZOOM SUAVE NO HOVER */
                     opacity: 0.9;
                 }
                 
                 /* INFORMAÇÕES DO FILME */
                 .film-info {
                     padding: 15px;
+                    flex-grow: 1; /* FAZ ESTA SEÇÃO OCUPAR O ESPAÇO RESTANTE */
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between; /* EMPURRA DETALHES PARA BAIXO */
                 }
                 
                 .film-title {
@@ -401,74 +332,65 @@
                     -webkit-line-clamp: 2;
                     -webkit-box-orient: vertical;
                     overflow: hidden;
-                    min-height: 2.6em;
+                    min-height: 2.6em; /* GARANTE ESPAÇO PARA DUAS LINHAS */
+                }
+
+                .film-director {
+                    font-size: 14px;
+                    color: var(--cinza-medio);
+                    margin-bottom: 10px; /* ESPAÇO ANTES DOS DETALHES */
+                    line-height: 1.3;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 1;
+                    -webkit-box-orient: vertical;
+                    overflow: hidden;
                 }
                 
-                .film-meta {
+                .film-details {
                     display: flex;
                     justify-content: space-between;
                     font-size: 14px;
                     color: var(--cinza-medio);
+                    margin-top: auto; /* EMPURRA PARA O FINAL DO CARD */
+                }
+
+                .film-details span {
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 5px; /* ESPAÇO ENTRE ÍCONE E TEXTO */
                 }
                 
-                .film-badge {
+                /* CLASSIFICAÇÕES INDICATIVAS (ESTILO UNIFICADO) */
+                .classification {
                     position: absolute;
                     top: 10px;
                     right: 10px;
-                    background-color: transparent;
-                    padding: 0;
-                    z-index: 1;
-                }
-                
-                /* CLASSIFICAÇÕES */
-                .classification {
-                    position: absolute; /* Garante que z-index funcione */
-                    top: 10px;
-                    right: 10px;
-                    z-index: 2; /* Aumenta o z-index */
+                    z-index: 2;
                     display: inline-flex;
                     align-items: center;
                     justify-content: center;
-                    width: 24px;
-                    height: 24px;
-                    border-radius: 4px;
+                    width: 28px; /* AUMENTADO LIGEIRAMENTE */
+                    height: 28px; /* AUMENTADO LIGEIRAMENTE */
+                    border-radius: 50%;
                     font-weight: bold;
-                    font-size: 12px;
-                    /* margin-right removido pois position:absolute o torna irrelevante */
-                    color: white;
-                    border: 1px solid rgba(0,0,0,0.1);
+                    font-size: 0.85rem; /* AJUSTADO */
+                    color: white; /* COR PADRÃO */
+                    box-shadow: 0 1px 3px rgba(0,0,0,0.3); /* ADICIONA SOMBRA */
+                    border: 1px solid rgba(255, 255, 255, 0.5); /* BORDA SUTIL */
                 }
                 
-                .classification.L { 
-                    background-color: var(--verde-ifmg);
-                }
+                .L { background-color: #00a651; }
+                .ten { background-color: #0091cf; }
+                .twelve { background-color: #ffcc29; color: black; }
+                .fourteen { background-color: #f7941d; color: black; }
+                .sixteen { background-color: #ed1c24; }
+                .eighteen { background-color: #000000; }
                 
-                .classification.ten { 
-                    background-color: var(--azul);
-                }
-                
-                .classification.twelve { 
-                    background-color: var(--amarelo);
-                    color: var(--cinza-escuro);
-                }
-                
-                .classification.fourteen { 
-                    background-color: var(--laranja);
-                }
-                
-                .classification.sixteen { 
-                    background-color: var(--vermelho);
-                }
-                
-                .classification.eighteen { 
-                    background-color: var(--preto);
-                }
-                        
                 /* ==========================================
-                   6. MODAL E DETALHES
+                   6. MODAL DE DETALHES DO FILME
                    ========================================== */
                 
-                /* MODAL BASE */
+                /* FUNDO DO MODAL */
                 .modal {
                     display: none;
                     position: fixed;
@@ -477,12 +399,12 @@
                     top: 0;
                     width: 100%;
                     height: 100%;
-                    background-color: rgba(0,0,0,0.8);
-                    overflow: auto;
-                    opacity: 0;
+                    background-color: rgba(0, 0, 0, 0.7);
+                    overflow-y: auto;
                     transition: opacity 0.3s ease;
+                    opacity: 0;
                 }
-                
+
                 .modal.show {
                     opacity: 1;
                 }
@@ -492,12 +414,12 @@
                     background-color: var(--branco);
                     margin: 5% auto;
                     padding: 30px;
-                    width: 70%;
-                    max-width: 800px;
                     border-radius: 8px;
-                    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+                    width: 90%;
+                    max-width: 800px;
                     position: relative;
-                    transform: translateY(-20px);
+                    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+                    transform: translateY(-50px);
                     transition: transform 0.3s ease;
                 }
                 
@@ -505,6 +427,7 @@
                     transform: translateY(0);
                 }
                 
+                /* BOTÃO FECHAR */
                 .close {
                     position: absolute;
                     top: 15px;
@@ -532,51 +455,17 @@
                     border: 3px solid var(--verde-ifmg);
                     border-radius: 4px;
                     box-shadow: var(--sombra);
+                    background-color: var(--cinza-claro);
                 }
                 
                 .modal-poster {
-                    width: auto;
-                    height: 100%;
-                    position: absolute;
-                    top: 0;
-                    transition: transform 0.5s ease;
-                }
-                
-                .modal-poster-controls {
-                    position: absolute;
-                    top: 0;
-                    left: 0;
                     width: 100%;
                     height: 100%;
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                    pointer-events: none;
+                    object-fit: cover;
+                    display: block;
                 }
                 
-                .modal-poster-control {
-                    background-color: rgba(0, 0, 0, 0.5);
-                    color: white;
-                    border: none;
-                    width: 30px;
-                    height: 30px;
-                    border-radius: 50%;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    cursor: pointer;
-                    pointer-events: auto;
-                    margin: 0 5px;
-                    transition: var(--transicao);
-                    z-index: 2;
-                }
-                
-                .modal-poster-control:hover {
-                    background-color: rgba(0, 0, 0, 0.8);
-                    transform: scale(1.1);
-                }
-                
-                /* DETALHES DO MODAL */
+                /* TÍTULO E DETALHES NO MODAL */
                 .modal-title {
                     color: var(--verde-escuro);
                     margin-top: 0;
@@ -599,71 +488,115 @@
                 .modal-details strong {
                     color: var(--cinza-escuro);
                 }
-                
-                /* SINOPSE E TEMAS */
-                .modal-synopsis {
-                    clear: both;
-                    line-height: 1.6;
+
+                .modal-details i {
+                    margin-right: 8px; /* ESPAÇO PARA ÍCONES */
+                    color: var(--verde-ifmg);
+                    width: 1.2em; /* LARGURA FIXA PARA ALINHAMENTO */
+                    text-align: center;
                 }
                 
-                .modal-synopsis h3 {
-                    color: var(--verde-escuro);
-                    margin-bottom: 10px;
+                /* SINOPSE E TEMAS NO MODAL */
+                .modal-synopsis,
+                .modal-themes,
+                .modal-teaching-plans,
+                .modal-other-materials,
+                .modal-additional {
+                    clear: both; /* GARANTE QUE FIQUEM ABAIXO DO POSTER FLUTUANTE */
+                    margin: 20px 0;
+                    padding-top: 15px;
+                    border-top: 1px dashed var(--cinza-medio);
+                }
+
+                .modal-synopsis:first-of-type,
+                .modal-themes:first-of-type,
+                .modal-teaching-plans:first-of-type,
+                .modal-other-materials:first-of-type,
+                .modal-additional:first-of-type {
+                    border-top: none; /* REMOVE BORDA SUPERIOR DO PRIMEIRO ITEM */
+                    padding-top: 0;
                 }
                 
-                .modal-synopsis p {
-                    font-size: 15px;
-                    line-height: 1.6;
-                }
-                
-                .modal-themes {
-                    margin: 15px 0;
-                    padding: 15px;
-                    background-color: var(--cinza-claro);
-                    border-radius: 6px;
-                }
-                
-                .modal-themes h3 {
+                .modal-synopsis h3,
+                .modal-themes h3,
+                .modal-teaching-plans h3,
+                .modal-other-materials h3,
+                .modal-additional h3 {
                     color: var(--verde-escuro);
                     margin-top: 0;
                     margin-bottom: 10px;
+                    font-size: 18px;
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                }
+
+                .modal-synopsis h3 i,
+                .modal-themes h3 i,
+                .modal-teaching-plans h3 i,
+                .modal-other-materials h3 i,
+                .modal-additional h3 i {
+                    color: var(--verde-ifmg);
+                }
+                
+                .modal-synopsis p,
+                .modal-additional p {
+                    font-size: 15px;
+                    line-height: 1.6;
                 }
                 
                 .modal-themes .theme-tag {
                     display: inline-block;
                     background-color: var(--verde-ifmg);
                     color: white;
-                    padding: 4px 8px;
-                    border-radius: 4px;
+                    padding: 4px 10px;
+                    border-radius: 15px;
                     margin-right: 5px;
                     margin-bottom: 5px;
                     font-size: 13px;
                 }
                 
-                /* INFORMAÇÕES ADICIONAIS */
-                .modal-additional {
-                    margin-top: 20px;
-                    padding-top: 15px;
-                    border-top: 1px dashed var(--cinza-medio);
-                }
-                
-                .modal-additional h3 {
-                    color: var(--verde-escuro);
-                    margin-top: 0;
+                /* CARDS DE PLANOS DE AULA E OUTROS MATERIAIS NO MODAL */
+                .teaching-plan-card,
+                .other-material-card {
+                    background: #f8f9fa;
+                    border-radius: 4px;
+                    padding: 15px;
                     margin-bottom: 10px;
+                    border-left: 3px solid var(--verde-ifmg);
                 }
                 
-                .modal-additional p {
-                    margin: 8px 0;
-                    font-size: 15px;
-                    line-height: 1.5;
+                .teaching-plan-card p,
+                .other-material-card p {
+                    margin: 5px 0;
+                    font-size: 14px;
+                }
+
+                .teaching-plan-card p i,
+                .other-material-card p i {
+                    margin-right: 6px;
+                    color: var(--verde-ifmg);
+                    width: 1.1em;
+                    text-align: center;
+                }
+                
+                .teaching-plan-card a,
+                .other-material-card a {
+                    color: var(--azul);
+                    text-decoration: none;
+                    font-weight: normal;
+                }
+                
+                .teaching-plan-card a:hover,
+                .other-material-card a:hover {
+                    text-decoration: underline;
                 }
 
 /* BOTÃO DE PÁGINA COMPLETA */
 .modal-actions {
-    margin-top: 20px;
+    margin-top: 25px;
     padding-top: 15px;
-    border-top: 1px dashed var(--cinza-medio);
+    border-top: 1px solid var(--cinza-claro);
     text-align: center;
 }
 
@@ -679,14 +612,15 @@
     cursor: pointer;
     font-size: 16px;
     font-weight: 500;
-    /*transition: var(--transicao)*/;
-  transition: background-color 0.3s ease;
+    transition: var(--transicao);
+    text-decoration: none; /* GARANTE QUE NÃO HAJA SUBLINHADO */
 }
 
 .btn-full-page:hover {
     background-color: var(--verde-escuro);
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    color: var(--branco); /* GARANTE COR NO HOVER */
 }
 
 .btn-full-page i {
@@ -701,6 +635,7 @@
                     display: flex;
                     justify-content: center;
                     gap: 10px;
+                    margin-top: 30px; /* ADICIONADO MARGIN-TOP */
                     margin-bottom: 30px;
                     flex-wrap: wrap;
                 }
@@ -713,16 +648,19 @@
                     cursor: pointer;
                     transition: var(--transicao);
                     min-width: 40px;
+                    color: var(--cinza-escuro);
                 }
                 
                 .pagination button:hover {
                     background-color: var(--cinza-claro);
+                    border-color: var(--verde-ifmg);
                 }
                 
                 .pagination button.active {
                     background-color: var(--verde-ifmg);
                     color: var(--branco);
                     border-color: var(--verde-escuro);
+                    font-weight: bold;
                 }
                 
                 .pagination span {
@@ -747,17 +685,12 @@
                 }
                 
                 footer:hover {
-                    background-color: var(--vermelho);
-                    transform: scale(1.01);
+                    background-color: #005024; /* VERDE UM POUCO MAIS ESCURO NO HOVER */
                 }
                 
                 footer p {
                     margin: 0;
                     transition: var(--transicao);
-                }
-                
-                footer:hover p {
-                    transform: scale(1.02);
                 }
                 
                 /* ==========================================
@@ -770,40 +703,27 @@
                     padding: 40px;
                     font-size: 1.2em;
                     color: var(--cinza-medio);
-                }
-                
-                .skeleton {
-                    background-color: #e0e0e0;
-                    border-radius: 4px;
-                    overflow: hidden;
-                    position: relative;
-                }
-                
-                .skeleton::after {
-                    content: '';
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    right: 0;
-                    bottom: 0;
-                    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
-                    animation: shimmer 1.5s infinite;
+                    display: flex; /* USAR FLEX PARA CENTRALIZAR */
+                    justify-content: center;
+                    align-items: center;
+                    gap: 10px;
                 }
                 
                 /* ESTADOS SEM RESULTADO */
                 .no-results {
-                    grid-column: 1 / -1;
+                    grid-column: 1 / -1; /* OCUPA TODA A LARGURA DA GRID */
                     text-align: center;
                     padding: 40px;
                     background: var(--branco);
                     border-radius: 8px;
                     box-shadow: var(--sombra);
+                    color: var(--cinza-medio);
                 }
                 
                 .no-results i {
                     font-size: 40px;
-                    color: var(--cinza-medio);
                     margin-bottom: 15px;
+                    display: block; /* GARANTE QUE O ÍCONE FIQUE ACIMA DO TEXTO */
                 }
                 
                 .no-results p {
@@ -811,166 +731,41 @@
                     font-size: 16px;
                 }
                 
-                /* ANIMAÇÕES */
-                @keyframes shimmer {
-                    0% { transform: translateX(-100%); }
-                    100% { transform: translateX(100%); }
+                /* BOTÃO VOLTAR AO TOPO */
+                .voltar-topo {
+                    position: fixed;
+                    bottom: 80px; /* POSIÇÃO ACIMA DO BOTÃO DE FEEDBACK */
+                    right: 20px;
+                    background-color: var(--verde-ifmg);
+                    color: var(--branco);
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 50%;
+                    display: none; /* COMEÇA OCULTO */
+                    align-items: center;
+                    justify-content: center;
+                    text-decoration: none;
+                    box-shadow: var(--sombra);
+                    transition: var(--transicao), opacity 0.3s ease;
+                    z-index: 999;
+                    opacity: 0.8;
                 }
                 
-                /* ==========================================
-                   10. MEDIA QUERIES
-                   ========================================== */
-                
-                @media (max-width: 900px) {
-                    .modal-content {
-                        width: 90%;
-                        padding: 20px;
-                    }
-                    
-                    .modal-poster-container {
-                        float: none;
-                        width: 100%;
-                        height: auto;
-                        max-height: 400px;
-                        margin-right: 0;
-                        margin-bottom: 15px;
-                    }
-                    
-                    .film-grid {
-                        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-                        gap: 20px;
-                    }
-                    
-                    .film-poster-container {
-                        height: 280px;
-                    }
+                .voltar-topo:hover {
+                    background-color: var(--verde-escuro);
+                    transform: translateY(-3px);
+                    opacity: 1;
                 }
-                
-                @media (max-width: 768px) {
-                    .secondary-controls {
-                        flex-direction: column;
-                        align-items: stretch;
-                        width: 100%;
-                    }
-                
-                    .sort-container {
-                        max-width: none;
-                        width: 100%;
-                    }
-                
-                    .results-counter {
-                        text-align: center;
-                    }
-                }
-                
-                @media (max-width: 600px) {
-                    h1 {
-                        font-size: 2em;
-                    }
-                    
-                    .film-grid {
-                        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-                        gap: 15px;
-                    }
-                    
-                    .film-poster-container {
-                        height: 220px;
-                    }
-                    
-                    .film-title {
-                        font-size: 14px;
-                    }
-                    
-                    .film-meta {
-                        font-size: 12px;
-                    }
-                    
-                    .pagination {
-                        gap: 5px;
-                    }
-                    
-                    .pagination button, 
-                    .pagination span {
-                        padding: 6px 8px;
-                        min-width: 30px;
-                    }
-                }
-                        
-                /* RESPONSIVIDADE */
-                @media (max-width: 768px) {
-                    .filters-row {
-                        flex-direction: column;
-                        gap: 10px;
-                    }
-                
-                    .filter-container {
-                        width: 100%;
-                        max-width: none;
-                    }
-                
-                    .results-counter {
-                        margin-left: 0;
-                        text-align: center;
-                        width: 100%;
-                    }
-                }  
-/* ===========================
-   11. PLANOS DE AULA NO MODAL
-   =========================== */
-.modal-teaching-plans,
-.modal-other-materials {
-    margin: 20px 0;
-    padding: 15px;
-    background: #f9f9f9;
-    border-radius: 6px;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
-}
-
-.modal-teaching-plans h3,
-.modal-other-materials h3 {
-    color: #008445;
-    margin-bottom: 15px;
-}
-
-.teaching-plan-card,
-.other-material-card {
-    background: #f8f9fa;
-    border-radius: 4px;
-    padding: 15px;
-    margin-bottom: 10px;
-    border-bottom: 1px dashed #ccc;
-}
-
-.teaching-plan-card:last-child,
-.other-material-card:last-child {
-    border-bottom: none;
-}
-
-.teaching-plan-card p,
-.other-material-card p {
-    margin: 5px 0;
-}
-
-.teaching-plan-card a,
-.other-material-card a {
-    color: #2196f3;
-    text-decoration: none;
-}
-
-.teaching-plan-card a:hover,
-.other-material-card a:hover {
-    text-decoration: underline;
-}
 
             /* ===========================
-               12. FALE CONOSCO
+               10. FALE CONOSCO (FEEDBACK)
                =========================== */
 
-/* Botão Fale Conosco */
+/* BOTÃO FLUTUANTE */
 .feedback-button {
     position: fixed;
-    bottom: 30px;
-    right: 30px;
+    bottom: 20px;
+    right: 20px;
     z-index: 1000;
 }
 
@@ -978,7 +773,7 @@
     background-color: var(--verde-ifmg);
     color: var(--branco);
     border: none;
-    padding: 15px 25px;
+    padding: 12px 20px;
     border-radius: 30px;
     cursor: pointer;
     font-size: 16px;
@@ -994,172 +789,315 @@
     transform: scale(1.05);
 }
 
-/* Modal do Fale Conosco */
+/* MODAL DO FALE CONOSCO */
 .feedback-modal {
-    display: none;
+    display: none; /* COMEÇA OCULTO */
     position: fixed;
     z-index: 1001;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0,0,0,0.6);
     overflow-y: auto;
+    transition: opacity 0.3s ease;
+    opacity: 0;
+}
+
+.feedback-modal.show {
+    opacity: 1;
 }
 
 .feedback-modal-content {
     background-color: var(--branco);
-    margin: 20px auto;
-    padding: 20px;
+    margin: 5% auto;
+    padding: 25px;
     border-radius: 8px;
     width: 95%;
     max-width: 700px;
-    /*max-height: 90vh;
-    overflow-y: auto;*/
     position: relative;
-    height: calc(100vh - 40px); /* altura total menos as margens */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    transform: translateY(-50px);
+    transition: transform 0.3s ease;
+    /* max-height: 90vh; */ /* REMOVIDO PARA PERMITIR CONTEÚDO MAIOR */
+    /* overflow-y: auto; */ /* REMOVIDO PARA NÃO TER SCROLL DUPLO */
+}
+
+.feedback-modal.show .feedback-modal-content {
+    transform: translateY(0);
 }
 
 .feedback-modal .close {
     position: absolute;
     right: 20px;
-    top: 10px;
+    top: 15px;
     font-size: 28px;
     cursor: pointer;
     color: var(--cinza-medio);
+    font-weight: bold;
 }
 
 .feedback-modal .close:hover {
     color: var(--cinza-escuro);
 }
 
-/* Container do Formulário */
+/* CONTAINER DO FORMULÁRIO */
 .form-container {
-    height: calc(100% - 60px); /* altura total menos o espaço do título e padding */
     margin-top: 20px;
-  
-  /*position: relative;
-    padding-bottom: 56.25%;
-    height: 0;
-    overflow: hidden;*/
+    height: 70vh; /* ALTURA RELATIVA À JANELA */
+    max-height: 600px; /* ALTURA MÁXIMA */
+    border: 1px solid var(--cinza-claro); /* BORDA SUTIL */
+    border-radius: 4px;
+    overflow: hidden; /* PARA CONTER O IFRAME */
 }
 
-/* Iframe do Formulário */
+/* IFRAME DO FORMULÁRIO */
 .form-container iframe {
-    /*position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    min-height: 500px;*/
-  
     width: 100%;
     height: 100%;
     border: none;
-    min-height: 600px; /* altura mínima para garantir visibilidade do formulário */
 }
-/* Ajustes para Mobile */
+
+/* ===========================
+   11. LINKS E BOTÕES GLOBAIS
+   =========================== */
+
+/* PADRONIZA LINKS */
+a {
+    color: var(--azul);
+    text-decoration: none;
+    transition: var(--transicao);
+}
+
+a:hover {
+    color: var(--verde-ifmg); /* MUDA PARA VERDE NO HOVER */
+    text-decoration: underline;
+}
+
+/* BOTÃO 'VER MAIS' NO MODAL */
+.btn-ver-mais {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 6px 12px;
+    background-color: var(--cinza-claro);
+    color: var(--cinza-escuro);
+    border: 1px solid var(--cinza-medio);
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: var(--transicao);
+    text-decoration: none; /* GARANTE SEM SUBLINHADO */
+}
+
+.btn-ver-mais:hover {
+    background-color: var(--cinza-medio);
+    color: var(--branco);
+    border-color: var(--cinza-medio);
+    text-decoration: none;
+}
+
+/* CONTAINER DOS BOTÕES DE AÇÃO NO MODAL DE PLANOS DE AULA */
+.modal-plan-actions {
+    margin-top: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--cinza-claro);
+}
+
+/* BOTÃO 'ENVIAR PLANO' */
+.btn-enviar-plano {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 6px 12px;
+    background-color: var(--verde-ifmg);
+    color: white;
+    border: 1px solid var(--verde-ifmg);
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: var(--transicao);
+    text-decoration: none;
+}
+
+.btn-enviar-plano:hover {
+    background-color: var(--verde-escuro);
+    color: white;
+    text-decoration: none;
+}
+
+/* TEXTO DE COLABORAÇÃO */
+.modal-plan-collab-text {
+    font-size: 0.9em; 
+    color: var(--cinza-medio);
+    margin-top: 5px;
+    flex-basis: 100%; /* OCUPA A LINHA INTEIRA */
+}
+
+/* ==========================================
+   12. MEDIA QUERIES (RESPONSIVIDADE)
+   ========================================== */
+
+@media (max-width: 900px) {
+    .modal-content {
+        width: 90%;
+        padding: 20px;
+        margin: 10% auto; /* AJUSTA MARGEM VERTICAL */
+    }
+    
+    .modal-poster-container {
+        float: none;
+        width: 100%;
+        height: auto;
+        max-height: 300px; /* REDUZ ALTURA MÁXIMA */
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+    
+    .film-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 20px;
+    }
+    
+    .film-poster-container {
+        height: 280px;
+    }
+}
+
 @media (max-width: 768px) {
+    h1 {
+        font-size: 2.2em;
+    }
+
+    .container {
+        padding: 10px 15px;
+    }
+
+    .controls-wrapper {
+        gap: 15px;
+    }
+
+    .secondary-controls {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 15px;
+    }
+
+    .sort-container,
+    .filter-container {
+        max-width: none;
+        width: 100%;
+    }
+
+    .results-counter {
+        margin-left: 0;
+        text-align: center;
+        width: 100%;
+        margin-top: 10px;
+    }
+
     .feedback-modal-content {
         margin: 10px;
         width: calc(100% - 20px);
-        height: calc(100vh - 20px);
         padding: 15px;
     }
 
+    .form-container {
+        height: 75vh; /* AUMENTA ALTURA EM TELAS MENORES */
+    }
+
     .feedback-button {
-        bottom: 20px;
-        right: 20px;
+        bottom: 15px;
+        right: 15px;
     }
 
     .feedback-button button {
-        padding: 12px 20px;
+        padding: 10px 15px;
         font-size: 14px;
     }
 
-    .form-container iframe {
-        min-height: 700px; /* aumenta a altura mínima em mobile */
+    .voltar-topo {
+        bottom: 70px; /* AJUSTA POSIÇÃO */
+        right: 15px;
+        width: 35px;
+        height: 35px;
     }
 }
 
-/* Ajustes para telas muito pequenas */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2em;
+    }
+    
+    .film-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 15px;
+    }
+    
+    .film-poster-container {
+        height: 220px;
+    }
+    
+    .film-title {
+        font-size: 14px;
+    }
+    
+    .film-director,
+    .film-details {
+        font-size: 12px;
+    }
+    
+    .pagination {
+        gap: 5px;
+    }
+    
+    .pagination button {
+        padding: 6px 8px;
+        min-width: 30px;
+    }
+
+    .modal-title {
+        font-size: 20px;
+    }
+
+    .modal-details p,
+    .modal-synopsis p,
+    .modal-additional p {
+        font-size: 14px;
+    }
+}
+
 @media (max-width: 480px) {
+    .film-grid {
+        grid-template-columns: 1fr; /* UMA COLUNA */
+        gap: 20px;
+    }
+
+    .film-poster-container {
+        height: 250px; /* AJUSTA ALTURA PARA UMA COLUNA */
+    }
+
     .feedback-modal-content {
         margin: 5px;
         width: calc(100% - 10px);
         padding: 10px;
     }
 
-    .form-container iframe {
-        min-height: 800px; /* aumenta ainda mais a altura mínima */
+    .form-container {
+        height: 80vh;
     }
 }
 
-/* Adiciona estilos para padronizar links e ajustar botões do modal */
-
-/* Padroniza todos os links */
-a {
-    color: var(--azul); /* Cor azul padrão para links */
-    text-decoration: none; /* Remove sublinhado padrão */
-    font-weight: bold; /* Deixa links em negrito */
-    transition: var(--transicao);
+/* ESTILOS PARA LAZY LOADING DE IMAGENS */
+.lazy-load {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
 }
 
-a:hover {
-    color: var(--branco); /* Muda cor no hover */
-    text-decoration: none; /* Adiciona sublinhado no hover */
-}
-
-/* Ajusta botão 'Ver Mais' no modal */
-.btn-ver-mais {
-    display: inline-block;
-    margin-top: 10px; /* Espaço acima do botão */
-    margin-right: 10px; /* Espaço à direita, se houver outro botão */
-    padding: 6px 12px;
-    background-color: var(--verde-ifmg);
-    color: white; /* Cor diferente do link padrão */
-    border: 1px solid var(--verde-ifmg);
-    border-radius: 4px;
-    font-size: 14px;
-    font-weight: normal; /* Não negrito para diferenciar de links comuns */
-    cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.btn-ver-mais:hover {
-    background-color: var(--verde-ifmg);
-    color: var(--branco);
-    text-decoration: none;
-}
-
-/* Ajusta container dos botões de ação no modal de planos de aula */
-.modal-plan-actions {
-    margin-top: 15px; /* Espaço acima do container */
-    display: flex; /* Usa flexbox para alinhar botões */
-    flex-wrap: wrap; /* Permite quebrar linha se não couber */
-    align-items: center; /* Alinha itens verticalmente */
-    gap: 10px; /* Espaço entre os botões */
-}
-
-/* Ajusta botão 'Enviar Plano' */
-.btn-enviar-plano {
-    /* Estilos já definidos inline, mas podemos garantir aqui se necessário */
-    /* Exemplo: flex-shrink: 0; para não encolher */
-}
-
-/* Ajusta texto de colaboração */
-.modal-plan-collab-text {
-    font-size: 0.9em; 
-    color: var(--cinza-medio);
-    margin-top: 0; /* Remove margem superior padrão do <p> */
-    flex-basis: 100%; /* Faz ocupar a linha inteira abaixo dos botões */
-}
-
-/* Garante que o z-index da classificação funcione */
-.film-poster-container .classification {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    z-index: 2;
+.lazy-load.loaded {
+    opacity: 1;
 }
 
