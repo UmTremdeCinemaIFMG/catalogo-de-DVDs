@@ -211,52 +211,37 @@
            </p>
         </div>
     </footer>
+    
+<!-- SCRIPTS -->
+        <script src="script.js"></script>   
+ 
 
-    <!-- FALE CONOSCO -->
-    <div class="feedback-button">
-        <button id="btnFaleConosco">
-            <i class="fas fa-comments"></i> Fale Conosco
-        </button>
-    </div>
+        <!-- FALE CONOSCO -->
+        <div class="feedback-button">
+            <button id="btnFaleConosco">
+                <i class="fas fa-comments"></i> Fale Conosco
+            </button>
+        </div>
 
-    <div id="modalFaleConosco" class="feedback-modal">
-        <div class="feedback-modal-content">
-            <span class="close">&times;</span>
-            <h2>Fale Conosco</h2>
-            <div class="form-container">
-                <iframe id="googleForm" 
-                        src="https://docs.google.com/forms/d/e/1FAIpQLSfaMr7-ermLAAO8S8zDk0WMcPrVX34mF2xhTrHiC1Z53GbIFQ/viewform?usp=sharing&ouid=101786859238464224020"
-                        frameborder="0" 
-                        marginheight="0" 
-                        marginwidth="0">
-                    Carregando…
-                </iframe>
+        <div id="modalFaleConosco" class="feedback-modal">
+            <div class="feedback-modal-content">
+                <span class="close">&times;</span>
+                <h2>Fale Conosco</h2>
+                <div class="form-container">
+                    <iframe id="googleForm" 
+                            src="https://docs.google.com/forms/d/e/1FAIpQLSfaMr7-ermLAAO8S8zDk0WMcPrVX34mF2xhTrHiC1Z53GbIFQ/viewform?usp=sharing&ouid=101786859238464224020"
+                            frameborder="0" 
+                            marginheight="0" 
+                            marginwidth="0">
+                        Carregando…
+                    </iframe>
+                </div>
             </div>
         </div>
-    </div>
-    
-    <!-- SCRIPTS -->
-    <script>
-        // Script para o modal de Fale Conosco
-        document.addEventListener('DOMContentLoaded', function() {
-            var modal = document.getElementById('modalFaleConosco');
-            var btn = document.getElementById('btnFaleConosco');
-            var span = document.getElementsByClassName('close')[0];
-            
-            btn.onclick = function() {
-                modal.style.display = 'block';
-            }
-            
-            span.onclick = function() {
-                modal.style.display = 'none';
-            }
-            
-            window.onclick = function(event) {
-                if (event.target == modal) {
-                    modal.style.display = 'none';
-                }
-            }
-        });
-    </script>
+
+   <!-- BOTÃO VOLTAR AO TOPO -->
+    <a href="#" class="voltar-topo" id="btnVoltarTopo">
+        <i class="fas fa-arrow-up"></i>
+    </a> 
 </body>
 </html>

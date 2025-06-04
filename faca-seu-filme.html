@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faça Seu Próprio Filme - Catálogo de DVDs</title>
+ 
+    <!-- FONTS E ÍCONES -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- FAVICON -->
+    <link rel="icon" type="image/png" href="favicon.png" />
+    
+    <!-- ESTILOS -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <style>
+        /* Estilos específicos para a página Faça Seu Próprio Filme */
+        .manual-banner {
+            background-color: var(--verde-ifmg);
+            color: var(--branco);
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--sombra);
+        }
+        
+        .manual-banner h2 {
+            font-size: 2.2em;
+            margin-top: 0;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .manual-banner p {
+            font-size: 1.1em;
+            max-width: 80%;
+            line-height: 1.6;
+        }
+        
+        .manual-banner::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 30%;
+            height: 100%;
+            background-image: url('https://img.freepik.com/free-photo/film-industry-concept-with-clapperboard_23-2149917572.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.3;
+        }
+        
+        .etapas-container {
+            display: flex;
+            justify-content: space-between;
+            margin: 30px 0;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .etapa {
+            flex: 1;
+            min-width: 150px;
+            text-align: center;
+            padding: 15px;
+            background-color: var(--cinza-claro);
+            border-radius: 8px;
+            transition: var(--transicao);
+            cursor: pointer;
+            border-bottom: 3px solid var(--verde-ifmg);
+        }
+        
+        .etapa:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--sombra);
+        }
+        
+        .etapa i {
+            font-size: 2em;
+            color: var(--verde-escuro);
+            margin-bottom: 10px;
+        }
+        
+        .etapa h3 {
+            margin: 10px 0;
+            font-size: 1em;
+            color: var(--cinza-escuro);
+        }
+        
+        .capitulo {
+            background-color: var(--branco);
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: var(--sombra);
+        }
+        
+        .capitulo-header {
+            color: var(--verde-escuro);
+            border-bottom: 2px solid var(--verde-ifmg);
+            padding-bottom: 10px;
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .capitulo-header::after {
+            content: '\f078';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            position: absolute;
+            right: 10px;
+            transition: transform 0.3s ease;
+        }
+        
+        .capitulo-header.active::after {
+            transform: rotate(180deg);
+        }
+        
+        .capitulo-content {
+            display: none;
+            padding-top: 20px;
+        }
+        
+        .capitulo-content.active {
+            display: block;
+        }
+        
+        .capitulo h3 {
+            color: var(--verde-ifmg);
+            margin-top: 25px;
+            font-size: 1.3em;
+        }
+        
+        .capitulo h4 {
+            color: var(--cinza-escuro);
+            margin-top: 20px;
+            font-size: 1.1em;
+        }
+        
+        .capitulo p {
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+        
+        .capitulo ul, .capitulo ol {
+            margin-bottom: 20px;
+            padding-left: 25px;
+        }
+        
+        .capitulo li {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+        
+        .destaque {
+            background-color: var(--cinza-claro);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 5px solid var(--verde-ifmg);
+        }
+        
+        .recursos-box {
+            background-color: var(--cinza-claro);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .recursos-box h4 {
+            margin-top: 0;
+            color: var(--verde-escuro);
+            border-bottom: 1px solid var(--cinza-medio);
+            padding-bottom: 10px;
+        }
+        
+        .recursos-box ul {
+            margin-bottom: 0;
+        }
+        
+        .link-externo {
+            color: var(--azul);
+            text-decoration: none;
+            border-bottom: 1px dotted var(--azul);
+            transition: var(--transicao);
+        }
+        
+        .link-externo:hover {
+            color: var(--verde-escuro);
+            border-bottom-color: var(--verde-escuro);
+        }
+        
+        .voltar-topo {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            background-color: var(--verde-ifmg);
+            color: var(--branco);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: var(--sombra);
+            /* opacity: 0.7; */
+            transition: var(--transicao);
+            z-index: 99;
+        }
+        
+        .voltar-topo:hover {
+           /* opacity: 1;  */
+            background-color: var(--verde-escuro);
+            transform: translateY(-5px);
+        }
+        
+        .imagem-exemplo {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        
+        .imagem-exemplo figure {
+            flex: 1;
+            min-width: 200px;
+            max-width: 300px;
+            margin: 0;
+            text-align: center;
+        }
+        
+        .imagem-exemplo img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: var(--sombra);
+        }
+        
+        .imagem-exemplo figcaption {
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: var(--cinza-escuro);
+        }
+        
+        @media (max-width: 768px) {
+            .manual-banner::after {
+                display: none;
+            }
+            
+            .manual-banner p {
+                max-width: 100%;
+            }
+            
+            .etapas-container {
+                flex-direction: column;
+            }
+            
+            .etapa {
+                width: 100%;
+            }
+            
+            .imagem-exemplo figure {
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>  
+    
+<body>
+    <!-- CABEÇALHO -->
+    <header>
+            <p>
+            <div class="container">
+                <h1><i class="fas fa-film"></i> CATÁLOGO DE DVDs</h1>
+                <h3>Filmes Brasileiros do Projeto Um Trem de Cinema do IFMG Sabará</h3>
+                <strong>LEI Nº 13.006, DE 26 DE JUNHO DE 2014:</strong>
+                  A exibição de filmes de produção nacional constituirá componente curricular complementar integrado à proposta pedagógica da escola, sendo a sua exibição obrigatória por, no mínimo, 2 (duas) horas mensais.
+                  <a href="https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2014/lei/l13006.htm" target="_blank" style="margin-left: 8px; color: #ffffff; text-decoration: underline;">
+                    Saiba mais
+                  </a>
+            </div>
+        </p>
+            <!-- BARRA EXTRA -->
+    <div class="barra-extra" style="background-color: #00420c; padding: 0px 0; text-align: center; box-shadow: var(--sombra);">
+            <div class="container" style="display: flex; justify-content: center; flex-wrap: wrap; gap: 20px;">
+                <a href="index.html" style="color: var(--branco); text-decoration: none; font-size: 14px; padding: 5px 10px; transition: var(--transicao);">Início</a>
+                <a href="sobre.html" style="color: var(--branco); text-decoration: none; font-size: 14px; padding: 5px 10px; transition: var(--transicao);">Sobre</a>
+               <!-- <a href="faca-seu-filme.html" style="color: var(--branco); text-decoration: none; font-size: 14px; padding: 5px 10px; transition: var(--transicao);">Faça seu Filme</a>  -->
+                <a href="filmes-online-gratis.html" style="color: var(--branco); text-decoration: none; font-size: 14px; padding: 5px 10px; transition: var(--transicao);">Filmes Online Grátis</a>
+                </div>
+    </div>
+        </header>
+    
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="container">
+        <!-- BANNER DO MANUAL -->
+        <div class="manual-banner">
+            <h2>Manual Interativo: Faça Seu Próprio Filme</h2>
+            <p>Da ideia à exibição: um guia completo para transformar sua criatividade em cinema, seja na escola, na comunidade ou em projetos independentes.</p>
+        </div>
+        
+        <!-- INTRODUÇÃO -->
+        <div class="capitulo">
+            <p>Bem-vindo(a) ao mundo da criação cinematográfica!</p>
+            
+            <p>Este manual é o seu ponto de partida para transformar ideias em filmes. Queremos que você sinta a emoção de contar suas histórias, expressar sua visão de mundo ou registrar a realidade ao seu redor através da magia do cinema. Não importa se você está na escola, na sua comunidade, com um grupo de amigos ou até mesmo se aventurando sozinho(a) – fazer um filme é uma jornada de descoberta e realização.</p>
+            
+            <p>Aqui, você encontrará os passos fundamentais, da faísca inicial de uma ideia até o momento de compartilhar sua obra. Lembre-se: o cinema mais autêntico nasce da paixão e da criatividade, e muitas vezes os melhores recursos são aqueles que já temos à mão. Use este guia como um mapa inicial e, sempre que quiser se aprofundar, explore os links e referências que indicamos!</p>
+            
+            <!-- ETAPAS DO PROCESSO -->
+            <div class="etapas-container">
+                <div class="etapa" onclick="abrirCapitulo('capitulo1')">
+                    <i class="fas fa-lightbulb"></i>
+                    <h3>Ideia</h3>
+                </div>
+                <div class="etapa" onclick="abrirCapitulo('capitulo2')">
+                    <i class="fas fa-file-alt"></i>
+                    <h3>Roteiro</h3>
+                </div>
+                <div class="etapa" onclick="abrirCapitulo('capitulo3')">
+                    <i class="fas fa-video"></i>
+                    <h3>Gravação</h3>
+                </div>
+                <div class="etapa" onclick="abrirCapitulo('capitulo4')">
+                    <i class="fas fa-cut"></i>
+                    <h3>Edição</h3>
+                </div>
+                <div class="etapa" onclick="abrirCapitulo('capitulo5')">
+                    <i class="fas fa-share-alt"></i>
+                    <h3>Exibição</h3>
+                </div>
+            </div>
+        </div>
+        
+        <!-- INTRODUÇÃO: POR QUE FAZER SEU FILME? -->
+        <div class="capitulo" id="introducao">
+            <h2 class="capitulo-header" onclick="toggleCapitulo('introducao')"><i class="fas fa-question-circle"></i> Introdução: Por que fazer seu filme?</h2>
+            
+            <div class="capitulo-content">
+                <p>Fazer um filme é mais do que apenas ligar uma câmera. É uma forma poderosa de:</p>
+                
+                <ul>
+                    <li><strong>Contar Histórias:</strong> Suas, dos outros, da sua comunidade, inventadas ou reais.</li>
+                    <li><strong>Expressar Sentimentos e Ideias:</strong> Compartilhar sua visão de mundo.</li>
+                    <li><strong>Registrar a Realidade:</strong> Documentar momentos, pessoas, culturas.</li>
+                    <li><strong>Educar e Informar:</strong> Apresentar temas importantes de forma criativa e envolvente. O cinema é uma ferramenta incrível para a educação, como discute Marcos Napolitano em "A Sétima Arte na Sala de Aula".</li>
+                    <li><strong>Provocar Reflexão e Debate:</strong> Levantar questões e inspirar conversas.</li>
+                    <li><strong>Desenvolver a Criatividade e o Trabalho em Equipe.</strong></li>
+                    <li><strong>Dar Voz:</strong> Especialmente para aqueles que raramente são ouvidos, um princípio fundamental do cinema comunitário e do trabalho de coletivos como o <a href="https://www.videonasaldeias.org.br/" target="_blank" class="link-externo">Vídeo nas Aldeias</a>.</li>
+                </ul>
+                
+                <p>Seja qual for sua motivação, este guia quer te ajudar a dar os primeiros passos!</p>
+            </div>
+        </div>
+        
+        <!-- CAPÍTULO 1 -->
+        <div class="capitulo" id="capitulo1">
+            <h2 class="capitulo-header" onclick="toggleCapitulo('capitulo1')"><i class="fas fa-lightbulb"></i> Capítulo 1: A Faísca Criativa - Da Ideia ao Argumento</h2>
+            
+            <div class="capitulo-content">
+                <p>Todo filme começa com uma ideia. Mas como encontrá-la e desenvolvê-la?</p>
+                
+                <h3 id="cap1-1">1.1. De Onde Vêm as Ideias?</h3>
+                
+                <p>Esteja atento(a)! As ideias podem surgir de:</p>
+                
+                <ul>
+                    <li>Observações do cotidiano.</li>
+                    <li>Experiências pessoais e sonhos.</li>
+                    <li>Notícias, fatos históricos, questões sociais. Que tal se inspirar em temas de Direitos Humanos, como propõe o projeto <a href="http://www.inventarcomadiferenca.org.br/" target="_blank" class="link-externo">Inventar com a Diferença - Cinema e Direitos Humanos (UFF)</a>? Eles têm materiais riquíssimos!</li>
+                    <li>Obras de arte que te tocam.</li>
+                    <li>Simplesmente da sua imaginação!</li>
+                </ul>
+                
+                <div class="recursos-box">
+                    <h4>Para se inspirar mais:</h4>
+                    <ul>
+                        <li>Explore portais como o <a href="https://nofilmschool.com/" target="_blank" class="link-externo">No Film School</a> (em inglês, mas ótimo para insights) ou blogs de escolas de cinema como o da <a href="https://www.aicinema.com.br/blog/" target="_blank" class="link-externo">AIC (Academia Internacional de Cinema)</a> para ver como outros cineastas encontram suas histórias.</li>
+                    </ul>
+                </div>
+                
+                <h3 id="cap1-2">1.2. Tema e Mensagem: O que você quer dizer?</h3>
+                
+                <p>Após ter uma ideia, pergunte-se: Qual é o assunto central (tema)? Que sentimento ou reflexão (mensagem) você quer provocar?</p>
+                
+                <h3 id="cap1-3">1.3. Logline: Seu filme em uma frase.</h3>
+                
+                <p>Um resumo conciso da sua história (protagonista + objetivo + conflito).</p>
+                
+                <div class="destaque">
+                    <p><strong>Exemplo:</strong> "Um grupo de estudantes (protagonistas) descobre um problema ambiental em sua comunidade (conflito) e decide fazer um documentário para denunciar a situação e mobilizar os moradores (objetivo)."</p>
+                </div>
+                
+                <h3 id="cap1-4">1.4. Sinopse: Contando a história em um parágrafo.</h3>
+                
+                <p>Expanda a logline, resumindo os principais eventos do início ao fim.</p>
+                
+                <h3 id="cap1-5">1.5. Argumento: Detalhando a história.</h3>
+                
+                <p>Um texto corrido (1 a 5 páginas para um curta) que descreve a história com mais detalhes. É o esqueleto do seu filme antes do roteiro.</p>
+                
+                <div class="recursos-box">
+                    <h4>Para aprofundar na arte de contar histórias e desenvolver suas ideias:</h4>
+                    <ul>
+                        <li>"Da Criação ao Roteiro" de Doc Comparato. Um clássico brasileiro fundamental.</li>
+                        <li>"Story: Substância, Estrutura, Estilo e os Princípios da Escrita de Roteiro" de Robert McKee. Embora denso, é uma referência mundial.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- CAPÍTULO 2 -->
+        <div class="capitulo" id="capitulo2">
+            <h2 class="capitulo-header" onclick="toggleCapitulo('capitulo2')"><i class="fas fa-file-alt"></i> Capítulo 2: O Projeto no Papel - Roteiro e Planejamento</h2>
+            
+            <div class="capitulo-content">
+                <p>Com a história clara, é hora de transformá-la em um roteiro e planejar a produção.</p>
+                
+                <h3 id="cap2-1">2.1. O que é um Roteiro? Formatação básica.</h3>
+                
+                <p>O roteiro é o mapa do seu filme.</p>
+                
+                <div class="destaque">
+                    <p><strong>Formato Padrão (simplificado):</strong></p>
+                    <p>CABEÇALHO DE CENA: INT. COZINHA - DIA<br>
+                    AÇÃO: ANA (30) mexe uma panela no fogão. Fumaça sobe.<br>
+                    PERSONAGEM: ANA<br>
+                    DIÁLOGO: (Para si mesma) Acho que queimei de novo.</p>
+                </div>
+                
+                <div class="recursos-box">
+                    <h4>Ferramentas para Roteiro:</h4>
+                    <p><strong>Softwares Gratuitos:</strong></p>
+                    <ul>
+                        <li><a href="https://writerduet.com/" target="_blank" class="link-externo">WriterDuet</a> (versão gratuita)</li>
+                        <li><a href="http://www.trelby.org/" target="_blank" class="link-externo">Trelby</a> (código aberto)</li>
+                        <li><a href="https://www.celtx.com/" target="_blank" class="link-externo">Celtx</a> (versão básica gratuita)</li>
+                        <li>Modelos: Use o Google Docs ou LibreOffice Writer com modelos de formatação que você pode encontrar online.</li>
+                    </ul>
+                </div>
+                
+                <h3 id="cap2-2">2.2. Personagens: Quem são eles?</h3>
+                
+                <p>Desenvolva seus personagens: Quem são? O que querem? Quais seus conflitos?</p>
+                
+                <h3 id="cap2-3">2.3. Estrutura Narrativa Básica (Os Três Atos).</h3>
+                
+                <p>Uma forma comum de organizar histórias de ficção:</p>
+                
+                <ul>
+                    <li><strong>Ato 1:</strong> Apresentação.</li>
+                    <li><strong>Ato 2:</strong> Confrontação.</li>
+                    <li><strong>Ato 3:</strong> Resolução.</li>
+                </ul>
+                
+                <div class="recursos-box">
+                    <h4>Quer entender mais sobre linguagem e estrutura?</h4>
+                    <ul>
+                        <li>"A Gramática da Linguagem Cinematográfica" de Daniel Arriano.</li>
+                        <li>Para filmes educativos, pense na estrutura de apresentação do conteúdo, desenvolvimento com exemplos e uma conclusão ou aplicação prática. O <a href="https://www.futuraplay.org/" target="_blank" class="link-externo">Canal Futura</a> pode ser uma boa fonte de inspiração para formatos.</li>
+                    </ul>
+                </div>
+                
+                <h3 id="cap2-4">2.4. Storyboard e Decupagem (Opcional, mas útil).</h3>
+                
+                <ul>
+                    <li><strong>Storyboard:</strong> Desenhos sequenciais dos planos.</li>
+                    <li><strong>Decupagem:</strong> Lista detalhada dos planos de cada cena.</li>
+                </ul>
+                
+                <div class="imagem-exemplo">
+                    <figure>
+                        <img src="https://i.imgur.com/7Yw3Yjq.jpg" alt="Exemplo de Storyboard">
+                        <figcaption>Exemplo de storyboard para planejamento visual</figcaption>
+                    </figure>
+                </div>
+                
+                <h3 id="cap2-5">2.5. Planejamento de Produção (Pré-Produção): A Chave para o Sucesso.</h3>
+                
+                <p>Organize tudo antes de gravar:</p>
+                
+                <ul>
+                    <li><strong>Orçamento:</strong> Mesmo que zero, liste o que precisa. Seja criativo com baixo custo, como ensina Robert Rodriguez em "Rebel Without a Crew".</li>
+                    <li><strong>Equipe:</strong> Defina funções.</li>
+                    <li><strong>Locações:</strong> Onde filmar? Peça autorizações.</li>
+                    <li><strong>Equipamentos:</strong>
+                        <ul>
+                            <li><strong>Câmera:</strong> Celular, câmera fotográfica que filma. O importante é conhecer seu equipamento! Veja dicas em canais do YouTube como <a href="https://www.youtube.com/c/AvMakers" target="_blank" class="link-externo">AvMakers</a>.</li>
+                            <li><strong>Som:</strong> Microfone do celular (em locais silenciosos), fone com microfone, ou gravador externo.</li>
+                            <li><strong>Iluminação:</strong> Luz natural é sua aliada!</li>
+                        </ul>
+                    </li>
+                    <li><strong>Cronograma de Gravação.</strong></li>
+                    <li><strong>Autorizações e Direitos:</strong>
+                        <ul>
+                            <li><strong>Direito de Imagem:</strong> Peça autorização escrita (Termo de Autorização de Uso de Imagem).</li>
+                            <li><strong>Direito Autoral (Músicas):</strong> Use trilhas de bibliotecas gratuitas (veja Capítulo 4.5).</li>
+                        </ul>
+                    </li>
+                </ul>
+                
+                <div class="recursos-box">
+                    <h4>Para pensar o cinema na escola e com jovens, e a importância do planejamento:</h4>
+                    <ul>
+                        <li>Explore materiais e metodologias de projetos como o Primeiro Filme ou guias de Oficinas de Cinema para Jovens.</li>
+                        <li>Livros como "Cinema e Educação" (coletâneas diversas, busque por títulos em sebos ou bibliotecas universitárias) podem dar ideias de como integrar esse planejamento ao contexto escolar.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- CAPÍTULO 3 -->
+        <div class="capitulo" id="capitulo3">
+            <h2 class="capitulo-header" onclick="toggleCapitulo('capitulo3')"><i class="fas fa-video"></i> Capítulo 3: Luz, Câmera, Ação! - A Gravação (Produção)</h2>
+            
+            <div class="capitulo-content">
+                <p>Chegou a hora de dar vida ao seu roteiro!</p>
+                
+                <h3 id="cap3-1">3.1. A Câmera: Seus Olhos no Mundo (Enquadramentos e Movimentos).</h3>
+                
+                <p>Os enquadramentos são como você "recorta" a realidade com sua câmera:</p>
+                
+                <div class="imagem-exemplo">
+                    <figure>
+                        <img src="https://i.imgur.com/Uy8Ij5v.jpg" alt="Plano Geral">
+                        <figcaption>Plano Geral (PG): Mostra todo o ambiente e o personagem</figcaption>
+                    </figure>
+                    <figure>
+                        <img src="https://i.imgur.com/Uy8Ij5v.jpg" alt="Plano Médio">
+                        <figcaption>Plano Médio (PM): Mostra o personagem da cintura para cima</figcaption>
+                    </figure>
+                    <figure>
+                        <img src="https://i.imgur.com/Uy8Ij5v.jpg" alt="Close-up">
+                        <figcaption>Close-up (CU): Foca no rosto do personagem</figcaption>
+                    </figure>
+                    <figure>
+                        <img src="https://i.imgur.com/Uy8Ij5v.jpg" alt="Plano Detalhe">
+                        <figcaption>Plano Detalhe (PD): Mostra um detalhe específico</figcaption>
+                    </figure>
+                </div>
+                
+                <p>Movimentos de câmera dão dinamismo às suas cenas:</p>
+                
+                <ul>
+                    <li><strong>Panorâmica (PAN):</strong> Câmera fixa, girando horizontalmente.</li>
+                    <li><strong>Tilt:</strong> Câmera fixa, girando verticalmente.</li>
+                    <li><strong>Travelling:</strong> Câmera se desloca no espaço.</li>
+                </ul>
+                
+                <div class="recursos-box">
+                    <h4>Para entender a fundo os elementos da imagem:</h4>
+                    <ul>
+                        <li>"The Five C's of Cinematography" de Joseph V. Mascelli. É um clássico técnico.</li>
+                        <li>O canal <a href="https://www.youtube.com/c/filmriot" target="_blank" class="link-externo">Film Riot</a> (em inglês, com legendas) tem tutoriais criativos sobre como conseguir bons resultados visuais com pouco.</li>
+                    </ul>
+                </div>
+                
+                <h3 id="cap3-2">3.2. O Som: A Alma do Seu Filme.</h3>
+                
+                <p>Áudio limpo é crucial!</p>
+                
+                <ul>
+                    <li>Grave em locais silenciosos.</li>
+                    <li>Aproxime o microfone da fonte sonora.</li>
+                    <li>Monitore com fones de ouvido.</li>
+                    <li>Grave "som ambiente" do local para usar na edição.</li>
+                </ul>
+                
+                <h3 id="cap3-3">3.3. Iluminação: Pintando com a Luz.</h3>
+                
+                <p>A luz cria atmosferas.</p>
+                
+                <div class="imagem-exemplo">
+                    <figure>
+                        <img src="https://i.imgur.com/Uy8Ij5v.jpg" alt="Iluminação de três pontos">
+                        <figcaption>Iluminação básica de três pontos: luz principal, preenchimento e contraluz</figcaption>
+                    </figure>
+                </div>
+                
+                <ul>
+                    <li><strong>Luz Natural:</strong> Sua melhor amiga!</li>
+                    <li><strong>Fontes Alternativas:</strong> Abajures, lanternas.</li>
+                    <li><strong>Rebatedores:</strong> Isopor ou cartolina branca para suavizar sombras.</li>
+                </ul>
+                
+                <h3 id="cap3-4">3.4. Direção de Atores (ou Não-Atores).</h3>
+                
+                <ul>
+                    <li><strong>Comunique-se:</strong> Explique a cena, o sentimento do personagem.</li>
+                    <li><strong>Crie um ambiente confortável.</strong></li>
+                    <li><strong>Para não-atores (documentários, projetos comunitários):</strong> Deixe a pessoa ser ela mesma, crie confiança. A metodologia do <a href="https://www.videonasaldeias.org.br/" target="_blank" class="link-externo">Vídeo nas Aldeias</a> ou do vídeo participativo (veja o site da <a href="https://insightshare.org/" target="_blank" class="link-externo">InsightShare</a>) valoriza muito essa relação autêntica.</li>
+                </ul>
+                
+                <h3 id="cap3-5">3.5. Organização no Set.</h3>
+                
+                <ul>
+                    <li><strong>Claquete Improvisada:</strong> Papel com nome da cena/plano/take + uma palma para sincronizar.</li>
+                    <li><strong>Anote tudo:</strong> Melhores takes, observações.</li>
+                    <li><strong>Backups:</strong> Salve os arquivos gravados em mais de um lugar.</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- CAPÍTULO 4 -->
+        <div class="capitulo" id="capitulo4">
+            <h2 class="capitulo-header" onclick="toggleCapitulo('capitulo4')"><i class="fas fa-cut"></i> Capítulo 4: A Mágica Acontece - Edição e Finalização (Pós-Produção)</h2>
+            
+            <div class="capitulo-content">
+                <p>Aqui você vai juntar todo o material gravado e transformar em um filme.</p>
+                
+                <h3 id="cap4-1">4.1. O que é Edição? Contando a História na Montagem.</h3>
+                
+                <p>Selecionar os melhores trechos (takes) e organizá-los em uma sequência que conte a história, crie ritmo e transmita emoções.</p>
+                
+                <div class="imagem-exemplo">
+                    <figure>
+                        <img src="https://i.imgur.com/Uy8Ij5v.jpg" alt="Interface de software de edição">
+                        <figcaption>Interface típica de um software de edição de vídeo</figcaption>
+                    </figure>
+                </div>
+                
+                <h3 id="cap4-2">4.2. Softwares de Edição: Suas Ferramentas Criativas.</h3>
+                
+                <div class="recursos-box">
+                    <h4>Gratuitos:</h4>
+                    <ul>
+                        <li><a href="https://www.blackmagicdesign.com/br/products/davinciresolve/" target="_blank" class="link-externo">DaVinci Resolve</a> (Blackmagic Design): Extremamente completo</li>
+                        <li><a href="https://www.capcut.com/" target="_blank" class="link-externo">CapCut</a> (Mobile/Desktop): Popular e intuitivo</li>
+                        <li><a href="https://www.openshot.org/" target="_blank" class="link-externo">OpenShot</a>: Código aberto</li>
+                        <li><a href="https://shotcut.org/" target="_blank" class="link-externo">Shotcut</a>: Código aberto</li>
+                    </ul>
+                    <p>Tutoriais: O YouTube está cheio deles! Canais como <a href="https://www.youtube.com/user/canaldagaveta" target="_blank" class="link-externo">Canal da Gaveta</a> (edição) ou o já citado AvMakers podem ser úteis.</p>
+                </div>
+                
+                <h3 id="cap4-3">4.3. Montagem: Juntando as Peças.</h3>
+                
+                <ul>
+                    <li>Organize seu material.</li>
+                    <li>Faça um Primeiro Corte (Rough Cut).</li>
+                    <li>Refine o corte, ajuste o tempo dos planos, melhore as transições. Peça feedback!</li>
+                </ul>
+                
+                <h3 id="cap4-4">4.4. Tratamento de Cor (Básico): Dando o Tom Certo.</h3>
+                
+                <p>Ajuste brilho, contraste e cores para consistência e beleza.</p>
+                
+                <h3 id="cap4-5">4.5. Edição de Som e Trilha Sonora: Criando a Atmosfera.</h3>
+                
+                <ul>
+                    <li>Limpe o áudio com softwares como o <a href="https://www.audacityteam.org/" target="_blank" class="link-externo">Audacity</a> (gratuito).</li>
+                    <li>Adicione efeitos sonoros.</li>
+                    <li><strong>Trilha Sonora:</strong>
+                        <ul>
+                            <li><strong>IMPORTANTE:</strong> Use apenas músicas livres de direitos autorais ou originais!</li>
+                            <li><strong>Onde encontrar músicas livres:</strong>
+                                <ul>
+                                    <li><a href="https://www.youtube.com/audiolibrary/music" target="_blank" class="link-externo">YouTube Audio Library</a> (precisa estar logado no YouTube)</li>
+                                    <li><a href="https://freemusicarchive.org/" target="_blank" class="link-externo">Free Music Archive (FMA)</a></li>
+                                    <li><a href="https://pixabay.com/music/" target="_blank" class="link-externo">Pixabay Music</a></li>
+                                    <li><a href="https://www.bensound.com/" target="_blank" class="link-externo">Bensound</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                
+                <h3 id="cap4-6">4.6. Créditos: Reconhecendo a Equipe.</h3>
+                
+                <p>Liste todos que participaram, músicas (com créditos), agradecimentos.</p>
+                
+                <h3 id="cap4-7">4.7. Exportando seu Filme: Preparando para o Mundo.</h3>
+                
+                <p>Salve em formato digital (.MP4, .MOV). Use resoluções como HD (720p) ou Full HD (1080p).</p>
+                
+                <div class="recursos-box">
+                    <h4>Para se inspirar em diferentes estilos de montagem e finalização, inclusive para filmes de arte ou experimentais:</h4>
+                    <ul>
+                        <li>Explore obras de cineastas que usam a montagem de forma expressiva. Para entender o contexto do cinema experimental, "O Olho Interminável: Cinema Experimental e Vanguarda" de André Parente pode abrir horizontes.</li>
+                        <li>Veja como filmes educativos em plataformas como <a href="https://www.itauculturalplay.com.br/" target="_blank" class="link-externo">Itaú Cultural Play</a> ou <a href="https://www.spcineplay.com.br/" target="_blank" class="link-externo">Spcine Play</a> utilizam a edição para transmitir informação.</li>
+                        <li>Para animação stop motion, procure tutoriais de apps como <a href="https://www.cateater.com/" target="_blank" class="link-externo">Stop Motion Studio</a>.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- CAPÍTULO 5 -->
+        <div class="capitulo" id="capitulo5">
+            <h2 class="capitulo-header" onclick="toggleCapitulo('capitulo5')"><i class="fas fa-share-alt"></i> Capítulo 5: Mostre ao Mundo! - Distribuição e Exibição</h2>
+            
+            <div class="capitulo-content">
+                <p>Seu filme está pronto! Agora é hora de compartilhá-lo.</p>
+                
+                <h3 id="cap5-1">5.1. Onde Exibir? Encontrando seu Público.</h3>
+                
+                <ul>
+                    <li>Escola, comunidade, amigos, família.</li>
+                    <li>Internet.</li>
+                    <li>Festivais de cinema.</li>
+                </ul>
+                
+                <h3 id="cap5-2">5.2. Plataformas Online: Seu Filme na Internet.</h3>
+                
+                <ul>
+                    <li><a href="https://www.youtube.com/" target="_blank" class="link-externo">YouTube</a></li>
+                    <li><a href="https://vimeo.com/" target="_blank" class="link-externo">Vimeo</a></li>
+                    <li>Redes Sociais (Instagram, Facebook, TikTok) para trechos ou filmes curtos.</li>
+                </ul>
+                
+                <h3 id="cap5-3">5.3. Festivais de Cinema: Janelas para o Mundo.</h3>
+                
+                <p>Existem muitos festivais para curtas, estudantes, filmes comunitários.</p>
+                
+                <ul>
+                    <li><strong>Pesquise:</strong> O Portal Curtas (ABDeC) pode ser um bom lugar para começar a procurar, ou agregadores de festivais como o <a href="https://festagent.com/pt" target="_blank" class="link-externo">Festagent</a>.</li>
+                    <li>Fique atento aos prazos e regulamentos.</li>
+                </ul>
+                
+                <h3 id="cap5-4">5.4. Cineclubes e Mostras Comunitárias: Cinema Perto de Você.</h3>
+                
+                <ul>
+                    <li>Procure cineclubes na sua cidade (ex: <a href="http://www.cnc.org.br/" target="_blank" class="link-externo">Conselho Nacional de Cineclubes - CNC</a>).</li>
+                    <li>Organize sua própria mostra! O projeto Circuito Tela Verde pode inspirar mostras temáticas.</li>
+                </ul>
+                
+                <h3 id="cap5-5">5.5. Divulgação do seu Filme.</h3>
+                
+                <ul>
+                    <li><strong>Cartaz (Pôster):</strong> Crie com ferramentas online gratuitas como o <a href="https://www.canva.com/" target="_blank" class="link-externo">Canva</a>.</li>
+                    <li><strong>Trailer.</strong></li>
+                    <li><strong>Redes Sociais.</strong></li>
+                    <li><strong>Boca a Boca.</strong></li>
+                </ul>
+                
+                <div class="imagem-exemplo">
+                    <figure>
+                        <img src="https://i.imgur.com/Uy8Ij5v.jpg" alt="Exemplo de cartaz de filme">
+                        <figcaption>Exemplo de cartaz para divulgação do filme</figcaption>
+                    </figure>
+                </div>
+            </div>
+        </div>
+        
+        <!-- CONCLUSÃO -->
+        <div class="capitulo" id="conclusao">
+            <h2 class="capitulo-header" onclick="toggleCapitulo('conclusao')"><i class="fas fa-flag-checkered"></i> Conclusão: O Próximo Filme e a Jornada Contínua</h2>
+            
+            <div class="capitulo-content">
+                <p>Parabéns! Você chegou ao fim deste guia e, esperamos, está pronto para iniciar (ou continuar) sua jornada no mundo do cinema.</p>
+                
+                <p>Lembre-se: cada filme que você faz é um aprendizado. Não tenha medo de errar, experimentar e se reinventar. O importante é contar histórias que importam para você e que podem tocar outras pessoas.</p>
+                
+                <p>O cinema brasileiro precisa da sua voz, da sua visão e das suas histórias. Seja na escola, na comunidade ou em projetos independentes, seu filme pode fazer a diferença.</p>
+                
+                <p>E quando terminar seu primeiro filme, comece a pensar no próximo! A jornada do cineasta é contínua, cheia de descobertas e realizações.</p>
+                
+                <div class="destaque">
+                    <p>"O cinema não tem fronteiras nem limites. É um fluxo constante de sonho." - Orson Welles</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- GLOSSÁRIO -->
+        <div class="capitulo" id="glossario">
+            <h2 class="capitulo-header" onclick="toggleCapitulo('glossario')"><i class="fas fa-book"></i> Glossário Básico de Termos Cinematográficos</h2>
+            
+            <div class="capitulo-content">
+                <ul>
+                    <li><strong>Argumento:</strong> Texto que descreve a história do filme, sem diálogos ou detalhes técnicos.</li>
+                    <li><strong>Claquete:</strong> Instrumento usado para identificar e sincronizar cenas durante a filmagem.</li>
+                    <li><strong>Decupagem:</strong> Planejamento detalhado dos planos de filmagem.</li>
+                    <li><strong>Diegético:</strong> Som que pertence ao universo do filme (ex: diálogo dos personagens).</li>
+                    <li><strong>Extradiegético:</strong> Som que não pertence ao universo do filme (ex: trilha sonora).</li>
+                    <li><strong>Fade:</strong> Transição gradual para preto (fade out) ou a partir do preto (fade in).</li>
+                    <li><strong>Logline:</strong> Resumo da história em uma frase.</li>
+                    <li><strong>Montagem:</strong> Processo de organizar e editar as cenas filmadas.</li>
+                    <li><strong>Não-diegético:</strong> Som que não pertence ao universo do filme (ex: narração, música de fundo).</li>
+                    <li><strong>Plano:</strong> Unidade básica de filmagem, do momento em que a câmera é ligada até ser desligada.</li>
+                    <li><strong>Plano-sequência:</strong> Plano longo sem cortes.</li>
+                    <li><strong>Roteiro:</strong> Texto que descreve detalhadamente as cenas, diálogos e elementos técnicos do filme.</li>
+                    <li><strong>Sinopse:</strong> Resumo da história em um parágrafo.</li>
+                    <li><strong>Storyboard:</strong> Sequência de desenhos que representam os planos do filme.</li>
+                    <li><strong>Take:</strong> Cada tentativa de gravação de um plano.</li>
+                    <li><strong>Travelling:</strong> Movimento de câmera em que ela se desloca horizontalmente.</li>
+                    <li><strong>Zoom:</strong> Efeito óptico que aproxima ou afasta a imagem sem mover a câmera.</li>
+                </ul>
+            </div>
+        </div>
+    </main>
+    
+    <!-- RODAPÉ -->
+    <footer>
+        <div class="container">
+           <p>
+            Acervo doado pelo Ministério da Cultura ao Projeto de Extensão
+            <br>                
+           <i  class="fas fa-train"></i> UM TREM DE CINEMA IFMG SABARÁ 2019-2021
+           </p>
+        </div>
+    </footer>
+
+    <!-- FALE CONOSCO -->
+    <div class="feedback-button">
+        <button id="btnFaleConosco">
+            <i class="fas fa-comments"></i> Fale Conosco
+        </button>
+    </div>
+
+    <div id="modalFaleConosco" class="feedback-modal">
+        <div class="feedback-modal-content">
+            <span class="close">&times;</span>
+            <h2>Fale Conosco</h2>
+            <div class="form-container">
+                <iframe id="googleForm" 
+                        src="https://docs.google.com/forms/d/e/1FAIpQLSfaMr7-ermLAAO8S8zDk0WMcPrVX34mF2xhTrHiC1Z53GbIFQ/viewform?usp=sharing&ouid=101786859238464224020"
+                        frameborder="0" 
+                        marginheight="0" 
+                        marginwidth="0">
+                    Carregando…
+                </iframe>
+            </div>
+        </div>
+    </div>
+    
+    <!-- BOTÃO VOLTAR AO TOPO -->
+    <a href="#" class="voltar-topo" id="btnVoltarTopo">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+    
+    <!-- SCRIPTS -->
+    <script>
+        // Script para o modal de Fale Conosco
+        document.addEventListener('DOMContentLoaded', function() {
+            var modal = document.getElementById('modalFaleConosco');
+            var btn = document.getElementById('btnFaleConosco');
+            var span = document.getElementsByClassName('close')[0];
+            
+            btn.onclick = function() {
+                modal.style.display = 'block';
+            }
+            
+            span.onclick = function() {
+                modal.style.display = 'none';
+            }
+            
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = 'none';
+                }
+            }
+            
+            // Botão Voltar ao Topo
+            var btnTopo = document.getElementById('btnVoltarTopo');
+            
+            window.onscroll = function() {
+                if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                    btnTopo.style.display = "flex";
+                } else {
+                    btnTopo.style.display = "none";
+                }
+            };
+            
+            btnTopo.onclick = function() {
+                document.body.scrollTop = 0; // Para Safari
+                document.documentElement.scrollTop = 0; // Para Chrome, Firefox, IE e Opera
+                return false;
+            };
+            
+            // Inicializa com todos os capítulos fechados
+            document.querySelectorAll('.capitulo-content').forEach(function(content) {
+                content.style.display = 'none';
+            });
+            
+            // Função para expandir/recolher capítulos
+            window.toggleCapitulo = function(id) {
+                var capitulo = document.getElementById(id);
+                var content = capitulo.querySelector('.capitulo-content');
+                var header = capitulo.querySelector('.capitulo-header');
+                
+                // Se o capítulo já está aberto, fecha
+                if (content.style.display === 'block') {
+                    content.style.display = 'none';
+                    header.classList.remove('active');
+                } else {
+                    // Fecha todos os outros capítulos
+                    document.querySelectorAll('.capitulo-content').forEach(function(item) {
+                        item.style.display = 'none';
+                    });
+                    
+                    document.querySelectorAll('.capitulo-header').forEach(function(item) {
+                        item.classList.remove('active');
+                    });
+                    
+                    // Abre o capítulo clicado
+                    content.style.display = 'block';
+                    header.classList.add('active');
+                }
+            }
+            
+            // Função para abrir um capítulo específico (usada pelos botões de etapas)
+            window.abrirCapitulo = function(id) {
+                var capitulo = document.getElementById(id);
+                var content = capitulo.querySelector('.capitulo-content');
+                var header = capitulo.querySelector('.capitulo-header');
+                
+                // Fecha todos os outros capítulos
+                document.querySelectorAll('.capitulo-content').forEach(function(item) {
+                    item.style.display = 'none';
+                });
+                
+                document.querySelectorAll('.capitulo-header').forEach(function(item) {
+                    item.classList.remove('active');
+                });
+                
+                // Abre o capítulo selecionado
+                content.style.display = 'block';
+                header.classList.add('active');
+                
+                // Rola a página até o capítulo
+                capitulo.scrollIntoView({behavior: 'smooth'});
+            }
+        });
+    </script>
+</body>
+</html>
